@@ -1,16 +1,5 @@
 'use strict';
 
-// Load video bytes only when the visitor chooses a clip. Keep one clip playing.
-const videos = [...document.querySelectorAll('video')];
-for (const video of videos) {
-  video.addEventListener('play', () => {
-    for (const other of videos) if (other !== video) other.pause();
-  });
-}
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) videos.forEach(video => video.pause());
-});
-
 // Full-size figures use native dialog focus management and Escape handling.
 const dialog = document.querySelector('#figure-dialog');
 const expanded = dialog.querySelector('img');
