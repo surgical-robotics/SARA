@@ -31,6 +31,19 @@ and video context menus and dragging are disabled. These are interface
 restrictions, not access control: publicly served media can still be retrieved,
 and a public repository exposes its tracked media files.
 
+## Real-world video state annotations
+
+Real-world cards use synchronized borders and text labels: green for Normal
+Execution, orange for Failure Recovery, and red for External Disturbance.
+Intervals live in `static/js/video-states.js`, in source-video seconds (start
+inclusive, end exclusive). Playback speed does not change the annotation times.
+Unannotated intervals are green; seeking and looping update the state.
+
+The supplied Debridement disturbance timeline extends to 83 seconds, but the
+current `I_debridement_X1.mp4` lasts about 58 seconds. The 66–71 and 71–83 second
+intervals are retained pending confirmation/replacement footage; they cannot
+appear with the current clip. The 47–66 second recovery runs to the clip end.
+
 ## Media preparation
 
 - Overview: `static/images/abstract.png` (the supplied image still includes a placeholder panel).

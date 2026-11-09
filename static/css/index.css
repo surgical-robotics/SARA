@@ -953,3 +953,64 @@ body:has(dialog[open]) {
     transition:none!important;
   }
 }
+
+/* Video state borders and labels use the same visual key as the legend. */
+.video-card[data-state] {
+  --state-color: #32764c;
+  --state-background: #eef7f0;
+  border: 3px solid var(--state-color);
+}
+.video-card[data-state="recovery"] {
+  --state-color: #b45b12;
+  --state-background: #fff3e4;
+}
+.video-card[data-state="disturbance"] {
+  --state-color: #ba303b;
+  --state-background: #fff0f1;
+}
+.video-state-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 6px 12px;
+  color: var(--state-color);
+  background: var(--state-background);
+  font-size: .7rem;
+  font-weight: 700;
+}
+.state-dot, .legend-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--state-color);
+}
+.state-legend {
+  display: flex;
+  gap: 12px 24px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: -20px;
+  margin-bottom: 34px;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: white;
+}
+.state-legend > span {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: .78rem;
+  font-weight: 600;
+}
+.legend-dot.normal { background: #32764c; }
+.legend-dot.recovery { background: #b45b12; }
+.legend-dot.disturbance { background: #ba303b; }
+.state-legend p {
+  flex-basis: 100%;
+  font-size: .75rem;
+  color: var(--muted);
+}

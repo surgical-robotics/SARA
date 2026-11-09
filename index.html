@@ -20,8 +20,9 @@
 <meta name="twitter:image" content="https://surgical-robotics.github.io/SARA/static/images/abstract.png">
 <meta name="citation_title" content="SARA: Toward Surgical Agentic Robotics for Resilient Manipulation Subtasks">
 <!-- Add confirmed authors, venue, paper URL, and final BibTeX when available. -->
-<link rel="stylesheet" href="static/css/index.css">
+<link rel="stylesheet" href="static/css/index.css?v=video-states-1">
 <script defer src="static/js/index.js?v=video-controls-3"></script>
+<script defer src="static/js/video-states.js?v=1"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "SARA: Toward Surgical Agentic Robotics for Resilient Manipulation Subtasks", "description": "SARA anticipates failure modes, synthesizes observable verifiers, and plans recovery chains for resilient surgical manipulation in simulation and on the physical dVRK platform.", "url": "https://surgical-robotics.github.io/SARA/", "image": "https://surgical-robotics.github.io/SARA/static/images/abstract.png"}</script>
 </head>
 <body>
@@ -127,81 +128,100 @@
 </div></section>
 <section class="section results-section real-section" id="real-world"><div class="container wide">
 <div class="section-heading"><p class="eyebrow">Results / Physical dVRK</p><h2>From rehearsal<br>to the real world.</h2><p>Explore physical task execution, failure recovery, and responses to external disturbances across six manipulation subtasks.</p></div>
+<div class="state-legend" aria-label="Video state color legend"><span><i class="legend-dot normal" aria-hidden="true"></i>Normal Execution</span><span><i class="legend-dot recovery" aria-hidden="true"></i>Failure Recovery</span><span><i class="legend-dot disturbance" aria-hidden="true"></i>External Disturbance</span><p>Borders and labels follow the current phase of each video.</p></div>
 <section class="results-group" id="real-tasks" aria-labelledby="real-tasks-title">
  <div class="group-heading"><span class="section-number">03</span><div><p class="eyebrow">Physical dVRK · Task execution</p><h3 id="real-tasks-title">Surgical manipulation in the real world</h3><p>Six physical manipulation subtasks, presented in two rows.</p></div></div>
- <div class="video-grid cols-3"><figure class="video-card">
+ <div class="video-grid cols-3"><figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_pickplace_X1.jpg" aria-label="Physical dVRK: Needle Pick and Place"><source src="static/videos_web/S_pickplace_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Needle Pick and Place</span><small>Physical dVRK · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_peg_X1.jpg" aria-label="Physical dVRK: Peg Transfer"><source src="static/videos_web/S_peg_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Peg Transfer</span><small>Physical dVRK · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_ring_X1.jpg" aria-label="Physical dVRK: Threaded Needle Handover Through a Ring"><source src="static/videos_web/S_ring_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Threaded Needle Handover Through a Ring</span><small>Physical dVRK · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_Shunt_X1.jpg" aria-label="Physical dVRK: Shunt Insertion"><source src="static/videos_web/S_Shunt_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Shunt Insertion</span><small>Physical dVRK · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_debridement_X1.jpg" aria-label="Physical dVRK: Debridement"><source src="static/videos_web/S_debridement_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Debridement</span><small>Physical dVRK · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_stitch_X1.jpg" aria-label="Physical dVRK: Suturing"><source src="static/videos_web/S_stitch_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Suturing</span><small>Physical dVRK · 2× speed</small></figcaption>
   </figure></div></section>
 <section class="results-group" id="real-recovery" aria-labelledby="real-recovery-title">
  <div class="group-heading"><span class="section-number">04</span><div><p class="eyebrow">Physical dVRK · Failure recovery</p><h3 id="real-recovery-title">Recovering during physical execution</h3><p>Failure-recovery demonstrations on the physical platform.</p></div></div>
- <div class="video-grid cols-3"><figure class="video-card">
+ <div class="video-grid cols-3"><figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/F_pickplace_X1.jpg" aria-label="Failure recovery: Needle Pick and Place"><source src="static/videos_web/F_pickplace_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Needle Pick and Place</span><small>Failure recovery · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="1" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/F_peg_X2.jpg" aria-label="Failure recovery: Peg Transfer"><source src="static/videos_web/F_peg_X2.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Peg Transfer</span><small>Failure recovery</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/F_ring_X1.jpg" aria-label="Failure recovery: Threaded Needle Handover Through a Ring"><source src="static/videos_web/F_ring_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Threaded Needle Handover Through a Ring</span><small>Failure recovery · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/F_Shunt_X1.jpg" aria-label="Failure recovery: Shunt Insertion"><source src="static/videos_web/F_Shunt_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Shunt Insertion</span><small>Failure recovery · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/F_debridement_X1.jpg" aria-label="Failure recovery: Debridement"><source src="static/videos_web/F_debridement_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Debridement</span><small>Failure recovery · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/F_stitch_X1.jpg" aria-label="Failure recovery: Suturing"><source src="static/videos_web/F_stitch_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Suturing</span><small>Failure recovery · 2× speed</small></figcaption>
   </figure></div></section>
 <section class="results-group" id="external-disturbances" aria-labelledby="external-disturbances-title">
  <div class="group-heading"><span class="section-number">05</span><div><p class="eyebrow">Physical dVRK · External disturbances</p><h3 id="external-disturbances-title">Resilience under external disturbances</h3><p>Demonstrations of SARA responding to external disturbances during physical task execution.</p></div></div>
- <div class="video-grid cols-3"><figure class="video-card">
+ <div class="video-grid cols-3"><figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/I_pickplace_X1.jpg" aria-label="External disturbance: Needle Pick and Place"><source src="static/videos_web/I_pickplace_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Needle Pick and Place</span><small>External disturbance · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/I_peg_X1.jpg" aria-label="External disturbance: Peg Transfer"><source src="static/videos_web/I_peg_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Peg Transfer</span><small>External disturbance · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/I_ring_X1.jpg" aria-label="External disturbance: Threaded Needle Handover Through a Ring"><source src="static/videos_web/I_ring_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Threaded Needle Handover Through a Ring</span><small>External disturbance · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/I_Shunt_X1.jpg" aria-label="External disturbance: Shunt Insertion"><source src="static/videos_web/I_Shunt_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Shunt Insertion</span><small>External disturbance · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/I_debridement_X1.jpg" aria-label="External disturbance: Debridement"><source src="static/videos_web/I_debridement_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Debridement</span><small>External disturbance · 2× speed</small></figcaption>
   </figure>
-<figure class="video-card">
+<figure class="video-card" data-state="normal">
+    <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload" draggable="false" data-playback-rate="1" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/I_Stitch_X2.jpg" aria-label="External disturbance: Suturing"><source src="static/videos_web/I_Stitch_X2.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Suturing</span><small>External disturbance</small></figcaption>
   </figure></div></section>
