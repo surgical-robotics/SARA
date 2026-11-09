@@ -18,8 +18,9 @@ video galleries in this order:
 | External disturbances | `static/videos_real/I_*.mp4` | 3 columns × 2 rows |
 
 Galleries adapt to two columns on tablets and one on narrow phones. Simulation
-clips use task numbers until descriptive task names are supplied. Real-world
-clips are matched by task name across all three groups. Research figures open
+clips are named in numerical file order: Needle Pick and Place, Peg Transfer, Shunt Insertion, Gauze Lifting, Tissue Retraction, Threaded Needle Handover Through a Ring, Debridement, Suturing. Real-world
+clips are matched by task name across all three groups, with Debridement
+preceding Suturing. Research figures open
 in an enlarged dialog. All videos autoplay muted, loop, and retain playback controls. Real-world clips
 ending in `X1` play at 2× speed; `X2` clips play at normal speed. Browser autoplay
 policies may require visitors to start playback manually. The page has no Code
@@ -51,7 +52,6 @@ corresponding static gallery in `index.html`; the page has no build dependency.
 - Confirm author list, affiliations, venue, and paper URL before adding them.
 - Add the final BibTeX once citation details are available.
 - Replace the overview image's placeholder panel with final keyframes.
-- Optionally supply descriptive names for simulation tasks 01–08.
 
 ## Local preview
 
