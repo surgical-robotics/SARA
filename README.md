@@ -20,7 +20,8 @@ video galleries in this order:
 Galleries adapt to two columns on tablets and one on narrow phones. Simulation
 clips use task numbers until descriptive task names are supplied. Real-world
 clips are matched by task name across all three groups. Research figures open
-in an enlarged dialog. All videos autoplay muted, loop, and retain playback controls. Browser autoplay
+in an enlarged dialog. All videos autoplay muted, loop, and retain playback controls. Real-world clips
+ending in `X2` play at 2× speed; `X1` clips play at normal speed. Browser autoplay
 policies may require visitors to start playback manually. The page has no Code
 link or Explore SARA section.
 

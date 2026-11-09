@@ -1,5 +1,15 @@
 'use strict';
 
+// Apply the playback speed declared by each real-world clip's X1/X2 suffix.
+for (const video of document.querySelectorAll('video[data-playback-rate]')) {
+  const rate = Number(video.dataset.playbackRate);
+  video.defaultPlaybackRate = rate;
+  video.playbackRate = rate;
+  video.addEventListener('loadedmetadata', () => {
+    video.playbackRate = rate;
+  });
+}
+
 // Explicitly start muted videos and retry clips that the browser has not started.
 // A successful start is remembered so later retries respect manual pause/unmute.
 const autoplayVideos = [...document.querySelectorAll('video[autoplay]')];
