@@ -1,433 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- TODO: replace the author and venue placeholders below with final values -->
-
-  <!-- Primary Meta Tags -->
-  <meta name="title" content="SARA - Project Page">
-  <meta name="description" content="SARA project page. Content coming soon.">
-  <meta name="keywords" content="SARA, surgical robotics, robot learning, manipulation">
-  <meta name="author" content="Anonymous Authors">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="SARA">
-  <meta property="og:title" content="SARA - Project Page">
-  <meta property="og:description" content="SARA project page. Content coming soon.">
-  <meta property="og:url" content="https://surgical-robotics.github.io/SARA/">
-  <!-- TODO: add static/images/social_preview.png (1200x630) and uncomment
-  <meta property="og:image" content="https://surgical-robotics.github.io/SARA/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="SARA - Research Preview">
-  -->
-  <meta property="article:author" content="Anonymous Authors">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="Surgical Robotics">
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="SARA - Project Page">
-  <meta name="twitter:description" content="SARA project page. Content coming soon.">
-  <!-- TODO: uncomment once static/images/social_preview.png exists
-  <meta name="twitter:image" content="https://surgical-robotics.github.io/SARA/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="SARA - Research Preview">
-  -->
-
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="SARA">
-  <meta name="citation_author" content="Anonymous Authors">
-  <!-- TODO: set publication date and venue
-  <meta name="citation_publication_date" content="">
-  <meta name="citation_conference_title" content="">
-  -->
-
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-
-  <title>SARA - Project Page</title>
-  <link rel="canonical" href="https://surgical-robotics.github.io/SARA/">
-
-  <!-- TODO: add static/images/favicon.ico and uncomment
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  -->
-
-  <!-- Critical CSS - Load synchronously -->
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
-
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-
-  <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
-  <script defer src="static/js/index.js"></script>
-
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "SARA",
-    "description": "SARA project page. Content coming soon.",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "Anonymous Authors"
-      }
-    ],
-    "url": "https://surgical-robotics.github.io/SARA/",
-    "keywords": ["Surgical Robotics", "Robot Learning"],
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://surgical-robotics.github.io/SARA/"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "Surgical Robotics"
-      }
-    ]
-  }
-  </script>
-
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "SARA",
-    "url": "https://surgical-robotics.github.io/SARA/"
-  }
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SARA: Toward Surgical Agentic Robotics for Resilient Manipulation Subtasks</title>
+<meta name="description" content="SARA anticipates failure modes, synthesizes observable verifiers, and plans recovery chains for resilient surgical manipulation in simulation and on the physical dVRK platform.">
+<meta name="keywords" content="SARA, surgical robotics, agentic robotics, resilient manipulation, dVRK, Newton">
+<meta name="theme-color" content="#174e69">
+<link rel="canonical" href="https://surgical-robotics.github.io/SARA/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SARA">
+<meta property="og:title" content="SARA: Toward Surgical Agentic Robotics for Resilient Manipulation Subtasks">
+<meta property="og:description" content="SARA anticipates failure modes, synthesizes observable verifiers, and plans recovery chains for resilient surgical manipulation in simulation and on the physical dVRK platform.">
+<meta property="og:url" content="https://surgical-robotics.github.io/SARA/">
+<meta property="og:image" content="https://surgical-robotics.github.io/SARA/static/images/abstract.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SARA: Toward Surgical Agentic Robotics for Resilient Manipulation Subtasks">
+<meta name="twitter:description" content="SARA anticipates failure modes, synthesizes observable verifiers, and plans recovery chains for resilient surgical manipulation in simulation and on the physical dVRK platform.">
+<meta name="twitter:image" content="https://surgical-robotics.github.io/SARA/static/images/abstract.png">
+<meta name="citation_title" content="SARA: Toward Surgical Agentic Robotics for Resilient Manipulation Subtasks">
+<!-- Add confirmed authors, venue, paper URL, and final BibTeX when available. -->
+<link rel="stylesheet" href="static/css/index.css">
+<script defer src="static/js/index.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "SARA: Toward Surgical Agentic Robotics for Resilient Manipulation Subtasks", "description": "SARA anticipates failure modes, synthesizes observable verifiers, and plans recovery chains for resilient surgical manipulation in simulation and on the physical dVRK platform.", "url": "https://surgical-robotics.github.io/SARA/", "image": "https://surgical-robotics.github.io/SARA/static/images/abstract.png"}</script>
 </head>
 <body>
-
-
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <main id="main-content">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">SARA</h1>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">
-                <!-- TODO: author list -->
-                Anonymous Authors
-              </span>
-            </div>
-
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">Project details coming soon</span>
-            </div>
-
-            <!-- TODO: add paper / arXiv / video links here once available -->
-            <div class="column has-text-centered">
-              <div class="publication-links">
-                <span class="link-block">
-                  <a href="https://github.com/surgical-robotics/SARA"
-                     class="external-link button is-normal is-rounded is-dark"
-                     target="_blank" rel="noopener noreferrer">
-                    <span class="icon"><i class="fab fa-github" aria-hidden="true"></i></span>
-                    <span>Code</span>
-                  </a>
-                </span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-<!-- Teaser image-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- TODO: replace this placeholder with
-      <img src="static/images/teaser.png" alt="SARA teaser" loading="lazy" style="width: 100%; height: auto;"/>
-      -->
-      <div class="media-placeholder is-wide">
-        <i class="fas fa-image" aria-hidden="true"></i>
-        <span class="placeholder-label">Teaser image</span>
-        <span class="placeholder-path">static/images/teaser.png</span>
-      </div>
-      <h2 class="subtitle has-text-centered">
-        <!-- TODO: teaser caption -->
-        Caption for the teaser figure.
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser image -->
-
-<!-- Paper abstract -->
-<section class="section hero is-light">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p class="todo-note">
-            TODO: paste the paper abstract here.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- End paper abstract -->
-
-
-<!-- Research Questions Section -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Research Questions</h2>
-      <div class="content has-text-justified">
-        <p class="todo-note">
-          TODO: list the one or two questions this work answers.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Method / Pipeline -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <!-- TODO: rename to the method's name -->
-      <h2 class="title is-3">Method</h2>
-      <div class="columns is-centered">
-        <div class="column is-full">
-          <!-- TODO: replace this placeholder with
-          <img src="static/images/pipeline.png" alt="SARA pipeline" loading="lazy" style="width: 100%; height: auto;"/>
-          -->
-          <div class="media-placeholder is-wide">
-            <i class="fas fa-project-diagram" aria-hidden="true"></i>
-            <span class="placeholder-label">Pipeline figure</span>
-            <span class="placeholder-path">static/images/pipeline.png</span>
-          </div>
-          <p class="todo-note" style="margin-top: 15px;">
-            TODO: describe the pipeline figure.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Video Results -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3">Video Demonstrations</h2>
-      <p class="todo-note" style="margin-bottom: 25px;">
-        TODO: drop the .mp4 files into <code>static/videos/</code>, then swap each placeholder below
-        for the commented-out <code>&lt;video&gt;</code> block right above it. Add or remove columns
-        as needed &mdash; each row is a Bulma <code>columns</code> block.
-      </p>
-
-      <!-- Row 1 -->
-      <h3 class="title is-4" style="margin-top: 30px;">Section title</h3>
-      <div class="columns is-multiline">
-        <div class="column is-one-third">
-          <!-- TODO: replace this placeholder with
-          <video controls loop muted autoplay playsinline style="width: 100%; border-radius: 10px;">
-            <source src="static/videos/demo1.mp4" type="video/mp4">
-          </video>
-          -->
-          <div class="media-placeholder">
-            <i class="fas fa-video" aria-hidden="true"></i>
-            <span class="placeholder-label">Video 1</span>
-            <span class="placeholder-path">static/videos/demo1.mp4</span>
-          </div>
-          <p class="has-text-centered" style="margin-top: 10px;"><strong>Caption</strong></p>
-        </div>
-        <div class="column is-one-third">
-          <!-- TODO: replace this placeholder with
-          <video controls loop muted autoplay playsinline style="width: 100%; border-radius: 10px;">
-            <source src="static/videos/demo2.mp4" type="video/mp4">
-          </video>
-          -->
-          <div class="media-placeholder">
-            <i class="fas fa-video" aria-hidden="true"></i>
-            <span class="placeholder-label">Video 2</span>
-            <span class="placeholder-path">static/videos/demo2.mp4</span>
-          </div>
-          <p class="has-text-centered" style="margin-top: 10px;"><strong>Caption</strong></p>
-        </div>
-        <div class="column is-one-third">
-          <!-- TODO: replace this placeholder with
-          <video controls loop muted autoplay playsinline style="width: 100%; border-radius: 10px;">
-            <source src="static/videos/demo3.mp4" type="video/mp4">
-          </video>
-          -->
-          <div class="media-placeholder">
-            <i class="fas fa-video" aria-hidden="true"></i>
-            <span class="placeholder-label">Video 3</span>
-            <span class="placeholder-path">static/videos/demo3.mp4</span>
-          </div>
-          <p class="has-text-centered" style="margin-top: 10px;"><strong>Caption</strong></p>
-        </div>
-      </div>
-
-      <!-- Row 2 -->
-      <h3 class="title is-4" style="margin-top: 40px;">Section title</h3>
-      <div class="columns is-multiline">
-        <div class="column is-half">
-          <!-- TODO: replace this placeholder with
-          <video controls loop muted autoplay playsinline style="width: 100%; border-radius: 10px;">
-            <source src="static/videos/demo4.mp4" type="video/mp4">
-          </video>
-          -->
-          <div class="media-placeholder">
-            <i class="fas fa-video" aria-hidden="true"></i>
-            <span class="placeholder-label">Video 4</span>
-            <span class="placeholder-path">static/videos/demo4.mp4</span>
-          </div>
-          <p class="has-text-centered" style="margin-top: 10px;"><strong>Caption</strong></p>
-        </div>
-        <div class="column is-half">
-          <!-- TODO: replace this placeholder with
-          <video controls loop muted autoplay playsinline style="width: 100%; border-radius: 10px;">
-            <source src="static/videos/demo5.mp4" type="video/mp4">
-          </video>
-          -->
-          <div class="media-placeholder">
-            <i class="fas fa-video" aria-hidden="true"></i>
-            <span class="placeholder-label">Video 5</span>
-            <span class="placeholder-path">static/videos/demo5.mp4</span>
-          </div>
-          <p class="has-text-centered" style="margin-top: 10px;"><strong>Caption</strong></p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-<!-- Youtube video -->
-<!--
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-
-          <div class="publication-video">
-            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
--->
-<!-- End youtube video -->
-
-
-<!-- Paper poster -->
-<!--
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-      <iframe src="static/pdfs/poster.pdf" width="100%" height="550">
-          </iframe>
-      </div>
-    </div>
-  </section>
--->
-<!--End paper poster -->
-
-
-
-<!--BibTex citation: TODO replace this template with the final citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <pre id="bibtex-code"><code>@misc{sara,
-  title={SARA},
-  author={Anonymous Authors},
-  howpublished={\url{https://surgical-robotics.github.io/SARA/}},
-  year={}
-}</code></pre>
-    </div>
-</section>
-<!--End BibTex citation -->
-
-  </main>
-
-  <footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-
-          <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-  </body>
-  </html>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><nav class="nav-shell" aria-label="Main navigation">
+<a class="wordmark" href="#top" aria-label="SARA home">SARA<span class="brand-dot"></span></a>
+<div class="nav-links"><a href="#abstract">Overview</a><a href="#method">Method</a><a href="#simulation">Simulation</a><a href="#real-world">Real world</a></div>
+<a class="repo-link" href="https://github.com/surgical-robotics/SARA" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true">↗</span></a>
+</nav></header>
+<main id="main-content">
+<section class="hero" id="top"><div class="hero-orbit" aria-hidden="true"></div><div class="container hero-content">
+<p class="eyebrow">Surgical agentic robotics · Simulation to reality</p>
+<h1><span class="hero-name">SARA<span class="title-colon">:</span></span><span class="hero-title">Toward Surgical Agentic Robotics for <em>Resilient</em> Manipulation Subtasks</span></h1>
+<p class="hero-summary">Anticipate failures. Verify outcomes. Plan recovery.<br>A path from reusable surgical skills to resilient task execution.</p>
+<div class="hero-actions"><a class="button primary" href="#simulation">Explore demonstrations <span aria-hidden="true">↓</span></a><a class="button secondary" href="#method">Inside the method <span aria-hidden="true">↗</span></a></div>
+<div class="graph-story" aria-label="SARA turns nominal skills into verified recovery behavior">
+<div class="graph-stage"><span class="stage-tag">01 / START</span><strong>Reusable skills</strong><div class="mini-graph nominal" aria-hidden="true"><i>S₁</i><b>→</b><i>S₂</i><b>→</b><i>S₃</i></div><span>Nominal task graph <math aria-label="G N"><msub><mi mathvariant="script">G</mi><mi>N</mi></msub></math></span></div>
+<span class="flow-arrow" aria-hidden="true">→</span>
+<div class="graph-stage agent-stage"><span class="stage-tag">02 / AUGMENT & REFINE</span><strong>Anticipate · Verify · Recover</strong><div class="agent-loop" aria-hidden="true"><span>Failure modes</span><b>↻</b><span>Recovery chains</span></div><span>Iterative rehearsal in Newton</span></div>
+<span class="flow-arrow" aria-hidden="true">→</span>
+<div class="graph-stage recovery-stage"><span class="stage-tag">03 / DEPLOY</span><strong>Resilient execution</strong><div class="mini-graph recovered" aria-hidden="true"><i>S₂</i><b>↗</b><i>R</i><b>↘</b><i>S₃</i></div><span>Augmented graph <math aria-label="G A"><msub><mi mathvariant="script">G</mi><mi>A</mi></msub></math> on dVRK</span></div>
+</div>
+</div></section>
+<section class="section overview" id="abstract"><div class="container">
+<div class="section-heading"><p class="eyebrow">The system at a glance</p><h2>From nominal plans to resilient behavior.</h2></div>
+<figure class="research-figure"><button class="figure-zoom" type="button" data-image="static/images/abstract.png" aria-label="Enlarge SARA system overview"><img src="static/images/abstract.png" alt="SARA overview: Newton simulation and the physical dVRK platform, a nominal skill graph, failure anticipation and self-improvement, and an augmented graph with observable verifiers and recovery transitions." width="1864" height="762" fetchpriority="high"><span class="zoom-hint">View full figure ↗</span></button><figcaption>SARA augments reusable surgical skills with observable verifiers and recovery transitions, bridging simulation rehearsal and physical execution.</figcaption></figure>
+<div class="abstract-layout"><h3>Abstract</h3><p>SARA surgical agentic system overview. Given a nominal graph <math aria-label="G N"><msub><mi mathvariant="script">G</mi><mi>N</mi></msub></math> composed of reusable surgical skills, SARA proactively anticipates failure modes, synthesizes observable verifiers, and plans corresponding recovery chains to construct an augmented directed graph <math aria-label="G A"><msub><mi mathvariant="script">G</mi><mi>A</mi></msub></math>. Through iterative self-improvement and validation within a Newton physics-based dVRK sandbox, the augmented graph is deployed to the physical dVRK platform for resilient task execution.</p></div>
+</div></section>
+<section class="section method-section" id="method"><div class="container">
+<div class="section-heading"><p class="eyebrow">The method</p><h2>Anticipation before execution.<br>Recovery by construction.</h2><p>Task instructions and reusable skills define the nominal graph. SARA augments and refines that graph through rehearsal before physical deployment.</p></div>
+<figure class="research-figure"><button class="figure-zoom" type="button" data-image="static/images/sara_pipeline.png" aria-label="Enlarge the SARA method pipeline"><img src="static/images/sara_pipeline.png" alt="SARA pipeline: task instruction, surgical skill library, nominal graph and Newton sandbox feed augmentation agents; proposed failures, observable verifiers and recovery chains are tested and iteratively refined into the final augmented graph." width="2907" height="1441" loading="lazy"><span class="zoom-hint">View full figure ↗</span></button><figcaption>Augmentation proposes and tests failure modes, verifiers, and recovery chains. Refinement validates verifier and recovery behavior through natural and induction rollouts.</figcaption></figure>
+<div class="method-steps"><article><span>01</span><h3>Anticipate</h3><p>Propose skill-level failure modes and test their induction in the Newton rehearsal sandbox.</p></article><article><span>02</span><h3>Verify & recover</h3><p>Synthesize observable verifiers and corresponding recovery chains, then refine them through testing.</p></article><article><span>03</span><h3>Refine & deploy</h3><p>Iterate on verifier and recovery behavior, then deploy the augmented graph to the physical dVRK platform.</p></article></div>
+</div></section>
+<section class="section results-section" id="simulation"><div class="container wide">
+<div class="section-heading"><p class="eyebrow">Results / Simulation</p><h2>Rehearse skills.<br>Build resilience.</h2><p>Task execution and recovery demonstrations in the Newton physics-based dVRK sandbox.</p></div>
+<section class="results-group" id="sim-tasks" aria-labelledby="sim-tasks-title">
+ <div class="group-heading"><span class="section-number">01</span><div><p class="eyebrow">Newton sandbox</p><h3 id="sim-tasks-title">Surgical manipulation in simulation</h3><p>Eight task demonstrations built from reusable surgical skills.</p></div></div>
+ <div class="video-grid cols-4"><figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/s_1.jpg" aria-label="Simulation: Task 01"><source src="static/videos_sim/s_1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/s_1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 01</span><small>Simulation</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/s_2.jpg" aria-label="Simulation: Task 02"><source src="static/videos_sim/s_2.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/s_2.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 02</span><small>Simulation</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/s_3.jpg" aria-label="Simulation: Task 03"><source src="static/videos_sim/s_3.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/s_3.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 03</span><small>Simulation</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/s_4.jpg" aria-label="Simulation: Task 04"><source src="static/videos_sim/s_4.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/s_4.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 04</span><small>Simulation</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/s_5.jpg" aria-label="Simulation: Task 05"><source src="static/videos_sim/s_5.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/s_5.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 05</span><small>Simulation</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/s_6.jpg" aria-label="Simulation: Task 06"><source src="static/videos_sim/s_6.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/s_6.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 06</span><small>Simulation</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/s_7.jpg" aria-label="Simulation: Task 07"><source src="static/videos_sim/s_7.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/s_7.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 07</span><small>Simulation</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/s_8.jpg" aria-label="Simulation: Task 08"><source src="static/videos_sim/s_8.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/s_8.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 08</span><small>Simulation</small></figcaption>
+  </figure></div></section>
+<section class="results-group" id="sim-recovery" aria-labelledby="sim-recovery-title">
+ <div class="group-heading"><span class="section-number">02</span><div><p class="eyebrow">Newton sandbox · Recovery</p><h3 id="sim-recovery-title">Resilient execution in simulation</h3><p>Recovery demonstrations complement the task rollouts above.</p></div></div>
+ <div class="video-grid cols-4"><figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/i_1.jpg" aria-label="Simulation recovery: Task 01"><source src="static/videos_sim/i_1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/i_1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 01</span><small>Simulation recovery</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/i_2.jpg" aria-label="Simulation recovery: Task 02"><source src="static/videos_sim/i_2.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/i_2.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 02</span><small>Simulation recovery</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/i_3.jpg" aria-label="Simulation recovery: Task 03"><source src="static/videos_sim/i_3.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/i_3.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 03</span><small>Simulation recovery</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/i_4.jpg" aria-label="Simulation recovery: Task 04"><source src="static/videos_sim/i_4.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/i_4.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 04</span><small>Simulation recovery</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/i_5.jpg" aria-label="Simulation recovery: Task 05"><source src="static/videos_sim/i_5.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/i_5.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 05</span><small>Simulation recovery</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/i_6.jpg" aria-label="Simulation recovery: Task 06"><source src="static/videos_sim/i_6.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/i_6.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 06</span><small>Simulation recovery</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/i_7.jpg" aria-label="Simulation recovery: Task 07"><source src="static/videos_sim/i_7.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/i_7.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 07</span><small>Simulation recovery</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_sim/i_8.jpg" aria-label="Simulation recovery: Task 08"><source src="static/videos_sim/i_8.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_sim/i_8.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Task 08</span><small>Simulation recovery</small></figcaption>
+  </figure></div></section>
+</div></section>
+<section class="section results-section real-section" id="real-world"><div class="container wide">
+<div class="section-heading"><p class="eyebrow">Results / Physical dVRK</p><h2>From rehearsal<br>to the real world.</h2><p>Explore physical task execution, failure recovery, and responses to external disturbances across six manipulation subtasks.</p></div>
+<section class="results-group" id="real-tasks" aria-labelledby="real-tasks-title">
+ <div class="group-heading"><span class="section-number">03</span><div><p class="eyebrow">Physical dVRK · Task execution</p><h3 id="real-tasks-title">Surgical manipulation in the real world</h3><p>Six physical manipulation subtasks, presented in two rows.</p></div></div>
+ <div class="video-grid cols-3"><figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/S_pickplace_X1.jpg" aria-label="Physical dVRK: Pick and place"><source src="static/videos_web/S_pickplace_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/S_pickplace_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Pick and place</span><small>Physical dVRK</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/S_peg_X1.jpg" aria-label="Physical dVRK: Peg transfer"><source src="static/videos_web/S_peg_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/S_peg_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Peg transfer</span><small>Physical dVRK</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/S_ring_X1.jpg" aria-label="Physical dVRK: Ring manipulation"><source src="static/videos_web/S_ring_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/S_ring_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Ring manipulation</span><small>Physical dVRK</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/S_Shunt_X1.jpg" aria-label="Physical dVRK: Shunt manipulation"><source src="static/videos_web/S_Shunt_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/S_Shunt_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Shunt manipulation</span><small>Physical dVRK</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/S_stitch_X1.jpg" aria-label="Physical dVRK: Stitching"><source src="static/videos_web/S_stitch_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/S_stitch_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Stitching</span><small>Physical dVRK</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/S_debridement_X1.jpg" aria-label="Physical dVRK: Debridement"><source src="static/videos_web/S_debridement_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/S_debridement_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Debridement</span><small>Physical dVRK</small></figcaption>
+  </figure></div></section>
+<section class="results-group" id="real-recovery" aria-labelledby="real-recovery-title">
+ <div class="group-heading"><span class="section-number">04</span><div><p class="eyebrow">Physical dVRK · Failure recovery</p><h3 id="real-recovery-title">Recovering during physical execution</h3><p>Failure-recovery demonstrations on the physical platform.</p></div></div>
+ <div class="video-grid cols-3"><figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/F_pickplace_X1.jpg" aria-label="Failure recovery: Pick and place"><source src="static/videos_web/F_pickplace_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/F_pickplace_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Pick and place</span><small>Failure recovery</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/F_peg_X2.jpg" aria-label="Failure recovery: Peg transfer"><source src="static/videos_web/F_peg_X2.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/F_peg_X2.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Peg transfer</span><small>Failure recovery</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/F_ring_X1.jpg" aria-label="Failure recovery: Ring manipulation"><source src="static/videos_web/F_ring_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/F_ring_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Ring manipulation</span><small>Failure recovery</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/F_Shunt_X1.jpg" aria-label="Failure recovery: Shunt manipulation"><source src="static/videos_web/F_Shunt_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/F_Shunt_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Shunt manipulation</span><small>Failure recovery</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/F_stitch_X1.jpg" aria-label="Failure recovery: Stitching"><source src="static/videos_web/F_stitch_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/F_stitch_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Stitching</span><small>Failure recovery</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/F_debridement_X1.jpg" aria-label="Failure recovery: Debridement"><source src="static/videos_web/F_debridement_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/F_debridement_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Debridement</span><small>Failure recovery</small></figcaption>
+  </figure></div></section>
+<section class="results-group" id="external-disturbances" aria-labelledby="external-disturbances-title">
+ <div class="group-heading"><span class="section-number">05</span><div><p class="eyebrow">Physical dVRK · External disturbances</p><h3 id="external-disturbances-title">Resilience under external disturbances</h3><p>Demonstrations of SARA responding to external disturbances during physical task execution.</p></div></div>
+ <div class="video-grid cols-3"><figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/I_pickplace_X1.jpg" aria-label="External disturbance: Pick and place"><source src="static/videos_web/I_pickplace_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/I_pickplace_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Pick and place</span><small>External disturbance</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/I_peg_X1.jpg" aria-label="External disturbance: Peg transfer"><source src="static/videos_web/I_peg_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/I_peg_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Peg transfer</span><small>External disturbance</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/I_ring_X1.jpg" aria-label="External disturbance: Ring manipulation"><source src="static/videos_web/I_ring_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/I_ring_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Ring manipulation</span><small>External disturbance</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/I_Shunt_X1.jpg" aria-label="External disturbance: Shunt manipulation"><source src="static/videos_web/I_Shunt_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/I_Shunt_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Shunt manipulation</span><small>External disturbance</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/I_Stitch_X2.jpg" aria-label="External disturbance: Stitching"><source src="static/videos_web/I_Stitch_X2.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/I_Stitch_X2.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Stitching</span><small>External disturbance</small></figcaption>
+  </figure>
+<figure class="video-card">
+    <div class="video-frame"><video controls playsinline muted loop preload="none" poster="static/images/posters/videos_real/I_debridement_X1.jpg" aria-label="External disturbance: Debridement"><source src="static/videos_web/I_debridement_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video. <a href="static/videos_web/I_debridement_X1.mp4">Open the video</a>.</p></video></div>
+    <figcaption><span>Debridement</span><small>External disturbance</small></figcaption>
+  </figure></div></section>
+</div></section>
+<section class="project-close"><div class="container"><p class="eyebrow">Explore SARA</p><h2>Reusable skills. Observable checks.<br>Planned recovery.</h2><a class="button primary" href="https://github.com/surgical-robotics/SARA" target="_blank" rel="noopener noreferrer">View the project on GitHub ↗</a></div></section>
+</main>
+<footer class="site-footer"><div class="container"><a class="wordmark" href="#top">SARA<span class="brand-dot"></span></a><p>Built on the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>, adopted from <a href="https://nerfies.github.io/">Nerfies</a>. Website licensed under <a rel="license" href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</p></div></footer>
+<dialog id="figure-dialog" aria-label="Expanded research figure"><div class="dialog-toolbar"><span>Research figure</span><button type="button" class="dialog-close" aria-label="Close expanded figure">Close ×</button></div><div class="dialog-image-wrap"><img alt=""></div></dialog>
+<button class="scroll-to-top" type="button" aria-label="Back to top">↑</button>
+</body>
+</html>

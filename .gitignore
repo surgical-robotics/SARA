@@ -1,1 +1,6 @@
 .DS_Store
+
+# High-bitrate source footage stays local; publish static/videos_web/ instead.
+/static/videos_real/
+__pycache__/
+*.tmp.mp4

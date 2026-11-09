@@ -2,35 +2,53 @@
 
 Project page for SARA, intended for **https://surgical-robotics.github.io/SARA/**
 
-The page is currently a **placeholder**: the layout and all section skeletons are in place,
-but every figure, video and paragraph still needs to be filled in.
+## Content
 
-## Status
+Title: **SARA: Toward Surgical Agentic Robotics for Resilient Manipulation Subtasks**
 
-- [ ] Paper title, author list, venue (`index.html`, hero section + all meta tags)
-- [ ] Abstract
-- [ ] Research questions
-- [ ] Method / pipeline description
-- [ ] Teaser image → `static/images/teaser.png`
-- [ ] Pipeline figure → `static/images/pipeline.png`
-- [ ] Social preview image (1200×630) → `static/images/social_preview.png`
-- [ ] Favicon → `static/images/favicon.ico`
-- [ ] Demo videos → `static/videos/*.mp4`
-- [ ] Paper PDF → `static/pdfs/`
-- [ ] Paper / arXiv / code links in the hero section
-- [ ] BibTeX entry
+The page includes the supplied abstract, system overview, method figure, and five
+video galleries in this order:
 
-## Adding media
+| Gallery | Source files | Desktop layout |
+| --- | --- | --- |
+| Simulation tasks | `static/videos_sim/s_*.mp4` | 4 columns × 2 rows |
+| Simulation recovery | `static/videos_sim/i_*.mp4` | 4 columns × 2 rows |
+| Physical tasks | `static/videos_real/S_*.mp4` | 3 columns × 2 rows |
+| Physical recovery | `static/videos_real/F_*.mp4` | 3 columns × 2 rows |
+| External disturbances | `static/videos_real/I_*.mp4` | 3 columns × 2 rows |
 
-Every placeholder box in `index.html` has a commented-out `<img>` or `<video>` tag
-directly above it showing the exact markup to use. Drop the file into the right
-`static/` folder, then swap the `<div class="media-placeholder">` for that tag.
+Galleries adapt to two columns on tablets and one on narrow phones. Simulation
+clips use task numbers until descriptive task names are supplied. Real-world
+clips are matched by task name across all three groups. Research figures open
+in an enlarged dialog. Videos load on demand and only one clip plays at a time.
 
-Rows are Bulma `columns` blocks — add or remove `<div class="column is-one-third">`
-(or `is-half`) children to change how many items sit side by side.
+## Media preparation
 
-Keep videos small: compress before committing, and use YouTube for anything over ~10 MB.
-Compress images with [TinyPNG](https://tinypng.com).
+- Overview: `static/images/abstract.png` (the supplied image still includes a placeholder panel).
+- Method: `static/images/sara_pipeline.png`.
+- Video posters: `static/images/posters/`.
+- Published physical videos: `static/videos_web/` (H.264, original resolution, fast-start MP4).
+- Original physical videos: `static/videos_real/` (preserved locally and ignored by Git).
+- Simulation videos: `static/videos_sim/` (published directly).
+
+To regenerate posters and web copies after changing source footage, install
+FFmpeg and run from this directory:
+
+```bash
+python3 scripts/prepare_media.py
+```
+
+The script preserves source files, processes two clips at a time, and skips
+up-to-date outputs. Commit generated `static/videos_web/` and
+`static/images/posters/` together with the page. To add or remove videos, edit the
+corresponding static gallery in `index.html`; the page has no build dependency.
+
+## Remaining publication details
+
+- Confirm author list, affiliations, venue, and paper URL before adding them.
+- Add the final BibTeX once citation details are available.
+- Replace the overview image's placeholder panel with final keyframes.
+- Optionally supply descriptive names for simulation tasks 01–08.
 
 ## Local preview
 
