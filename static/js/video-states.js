@@ -13,8 +13,7 @@
     F_shunt: [[7, 21, 'recovery']],
     I_shunt: [[6, 8, 'disturbance'], [8, 12, 'recovery'], [13, 15, 'disturbance'], [15, 18, 'recovery']],
     F_debridement: [[11, 19, 'recovery']],
-    // Later intervals await a longer source clip; the current clip ends at ~58s.
-    I_debridement: [[39, 47, 'disturbance'], [47, 66, 'recovery'], [66, 71, 'disturbance'], [71, 83, 'recovery']],
+    I_debridement: [[27, 33, 'disturbance'], [33, 43, 'recovery'], [43, 46, 'disturbance'], [46, 53, 'recovery']],
     F_stitch: [[3, 21, 'recovery']],
     I_stitch: [[4, 8, 'disturbance'], [8, 12, 'recovery']]
   };

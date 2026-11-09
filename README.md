@@ -39,10 +39,9 @@ Intervals live in `static/js/video-states.js`, in source-video seconds (start
 inclusive, end exclusive). Playback speed does not change the annotation times.
 Unannotated intervals are green; seeking and looping update the state.
 
-The supplied Debridement disturbance timeline extends to 83 seconds, but the
-current `I_debridement_X1.mp4` lasts about 58 seconds. The 66–71 and 71–83 second
-intervals are retained pending confirmation/replacement footage; they cannot
-appear with the current clip. The 47–66 second recovery runs to the clip end.
+Debridement recovery (`F`): 11–19 seconds. Debridement external disturbance
+(`I`): 27–33 and 43–46 seconds disturbance, 33–43 and 46–53 seconds recovery.
+All other intervals show normal execution.
 
 ## Media preparation
 
