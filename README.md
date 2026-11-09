@@ -102,10 +102,26 @@ git merge origin/main --allow-unrelated-histories
 
 Resolve any conflicts, commit the resolution, and push again. Do not force-push.
 
-In the SARA repository, open **Settings → Pages** and select **Deploy from a branch**,
-branch **main**, folder **/ (root)**, then save. After deployment succeeds, the
-website will be available at https://surgical-robotics.github.io/SARA/.
-`.nojekyll` ensures `static/` is published as-is.
+In the SARA repository, open **Settings → Pages** and change **Source** to
+**GitHub Actions**. The workflow `.github/workflows/pages.yml` runs on pushes to
+`main` and can be started manually from **Actions → Deploy SARA website → Run workflow**.
+Do not also use branch-based publishing with this workflow.
+
+The build runs `python3 scripts/build_site.py`, validates all local page assets,
+and uploads only the publishable `_site/` directory. Original physical footage,
+Git metadata, scripts, and unused template dependencies are excluded. The deploy
+step allows up to 30 minutes for GitHub Pages to finish; this accommodates slow
+deployments but cannot fix a GitHub service outage. Ubuntu is pinned to 24.04.
+
+To validate the artifact locally:
+
+```bash
+python3 scripts/build_site.py
+```
+
+After a successful deployment, visit https://surgical-robotics.github.io/SARA/.
+If deployment times out, inspect the deploy log and GitHub Pages service status;
+the live site may still show the last successful version.
 
 This repository starts with a fresh SARA history, independent of the copied
 project. Existing template acknowledgments and licensing are retained.
