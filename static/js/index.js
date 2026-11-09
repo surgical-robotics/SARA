@@ -1,5 +1,62 @@
 'use strict';
 
+// Explicitly start muted videos and retry clips that the browser has not started.
+// A successful start is remembered so later retries respect manual pause/unmute.
+const autoplayVideos = [...document.querySelectorAll('video[autoplay]')];
+const startedVideos = new WeakSet();
+const startingVideos = new WeakSet();
+
+async function startAutoplay(video) {
+  if (document.hidden || startedVideos.has(video) || startingVideos.has(video)) return;
+  startingVideos.add(video);
+  video.defaultMuted = true;
+  video.muted = true;
+  video.playsInline = true;
+  try {
+    await video.play();
+    startedVideos.add(video);
+    delete video.dataset.autoplayBlocked;
+  } catch (error) {
+    // Native controls remain available if autoplay is disabled in the browser.
+    if (error.name === 'NotAllowedError') video.dataset.autoplayBlocked = 'true';
+  } finally {
+    startingVideos.delete(video);
+  }
+}
+
+for (const video of autoplayVideos) {
+  video.defaultMuted = true;
+  video.muted = true;
+  video.playsInline = true;
+  video.addEventListener('playing', () => {
+    startedVideos.add(video);
+    delete video.dataset.autoplayBlocked;
+  });
+  video.addEventListener('loadeddata', () => startAutoplay(video));
+  video.addEventListener('canplay', () => startAutoplay(video));
+  startAutoplay(video);
+}
+
+// Safari and mobile browsers can defer playback until a video becomes visible.
+if ('IntersectionObserver' in window) {
+  const videoObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) startAutoplay(entry.target);
+    }
+  }, { threshold: 0.1 });
+  autoplayVideos.forEach(video => videoObserver.observe(video));
+}
+
+function retryAutoplay() {
+  autoplayVideos.forEach(video => startAutoplay(video));
+}
+// Calls run directly inside a trusted gesture for stricter browser policies.
+document.addEventListener('pointerdown', retryAutoplay, { passive: true });
+document.addEventListener('keydown', retryAutoplay);
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) retryAutoplay();
+});
+
 // Full-size figures use native dialog focus management and Escape handling.
 const dialog = document.querySelector('#figure-dialog');
 const expanded = dialog.querySelector('img');
