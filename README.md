@@ -26,6 +26,11 @@ ending in `X1` play at 2× speed; `X2` clips play at normal speed. Browser autop
 policies may require visitors to start playback manually. The page has no Code
 link or Explore SARA section.
 
+Video controls request `nodownload`, direct fallback media links are omitted,
+and video context menus and dragging are disabled. These are interface
+restrictions, not access control: publicly served media can still be retrieved,
+and a public repository exposes its tracked media files.
+
 ## Media preparation
 
 - Overview: `static/images/abstract.png` (the supplied image still includes a placeholder panel).

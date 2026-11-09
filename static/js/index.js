@@ -1,5 +1,11 @@
 'use strict';
 
+// Hide common saving actions on video elements; public media remains accessible.
+for (const video of document.querySelectorAll('video')) {
+  video.addEventListener('contextmenu', event => event.preventDefault());
+  video.addEventListener('dragstart', event => event.preventDefault());
+}
+
 // Real-world clips: X1 plays at 2× speed; X2 retains normal speed.
 for (const video of document.querySelectorAll('video[data-playback-rate]')) {
   const rate = Number(video.dataset.playbackRate);
