@@ -1,6 +1,6 @@
 'use strict';
 
-// Apply the playback speed declared by each real-world clip's X1/X2 suffix.
+// Real-world clips: X1 plays at 2× speed; X2 retains normal speed.
 for (const video of document.querySelectorAll('video[data-playback-rate]')) {
   const rate = Number(video.dataset.playbackRate);
   video.defaultPlaybackRate = rate;
