@@ -21,119 +21,68 @@ for (const video of document.querySelectorAll('video')) {
   video.addEventListener('volumechange', enforcePlayback);
 }
 
-// Attach only the current demonstration group: paused players alone can retain
-// media resources. Releasing other groups prevents 34 simultaneous media loads.
+// Preload all clips through their HTML sources; only visible clips should play.
 const autoplayVideos = [...document.querySelectorAll('video[data-autoplay]')];
-const videoGroups = [...document.querySelectorAll('.results-group')];
 const playbackStates = new Map(autoplayVideos.map(video => [video, {
-  source: video.querySelector('source'), group: video.closest('.results-group'),
-  attached: false, wantsPlay: true, savedTime: 0, restoring: false,
-  generation: 0, starting: false
+  visible: false, wantsPlay: true, wanted: false,
+  revision: 0, starting: false
 }]));
-let activeVideoGroup = null;
-let pendingVideoGroup;
-let groupChangeTimer;
-let groupFrame = 0;
+
+function shouldPlayVideo(video) {
+  const state = playbackStates.get(video);
+  const fullscreen = document.fullscreenElement;
+  return state.wantsPlay && !document.hidden &&
+    (fullscreen ? fullscreen.contains(video) : state.visible);
+}
 
 async function startAutoplay(video) {
   const state = playbackStates.get(video);
-  if (!state.attached || !state.wantsPlay || state.restoring || document.hidden ||
-      !video.paused || state.starting) return;
-  const generation = state.generation;
+  if (!shouldPlayVideo(video) || !video.paused || state.starting) return;
+  const revision = state.revision;
   state.starting = true;
+  let aborted = false;
   try {
     await video.play();
-    if (generation === state.generation) delete video.dataset.autoplayBlocked;
+    delete video.dataset.autoplayBlocked;
   } catch (error) {
-    if (generation === state.generation && error.name === 'NotAllowedError') {
-      video.dataset.autoplayBlocked = 'true';
-    }
+    if (error.name === 'NotAllowedError') video.dataset.autoplayBlocked = 'true';
+    aborted = error.name === 'AbortError';
   } finally {
-    if (generation === state.generation) state.starting = false;
-  }
-}
-
-function releaseVideo(video) {
-  const state = playbackStates.get(video);
-  if (!state.attached) return;
-  if (!state.restoring && Number.isFinite(video.currentTime)) state.savedTime = video.currentTime;
-  state.attached = false;
-  state.generation++;
-  state.starting = false;
-  state.restoring = false;
-  video.autoplay = false;
-  video.pause();
-  state.source.removeAttribute('src');
-  video.preload = 'none';
-  delete video.dataset.autoplayBlocked;
-  // Abort the old resource selection and release its media pipeline.
-  video.load();
-}
-
-function attachVideo(video) {
-  const state = playbackStates.get(video);
-  if (!state.attached) {
-    state.attached = true;
-    state.generation++;
     state.starting = false;
-    state.restoring = state.savedTime > 0;
-    video.preload = 'auto';
-    video.autoplay = state.wantsPlay && !state.restoring;
-    state.source.setAttribute('src', state.source.dataset.src);
-    video.load();
+    if (!shouldPlayVideo(video)) {
+      if (!video.paused) video.pause();
+    } else if (aborted && state.revision !== revision && video.paused) {
+      // A clip can return to view before its cancelled play request settles.
+      startAutoplay(video);
+    }
   }
-  startAutoplay(video);
 }
 
-function activateVideoGroup(group) {
-  clearTimeout(groupChangeTimer);
-  pendingVideoGroup = undefined;
-  activeVideoGroup = group;
-  const fullscreen = document.fullscreenElement;
-  const targets = new Set(autoplayVideos.filter(video =>
-    group && playbackStates.get(video).group === group && (!fullscreen || fullscreen.contains(video))
-  ));
-  // Finish releasing the previous group before loading any videos in the next.
-  for (const video of autoplayVideos) if (!targets.has(video)) releaseVideo(video);
-  for (const video of targets) attachVideo(video);
-}
-
-function chooseVideoGroup() {
-  if (document.hidden) return null;
-  if (document.fullscreenElement) return document.fullscreenElement.closest('.results-group');
-  const top = Math.min(160, window.innerHeight / 3);
-  let best = null, bestOverlap = 0, activeOverlap = 0;
-  let nearby = null, nearbyDistance = 301;
-  for (const group of videoGroups) {
-    const rect = group.querySelector('.video-grid').getBoundingClientRect();
-    const overlap = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, top));
-    if (group === activeVideoGroup) activeOverlap = overlap;
-    if (overlap > bestOverlap) { best = group; bestOverlap = overlap; }
-    const distance = rect.top - window.innerHeight;
-    if (distance >= 0 && distance < nearbyDistance) { nearby = group; nearbyDistance = distance; }
+function syncVideoPlayback(video) {
+  const state = playbackStates.get(video);
+  const wanted = shouldPlayVideo(video);
+  if (state.wanted !== wanted) {
+    state.wanted = wanted;
+    state.revision++;
   }
-  // A small overlap margin prevents repeated switching at a section boundary.
-  if (activeOverlap > 0 && activeOverlap >= bestOverlap - 80) return activeVideoGroup;
-  return best || nearby;
+  video.autoplay = wanted;
+  if (wanted) startAutoplay(video);
+  else if (!video.paused || state.starting) video.pause();
 }
 
-function updateVideoGroup(immediate = false) {
-  const group = chooseVideoGroup();
-  if (immediate) { activateVideoGroup(group); return; }
-  if (group === activeVideoGroup) {
-    clearTimeout(groupChangeTimer);
-    pendingVideoGroup = undefined;
-    return;
+function readVideoVisibility() {
+  for (const video of autoplayVideos) {
+    const rect = video.getBoundingClientRect();
+    const width = Math.max(0, Math.min(rect.right, window.innerWidth) - Math.max(rect.left, 0));
+    const height = Math.max(0, Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0));
+    const area = Math.max(0, rect.right - rect.left) * Math.max(0, rect.bottom - rect.top);
+    playbackStates.get(video).visible = area > 0 && width * height / area >= 0.05;
   }
-  if (group === pendingVideoGroup) return;
-  clearTimeout(groupChangeTimer);
-  pendingVideoGroup = group;
-  groupChangeTimer = setTimeout(() => activateVideoGroup(chooseVideoGroup()), 120);
 }
 
-function scheduleVideoGroup() {
-  if (groupFrame) return;
-  groupFrame = requestAnimationFrame(() => { groupFrame = 0; updateVideoGroup(); });
+function refreshVideoPlayback() {
+  readVideoVisibility();
+  autoplayVideos.forEach(syncVideoPlayback);
 }
 
 for (const video of autoplayVideos) {
@@ -141,44 +90,54 @@ for (const video of autoplayVideos) {
   video.defaultMuted = true;
   video.muted = true;
   video.playsInline = true;
-  video.addEventListener('loadedmetadata', () => {
-    if (!state.attached) return;
-    if (state.restoring && Number.isFinite(video.duration)) {
-      video.currentTime = Math.min(state.savedTime, Math.max(0, video.duration - 0.01));
-      state.restoring = false;
-    }
-    video.autoplay = state.wantsPlay;
-    startAutoplay(video);
-  });
   video.addEventListener('sara:playback-intent', event => {
     event.preventDefault();
     state.wantsPlay = event.detail.playing;
-    video.autoplay = state.wantsPlay;
-    if (state.wantsPlay) {
-      activateVideoGroup(state.group);
-      startAutoplay(video);
-    } else video.pause();
+    // A direct Play click takes effect immediately, even at a visibility boundary.
+    if (state.wantsPlay) state.visible = true;
+    syncVideoPlayback(video);
   });
   video.addEventListener('playing', () => {
-    if (!state.attached || !state.wantsPlay || document.hidden) video.pause();
+    if (!shouldPlayVideo(video)) video.pause();
     else delete video.dataset.autoplayBlocked;
   });
-  video.addEventListener('loadeddata', () => startAutoplay(video));
-  video.addEventListener('canplay', () => startAutoplay(video));
+  for (const event of ['loadedmetadata', 'loadeddata', 'canplay']) {
+    video.addEventListener(event, () => syncVideoPlayback(video));
+  }
+}
+
+if ('IntersectionObserver' in window) {
+  const videoObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      playbackStates.get(entry.target).visible = entry.isIntersecting && entry.intersectionRatio >= 0.05;
+    }
+    // Pause departing clips before starting newly visible ones.
+    for (const entry of entries) if (!shouldPlayVideo(entry.target)) syncVideoPlayback(entry.target);
+    for (const entry of entries) if (shouldPlayVideo(entry.target)) syncVideoPlayback(entry.target);
+  }, { threshold: [0, 0.05] });
+  autoplayVideos.forEach(video => videoObserver.observe(video));
+} else {
+  let visibilityFrame = 0;
+  function scheduleVisibility() {
+    if (visibilityFrame) return;
+    visibilityFrame = requestAnimationFrame(() => {
+      visibilityFrame = 0;
+      refreshVideoPlayback();
+    });
+  }
+  window.addEventListener('scroll', scheduleVisibility, { passive: true });
+  window.addEventListener('resize', scheduleVisibility);
 }
 
 function retryAutoplay(event) {
-  if (event.target?.closest?.('.media-controls')) return;
-  autoplayVideos.forEach(video => startAutoplay(video));
+  if (!event.target?.closest?.('.media-controls')) autoplayVideos.forEach(syncVideoPlayback);
 }
-window.addEventListener('scroll', scheduleVideoGroup, { passive: true });
-window.addEventListener('resize', scheduleVideoGroup);
-window.addEventListener('load', scheduleVideoGroup);
-document.addEventListener('visibilitychange', () => updateVideoGroup(true));
-document.addEventListener('fullscreenchange', () => updateVideoGroup(true));
+document.addEventListener('visibilitychange', refreshVideoPlayback);
+document.addEventListener('fullscreenchange', refreshVideoPlayback);
 document.addEventListener('pointerdown', retryAutoplay, { passive: true });
 document.addEventListener('keydown', retryAutoplay);
-updateVideoGroup(true);
+window.addEventListener('load', refreshVideoPlayback);
+refreshVideoPlayback();
 
 // Full-size figures use native dialog focus management and Escape handling.
 const dialog = document.querySelector('#figure-dialog');

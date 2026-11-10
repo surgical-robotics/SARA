@@ -24,22 +24,23 @@ clips are named in numerical file order: Needle Pick and Place, Peg Transfer, Sh
 clips are matched by task name across all three groups, with Debridement
 preceding Suturing. The physical ring-handover task uses the shorter caption
 `Threaded Needle Handover` in all three groups. Research figures open
-in an enlarged dialog. Videos automatically load and play within the current
-experiment group: Simulation Normal Execution / Failure Recovery, or Real-world
-Normal Execution / Failure Recovery / External Disturbance. At most one group
-is attached at a time (eight simulation or six physical clips). Other groups keep
-posters and deferred `data-src` URLs; they do not eagerly create 34 media loads.
-Switching groups pauses and detaches the old sources before attaching the new
-ones, releasing old media resources instead of merely pausing them. Playback
-positions and manual pauses are remembered and restored after metadata loads.
-The group with the most visible video area is selected, with a small boundary
-margin and 120ms stabilization delay to avoid rapid switches. The upcoming group
-may begin loading within 300px of the viewport. Fullscreen attaches only the
-selected video; hidden tabs release media resources. Native muted inline autoplay
-and `preload="auto"` are enabled for attached players. Failed autoplay can be
-retried when data arrives or a user gesture permits playback. Sticky navigation
-uses opaque white backgrounds without backdrop blur. If the browser blocks
-autoplay, the Play control stays visible for a manual start.
+in an enlarged dialog. Video loading and playback are managed separately. All 34
+clips have regular HTML sources and `preload="auto"`, requesting buffering as soon
+as the page opens. The page never removes their sources, calls `load()` to restart
+them, or resets playback positions during scrolling, tab changes, or fullscreen.
+Returning to a group reuses whatever data the browser has retained. Preload is a
+browser hint, not a guarantee of complete downloads or permanent caching: first
+loads compete for bandwidth, and browsers may evict buffers under memory pressure.
+
+Only videos at least 5% visible play automatically. Offscreen videos pause with
+their playback position intact and resume when visible again. Manual pauses stay
+paused. Hidden tabs pause all clips; fullscreen permits only the selected clip to
+play. Playback resumes after cancelled pending requests when a clip quickly returns
+to view. Buffering offscreen clips never intentionally starts playback, and a pending
+play request is not duplicated. Sticky navigation uses opaque white backgrounds
+without backdrop blur. If the browser blocks autoplay, the Play control stays
+visible for a manual start. First-time buffering can still occur; this policy avoids
+deliberate reloads when revisiting a group but does not guarantee immediate playback.
 A compact seek bar with
 play/pause and fullscreen controls (when supported) appears along the bottom only
 on hover or keyboard focus. Touching a video reveals the controls for three seconds;
