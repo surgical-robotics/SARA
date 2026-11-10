@@ -998,43 +998,46 @@ body:has(dialog[open]) {
   color: var(--muted);
 }
 
-/* Quiet, fixed-speed demonstration controls. */
+/* Minimal overlay controls leave the video canvas unobstructed. */
+.video-frame { position: relative; }
 .media-controls {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
   display: flex;
   align-items: center;
-  gap: 8px;
-  min-height: 42px;
-  padding: 7px 10px;
-  color: var(--ink);
-  background: #f4f8fa;
-  border-bottom: 1px solid var(--line);
+  gap: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease;
+}
+.video-frame:hover .media-controls,
+.video-frame:focus-within .media-controls,
+.video-frame.is-paused .media-controls {
+  opacity: 1;
+  pointer-events: auto;
 }
 .media-controls button {
-  padding: 4px 6px;
-  border: 0;
-  border-radius: 4px;
-  color: var(--ink);
-  background: transparent;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / .3);
+  border-radius: 6px;
+  color: white;
+  background: rgb(10 26 36 / .7);
   cursor: pointer;
-  font-size: .7rem;
+  font-size: 1rem;
+  line-height: 1;
 }
-.media-controls button:hover { background: #dfeaf0; }
-.media-toggle { min-width: 40px; }
-.media-controls input[type="range"] {
-  flex: 1;
-  min-width: 24px;
-  margin: 0;
-  accent-color: var(--blue);
-  cursor: pointer;
-}
-.media-controls input:focus-visible {
-  outline: 3px solid var(--orange);
-  outline-offset: 3px;
-}
-.media-time {
-  white-space: nowrap;
-  font-size: .6rem;
-  font-variant-numeric: tabular-nums;
+.media-controls button:hover { background: rgb(10 26 36 / .92); }
+@media (hover: none), (pointer: coarse) {
+  .media-controls {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 .video-card:fullscreen {
   display: flex;

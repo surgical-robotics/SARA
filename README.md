@@ -23,8 +23,9 @@ figures, aligning their left and right edges. Simulation
 clips are named in numerical file order: Needle Pick and Place, Peg Transfer, Shunt Insertion, Gauze Lifting, Tissue Retraction, Threaded Needle Handover Through a Ring, Debridement, Suturing. Real-world
 clips are matched by task name across all three groups, with Debridement
 preceding Suturing. Research figures open
-in an enlarged dialog. All videos autoplay muted and loop. Custom controls provide play/pause, seeking,
-and fullscreen (when supported), with no volume or speed selector. Playback
+in an enlarged dialog. All videos autoplay muted and loop. Compact play/pause and fullscreen controls (when supported) appear at the
+bottom right on hover or keyboard focus, and remain visible on touch devices
+or while paused. Progress bars, timestamps, volume, and speed selectors are omitted. Playback
 rates and mute are enforced by the page. Real-world clips
 ending in `X1` play at 2× speed; `X2` clips play at normal speed. Browser autoplay
 policies may require visitors to start playback manually. The page has no Code

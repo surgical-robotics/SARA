@@ -2,10 +2,6 @@
 
 // Use consistent controls without exposing volume, download, or playback speed.
 (() => {
-  const clock = seconds => {
-    if (!Number.isFinite(seconds)) return '0:00';
-    return `${Math.floor(seconds / 60)}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
-  };
   for (const card of document.querySelectorAll('.video-card')) {
     const video = card.querySelector('video');
     const title = video.getAttribute('aria-label') || 'Demonstration';
@@ -19,28 +15,15 @@
     toggle.className = 'media-toggle';
     toggle.textContent = 'Play';
     toggle.setAttribute('aria-label', `Play ${title}`);
-    const seek = document.createElement('input');
-    seek.type = 'range';
-    seek.min = '0';
-    seek.max = '0';
-    seek.step = '0.01';
-    seek.value = '0';
-    seek.disabled = true;
-    seek.setAttribute('aria-label', `Seek ${title}`);
-    const time = document.createElement('span');
-    time.className = 'media-time';
-    bar.append(toggle, seek, time);
+    bar.append(toggle);
+    const frame = card.querySelector('.video-frame');
 
     function update() {
       const playing = !video.paused && !video.ended;
-      toggle.textContent = playing ? 'Pause' : 'Play';
+      toggle.textContent = playing ? 'Ⅱ' : '▶';
       toggle.setAttribute('aria-label', `${playing ? 'Pause' : 'Play'} ${title}`);
-      const duration = Number.isFinite(video.duration) ? video.duration : 0;
-      seek.disabled = duration <= 0;
-      seek.max = String(duration);
-      seek.value = String(video.currentTime);
-      seek.setAttribute('aria-valuetext', `${clock(video.currentTime)} of ${clock(duration)}`);
-      time.textContent = `${clock(video.currentTime)} / ${clock(duration)}`;
+      toggle.title = playing ? 'Pause' : 'Play';
+      frame.classList.toggle('is-paused', !playing);
     }
     toggle.addEventListener('click', async () => {
       if (video.paused) {
@@ -50,18 +33,13 @@
       }
       update();
     });
-    seek.addEventListener('input', () => {
-      if (Number.isFinite(video.duration) && video.duration > 0) {
-        video.currentTime = Number(seek.value);
-        update();
-      }
-    });
     if (document.fullscreenEnabled && card.requestFullscreen) {
       const fullscreen = document.createElement('button');
       fullscreen.type = 'button';
       fullscreen.className = 'media-fullscreen';
       fullscreen.textContent = '⛶';
       fullscreen.setAttribute('aria-label', `Fullscreen ${title}`);
+      fullscreen.title = 'Fullscreen';
       fullscreen.addEventListener('click', async () => {
         try {
           if (document.fullscreenElement === card) await document.exitFullscreen();
@@ -73,10 +51,10 @@
       });
       bar.append(fullscreen);
     }
-    for (const event of ['loadedmetadata', 'durationchange', 'timeupdate', 'play', 'pause', 'ended', 'seeked']) {
+    for (const event of ['play', 'pause', 'ended']) {
       video.addEventListener(event, update);
     }
-    card.querySelector('.video-frame').after(bar);
+    frame.append(bar);
     video.controls = false;
     update();
   }
