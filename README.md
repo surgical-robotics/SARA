@@ -67,7 +67,9 @@ Abstract and Method. Gallery numbering restarts within each section: Simulation
 uses 1 Normal Execution and 2 Failure Recovery; Real-world experiments uses
 1 Normal Execution, 2 Failure Recovery, and 3 External Disturbance. Compact
 number badges also appear in the group headings, with matching numbers in the
-sticky gallery navigation, which highlights the current group.
+sticky gallery navigation, which highlights the current group using its matching
+background tint and a green, orange, or red text and underline accent. Hovering a
+gallery link also uses its corresponding group background.
 Horizontal rules, additional spacing, and very light category backgrounds separate
 groups: green (`#fafdfb`) for normal execution, yellow (`#fffdf7`) for recovery, and
 red (`#fffafb`) for external disturbance. These near-white backgrounds identify the

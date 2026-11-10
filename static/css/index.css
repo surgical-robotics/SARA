@@ -71,14 +71,14 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
 /* Each gallery has a local phase legend; the videos retain synchronized labels. */
 .gallery-nav { position: sticky; top: 72px; z-index: 20; display: flex; align-items: stretch; gap: 10px; padding: 7px 0; background: rgb(255 255 255 / .97); backdrop-filter: blur(16px); border-block: 1px solid var(--line); min-height: 70px; }
 .gallery-nav a { display: flex; flex: 1; min-width: 0; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 10px 14px; border-radius: 5px; font-size: 15px; font-weight: 550; line-height: 1.4; text-align: center; transition: background .2s; }
-.gallery-nav a:hover { background: #f5f7f4; }
-.gallery-nav a[aria-current] { background: #edf3ed; box-shadow: inset 0 -2px var(--ink); }
+.gallery-nav a:hover { background: var(--group-bg); }
+.gallery-nav a[aria-current] { color: var(--group-accent); background: var(--group-bg); box-shadow: inset 0 -2px var(--group-accent); }
 .nav-index { flex-shrink: 0; color: var(--muted); font-weight: 650; font-variant-numeric: tabular-nums; }
-.gallery-nav a[aria-current] .nav-index { color: var(--ink); }
+.gallery-nav a[aria-current] .nav-index { color: inherit; }
 .results-group { --group-bg: transparent; position: relative; isolation: isolate; scroll-margin-top: 68px; padding-top: 36px; }
-.results-group[data-category="normal"] { --group-bg: #fafdfb; }
-.results-group[data-category="recovery"] { --group-bg: #fffdf7; }
-.results-group[data-category="disturbance"] { --group-bg: #fffafb; }
+.results-group[data-category="normal"], .gallery-nav a[data-category="normal"] { --group-bg: #fafdfb; --group-accent: var(--green); }
+.results-group[data-category="recovery"], .gallery-nav a[data-category="recovery"] { --group-bg: #fffdf7; --group-accent: var(--orange); }
+.results-group[data-category="disturbance"], .gallery-nav a[data-category="disturbance"] { --group-bg: #fffafb; --group-accent: var(--red); }
 /* Extend the category background into the gutter without shifting video edges. */
 .results-group::before { content: ''; position: absolute; z-index: -1; inset: 12px -20px -24px; border-radius: 10px; background: var(--group-bg); pointer-events: none; }
 .results-group + .results-group { margin-top: 80px; padding-top: 40px; border-top: 2px solid #b9c5ba; }
