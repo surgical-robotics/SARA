@@ -23,7 +23,7 @@ figures, aligning their left and right edges. Simulation
 clips are named in numerical file order: Needle Pick and Place, Peg Transfer, Shunt Insertion, Gauze Lifting, Tissue Retraction, Needle Handover Through a Ring, Debridement, Suturing. Real-world
 clips are matched by task name across all three groups, with Debridement
 preceding Suturing. The physical ring-handover task uses the shorter caption
-`Needle Handover` in all three groups. Research figures open
+`Threaded Needle Handover` in all three groups. Research figures open
 in an enlarged dialog. All videos autoplay muted and loop. A compact seek bar with
 play/pause and fullscreen controls (when supported) appears along the bottom only
 on hover or keyboard focus. Touching a video reveals the controls for three seconds;
@@ -57,8 +57,8 @@ figures; no additional method diagram or interactive stepper is shown.
 The visible hero wordmark omits the colon; the complete title retains it in
 metadata and accessible text. The SARA wordmark is limited to 104px on desktop
 and 68–88px on mobile, giving the full research title more visual weight.
-The SARA wordmark uses green lettering and a small pale-green dot that echoes the
-navigation logo. The full research title, including Resilient, uses a consistent
+The SARA wordmark uses regular-weight Georgia italic in deep green (`#244f3e`),
+with a small pale-green dot that echoes the navigation logo. The full research title, including Resilient, uses a consistent
 dark color, sans-serif font, upright style, and weight, with balanced wrapping and
 relaxed letter spacing.
 
