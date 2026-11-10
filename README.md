@@ -23,9 +23,13 @@ figures, aligning their left and right edges. Simulation
 clips are named in numerical file order: Needle Pick and Place, Peg Transfer, Shunt Insertion, Gauze Lifting, Tissue Retraction, Threaded Needle Handover Through a Ring, Debridement, Suturing. Real-world
 clips are matched by task name across all three groups, with Debridement
 preceding Suturing. Research figures open
-in an enlarged dialog. All videos autoplay muted and loop. Compact play/pause and fullscreen controls (when supported) appear at the
-bottom right on hover or keyboard focus, and remain visible on touch devices
-or while paused. Progress bars, timestamps, volume, and speed selectors are omitted. Playback
+in an enlarged dialog. All videos autoplay muted and loop. A compact seek bar with
+play/pause and fullscreen controls (when supported) appears along the bottom only
+on hover or keyboard focus. Touching a video reveals the controls for three seconds;
+dragging keeps them available until the interaction ends. The native range input
+supports pointer and keyboard seeking, using source-video seconds so phase labels
+and the configured playback rate remain aligned. Visible timestamps, volume, and
+speed selectors are omitted. Playback
 rates and mute are enforced by the page. Real-world clips
 ending in `X1` play at 2× speed; `X2` clips play at normal speed. Browser autoplay
 policies may require visitors to start playback manually. The page has no Code
@@ -48,20 +52,52 @@ The visible hero wordmark omits the colon; the complete title retains it in
 metadata and accessible text. Resilient uses a green serif accent with a subtle
 curved underline.
 
-Experiment sections are numbered 1 (Simulation) and 2 (Real-world experiments).
-The five video groups use 1.1 Normal Execution, 1.2 Execution Recovery, 2.1 Normal
-Execution, 2.2 Execution Recovery, and 2.3 External Disturbance. These numbers
-also appear in the sticky gallery navigation, which highlights the current group.
+Simulation and Real-world experiments use unnumbered section headings, matching
+Abstract and Method. Gallery numbering restarts within each section: Simulation
+uses 1 Normal Execution and 2 Execution Recovery; Real-world experiments uses
+1 Normal Execution, 2 Execution Recovery, and 3 External Disturbance. Compact
+number badges also appear in the group headings, with matching numbers in the
+sticky gallery navigation, which highlights the current group.
 Stronger horizontal rules and additional spacing separate groups. Duplicate
 platform labels and repeated counts remain omitted. Video
-captions retain the physical playback speed. Each gallery heading includes only
+captions retain the physical playback speed. Each video's state label and task name
+share the same 16px type size on desktop and mobile, with slightly heavier task names.
+Each gallery heading includes only
 the phase colors relevant to that gallery; the legend wraps below the heading on
 small screens. Sticky gallery links and the active chapter marker help navigate
 the long page.
-The supplied abstract uses consistent task terminology. The overview figure shows
+The supplied abstract uses consistent task terminology and appears as one paragraph,
+sharing the full container width with the overview figure. A prominent research
+question introduces Method: "Can emerging coding agents deliver augmented dexterity
+across surgical tasks while remaining reliable under failure?" The overview figure shows
 its upper diagram inline, cropping the unfinished placeholder panel with CSS;
 the zoom dialog still opens the complete original image. The mobile layout stacks
 content and videos, and reduced-motion preferences disable interface transitions.
+
+## Task attributes
+
+Normal Execution cards show two neutral outlined labels below the task name:
+Unimanual/Bimanual and Rigid/Deformable/Rigid + deformable. Recovery and disturbance
+cards omit these repeated attributes. Arm coordination follows the active
+manipulators in each demonstration; object properties refer to the manipulated
+objects, excluding passive supports and robot instruments. Rigid + deformable
+covers the needle together with its thread and, for suturing, the tissue interaction.
+
+These are initial visual classifications from sampled video frames, pending the
+author's review; they do not establish simulator material properties. Debridement
+particularly needs confirmation: the simulated debris appears as shape-preserving
+particles, whereas the physical demonstration uses soft-looking pieces on tissue.
+
+| Task | Simulation | Real world |
+| --- | --- | --- |
+| Needle Pick and Place | Unimanual · Rigid | Unimanual · Rigid |
+| Peg Transfer | Unimanual · Rigid | Unimanual · Rigid |
+| Shunt Insertion | Unimanual · Deformable | Unimanual · Deformable |
+| Gauze Lifting | Unimanual · Deformable | — |
+| Tissue Retraction | Unimanual · Deformable | — |
+| Threaded Needle Handover Through a Ring | Bimanual · Rigid + deformable | Bimanual · Rigid + deformable |
+| Debridement | Unimanual · Rigid | Unimanual · Deformable |
+| Suturing | Bimanual · Rigid + deformable | Bimanual · Rigid + deformable |
 
 ## Video state annotations
 

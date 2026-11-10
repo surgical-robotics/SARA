@@ -60,8 +60,7 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
 .hero-tags li { padding: 10px 15px; border: 1px solid var(--line); border-radius: 10px; background: #f8faf8; color: #3f574a; font-size: 15px; line-height: 1.4; }
 .hero-tags strong { font-weight: 650; }
 /* The supplied abstract and scientific figures remain the main explanation. */
-.abstract-copy { max-width: 860px; margin: 0 0 44px; font-size: 18px; color: #40534a; line-height: 1.85; }
-.abstract-copy p + p { margin-top: 22px; }
+.abstract-copy { width: 100%; margin: 0 0 44px; font-size: 18px; color: #40534a; line-height: 1.85; }
 .research-figure { margin: 0; }
 .figure-zoom { position: relative; display: block; width: 100%; padding: 20px; border: 1px solid var(--line); border-radius: 7px; background: white; cursor: zoom-in; overflow: hidden; }
 .figure-zoom img { width: 100%; }
@@ -71,8 +70,9 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
 .figure-zoom:hover .zoom-hint, .figure-zoom:focus-visible .zoom-hint { opacity: 1; transform: none; }
 .research-figure > figcaption { max-width: 940px; color: var(--muted); font-size: 15px; line-height: 1.65; margin-top: 16px; padding-left: 13px; border-left: 2px solid #b5c8b7; }
 .method-section { border-block: 1px solid var(--line); }
+.method-question { margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--line); font-size: clamp(24px, 3vw, 34px); line-height: 1.45; letter-spacing: -.025em; text-wrap: balance; }
+.method-question strong { font-weight: 600; }
 /* Each gallery has a local phase legend; the videos retain synchronized labels. */
-.section-index { color: var(--muted); font-variant-numeric: tabular-nums; }
 .gallery-nav { position: sticky; top: 72px; z-index: 20; display: flex; align-items: stretch; gap: 10px; padding: 7px 0; background: rgb(255 255 255 / .97); backdrop-filter: blur(16px); border-block: 1px solid var(--line); min-height: 70px; }
 .gallery-nav a { display: flex; flex: 1; min-width: 0; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 10px 14px; border-radius: 5px; font-size: 15px; font-weight: 550; line-height: 1.4; text-align: center; transition: background .2s; }
 .gallery-nav a:hover { background: #f5f7f4; }
@@ -83,7 +83,7 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
 .results-group + .results-group { margin-top: 80px; padding-top: 40px; border-top: 2px solid #b9c5ba; }
 .group-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 28px; margin-bottom: 26px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
 .group-heading h3 { display: flex; align-items: center; gap: 14px; font-size: 28px; }
-.group-index { display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; min-width: 58px; padding: 8px 10px; border: 1px solid #cbd5ca; border-radius: 5px; background: #f5f7f4; font-size: 20px; font-weight: 650; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.group-index { display: inline-flex; flex-shrink: 0; align-items: center; justify-content: center; min-width: 42px; height: 42px; padding: 0 8px; border: 1px solid #cbd5ca; border-radius: 5px; background: #f5f7f4; font-size: 20px; font-weight: 650; letter-spacing: 0; font-variant-numeric: tabular-nums; }
 .state-legend { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; color: #40534a; font-size: 14px; line-height: 1.5; }
 .state-legend > span { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
 .legend-dot { flex-shrink: 0; display: inline-block; width: 10px; height: 10px; border-radius: 50%; }
@@ -94,21 +94,30 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
 .video-card { --state-color: var(--green); --state-bg: var(--normal-bg); min-width: 0; border-radius: 6px; background: var(--white); box-shadow: 0 2px 3px #1c302b04; overflow: hidden; }
 .video-card[data-state="recovery"] { --state-color: var(--orange); --state-bg: var(--recovery-bg); }
 .video-card[data-state="disturbance"] { --state-color: var(--red); --state-bg: var(--disturbance-bg); }
-.video-state-bar { display: flex; align-items: center; gap: 8px; padding: 8px 12px; min-height: 36px; color: var(--state-color); background: var(--state-bg); font-size: 13px; font-weight: 500; line-height: 1.5; transition: background .15s, color .15s; }
+.video-state-bar { display: flex; align-items: center; gap: 8px; padding: 8px 12px; min-height: 40px; color: var(--state-color); background: var(--state-bg); font-size: 16px; font-weight: 500; line-height: 1.5; transition: background .15s, color .15s; }
 .state-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
 .video-frame { position: relative; aspect-ratio: 16 / 9; background: #101d19; border: 2px solid var(--state-color); transition: border-color .15s; }
 .simulation-grid .video-frame { aspect-ratio: 4 / 3; }
 .video-frame video { width: 100%; height: 100%; object-fit: contain; background: #101d19; }
 .video-card > figcaption { display: flex; align-items: start; justify-content: space-between; flex-wrap: wrap; gap: 6px 16px; padding: 16px; }
-.video-card > figcaption > span { font-size: 18px; font-weight: 550; line-height: 1.45; letter-spacing: -.015em; }
+.video-card > figcaption > span { font-size: 16px; font-weight: 550; line-height: 1.5; }
 .video-card > figcaption small { color: var(--muted); font-size: 14px; padding-top: 3px; line-height: 1.5; }
+.task-attributes { display: flex; flex-basis: 100%; flex-wrap: wrap; gap: 7px; margin: 4px 0 0; padding: 0; list-style: none; }
+.task-attributes li { padding: 4px 9px; border: 1px solid #dce1dd; border-radius: 6px; background: #fafbfa; color: #536059; font-size: 14px; line-height: 1.4; }
 .real-section { border-top: 2px solid #b9c5ba; }
-/* Compact play and fullscreen controls; no seek, audio, or rate selectors. */
-.media-controls { position: absolute; right: 12px; bottom: 12px; display: flex; gap: 6px; z-index: 2; opacity: 0; pointer-events: none; transition: opacity .18s; }
-.video-frame:hover .media-controls, .video-frame:focus-within .media-controls, .video-frame.is-paused .media-controls { opacity: 1; pointer-events: auto; }
-.media-controls button { display: grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 1px solid #ffffff55; border-radius: 5px; background: rgb(12 28 23 / .7); color: white; font: 17px/1 system-ui, sans-serif; backdrop-filter: blur(8px); }
+/* Reveal seeking, play, and fullscreen controls on hover, keyboard focus, or touch. */
+.media-controls { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 6px; background: rgb(12 28 23 / .7); backdrop-filter: blur(8px); z-index: 2; opacity: 0; pointer-events: none; transition: opacity .18s; }
+.video-frame:has(.media-controls :focus-visible) .media-controls, .video-frame.controls-visible .media-controls, .video-frame.is-seeking .media-controls { opacity: 1; pointer-events: auto; }
+.media-controls button { display: grid; place-items: center; flex-shrink: 0; width: 34px; height: 34px; padding: 0; border: 1px solid #ffffff55; border-radius: 5px; background: rgb(12 28 23 / .7); color: white; font: 17px/1 system-ui, sans-serif; }
 .media-controls button:hover { background: rgb(12 28 23 / .95); }
-.media-controls button:focus-visible { outline-color: white; outline-offset: 2px; }
+.media-controls button:focus-visible, .media-seek:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+.media-seek { --progress: 0%; flex: 1; min-width: 0; width: 100%; height: 34px; margin: 0; padding: 0; appearance: none; -webkit-appearance: none; background: transparent; cursor: pointer; }
+.media-seek::-webkit-slider-runnable-track { height: 4px; border-radius: 2px; background: linear-gradient(to right, #fff var(--progress), #ffffff55 var(--progress)); }
+.media-seek::-webkit-slider-thumb { width: 12px; height: 12px; margin-top: -4px; border: 0; border-radius: 50%; background: white; appearance: none; -webkit-appearance: none; box-shadow: 0 1px 4px #0006; }
+.media-seek::-moz-range-track { height: 4px; border-radius: 2px; background: #ffffff55; }
+.media-seek::-moz-range-progress { height: 4px; border-radius: 2px; background: white; }
+.media-seek::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: white; box-shadow: 0 1px 4px #0006; }
+.media-seek:disabled { opacity: .4; cursor: default; }
 .video-card:fullscreen { display: flex; flex-direction: column; width: 100%; height: 100%; padding: 0; border-radius: 0; background: #101d19; }
 .video-card:fullscreen .video-frame { flex: 1; min-height: 0; aspect-ratio: auto; }
 .video-card:fullscreen > figcaption { flex-shrink: 0; background: var(--white); }
@@ -141,6 +150,7 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
   .section-heading > p { font-size: 16px; }
   h2 { font-size: clamp(34px, 6vw, 44px); }
   .abstract-copy { font-size: 17px; line-height: 1.8; margin-bottom: 32px; }
+  .method-question { margin-bottom: 36px; padding-bottom: 28px; }
   .figure-zoom { padding: 8px; }
   .figure-zoom.overview-figure { padding: 3px; }
   .overview-figure img { top: 3px; left: 3px; width: calc(100% - 6px); }
@@ -152,11 +162,10 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
   .results-group + .results-group { margin-top: 56px; padding-top: 32px; }
   .group-heading { align-items: flex-start; flex-direction: column; gap: 12px; margin-bottom: 22px; }
   .group-heading h3 { font-size: 25px; }
-  .group-index { min-width: 52px; font-size: 18px; }
+  .group-index { min-width: 38px; height: 38px; font-size: 18px; }
   .state-legend { gap: 9px 18px; font-size: 14px; }
   .video-grid { grid-template-columns: minmax(0, 1fr); gap: 26px; }
   .video-card > figcaption { padding: 14px 12px 16px; }
-  .video-card > figcaption > span { font-size: 17px; }
   .video-card > figcaption small { font-size: 13px; }
   .site-footer { padding-block: 32px; }
   .site-footer > .container { align-items: start; flex-direction: column; gap: 20px; }
@@ -170,8 +179,14 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
   .nav-links a { font-size: 12px; }
 }
 @media (hover: none) {
-  .media-controls { opacity: 1; pointer-events: auto; }
   .zoom-hint { opacity: 1; transform: none; }
+}
+@media (hover: hover) {
+  .video-frame:hover .media-controls { opacity: 1; pointer-events: auto; }
+}
+@media (pointer: coarse) {
+  .media-seek { height: 44px; }
+  .media-controls button { width: 44px; height: 44px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

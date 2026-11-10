@@ -21,10 +21,10 @@
 <meta name="twitter:image" content="https://surgical-robotics.github.io/SARA/static/images/abstract.png">
 <meta name="citation_title" content="SARA: Toward Surgical Agentic Robotics for Resilient Manipulation">
 <!-- Add confirmed authors, venue, paper URL, and final BibTeX when available. -->
-<link rel="stylesheet" href="static/css/index.css?v=hero-clean-8">
+<link rel="stylesheet" href="static/css/index.css?v=task-attributes-seek-12">
 <script defer src="static/js/index.js?v=focused-2"></script>
 <script defer src="static/js/video-states.js?v=execution-recovery-7"></script>
-<script defer src="static/js/media-controls.js?v=2"></script>
+<script defer src="static/js/media-controls.js?v=3"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "SARA: Toward Surgical Agentic Robotics for Resilient Manipulation", "description": "SARA anticipates failure modes, synthesizes observable verifiers, and plans recovery chains for resilient surgical manipulation in simulation and on the physical dVRK platform.", "url": "https://surgical-robotics.github.io/SARA/", "image": "https://surgical-robotics.github.io/SARA/static/images/abstract.png"}</script>
 </head>
 <body>
@@ -51,60 +51,61 @@
 </div></section>
 <section class="section overview" id="abstract"><div class="container">
 <div class="section-heading"><h2>Abstract</h2></div>
-<div class="abstract-copy"><p>Augmented dexterity promises to relieve surgeon workload and improve surgical performance, yet it still requires expert algorithmic engineering for each manipulation task. Can emerging coding agents deliver augmented dexterity across tasks, while remaining reliable under failure? In this work, we introduce SARA (Surgical Agent for Resilient Autonomy), an agentic surgical robotics framework that executes diverse manipulation tasks autonomously and resiliently.</p><p>Given a nominal task graph composed of reusable surgical skills, SARA proactively anticipates how the skills may fail and induces those failures in a physics-based sandbox. From the induced and naturally occurring failures, it writes observable verifiers for the skills and proposes failure-specific recovery strategies, either by re-executing upstream skills of the nominal graph or by escalating to the broader skill library.</p><p>SARA then rehearses the candidate augmented graph in the sandbox, refining the ineffective strategies in a self-improvement loop, and retains only the validated verifiers and recoveries in the final augmented graph. We evaluate SARA on 8 surgical tasks in Newton-based simulation and 6 tasks on a physical da Vinci robot.</p></div>
+<div class="abstract-copy"><p>Augmented dexterity promises to relieve surgeon workload and improve surgical performance, yet it still requires expert algorithmic engineering for each manipulation task. Can emerging coding agents deliver augmented dexterity across tasks, while remaining reliable under failure? In this work, we introduce SARA (Surgical Agent for Resilient Autonomy), an agentic surgical robotics framework that executes diverse manipulation tasks autonomously and resiliently. Given a nominal task graph composed of reusable surgical skills, SARA proactively anticipates how the skills may fail and induces those failures in a physics-based sandbox. From the induced and naturally occurring failures, it writes observable verifiers for the skills and proposes failure-specific recovery strategies, either by re-executing upstream skills of the nominal graph or by escalating to the broader skill library. SARA then rehearses the candidate augmented graph in the sandbox, refining the ineffective strategies in a self-improvement loop, and retains only the validated verifiers and recoveries in the final augmented graph. We evaluate SARA on 8 surgical tasks in Newton-based simulation and 6 tasks on a physical da Vinci robot.</p></div>
 <figure class="research-figure"><button class="figure-zoom overview-figure" type="button" data-image="static/images/abstract.png" aria-label="Enlarge SARA system overview"><img src="static/images/abstract.png" alt="SARA overview: Newton simulation and the physical dVRK platform, a nominal skill graph, failure anticipation and self-improvement, and an augmented graph with observable verifiers and recovery transitions." width="1864" height="762" loading="lazy"><span class="zoom-hint">Enlarge figure ↗</span></button><figcaption>From reusable skills to an augmented graph with observable verifiers and recovery transitions.</figcaption></figure>
 </div></section>
 <section class="section method-section" id="method"><div class="container">
+<p class="method-question">Can emerging coding agents deliver augmented dexterity across surgical tasks while remaining <strong>reliable under failure?</strong></p>
 <div class="section-heading"><h2>Method</h2></div>
 <figure class="research-figure"><button class="figure-zoom" type="button" data-image="static/images/sara_pipeline.png" aria-label="Enlarge the SARA method pipeline"><img src="static/images/sara_pipeline.png" alt="SARA pipeline: task instruction, surgical skill library, nominal graph and Newton sandbox feed augmentation agents; proposed failures, observable verifiers and recovery chains are tested and iteratively refined into the final augmented graph." width="2907" height="1441" loading="lazy"><span class="zoom-hint">Enlarge figure ↗</span></button><figcaption>Failure anticipation, verifier and recovery synthesis, and iterative validation in the Newton sandbox.</figcaption></figure>
 </div></section>
 <section class="section results-section" id="simulation"><div class="container">
-<div class="section-heading"><h2><span class="section-index">1.</span> Simulation</h2><p>Eight surgical tasks in the Newton physics-based sandbox.</p></div>
-<nav class="gallery-nav" aria-label="Simulation demonstrations"><a href="#sim-tasks"><span class="nav-index">1.1</span> <span>Normal Execution</span></a><a href="#sim-recovery"><span class="nav-index">1.2</span> <span>Execution Recovery</span></a></nav>
+<div class="section-heading"><h2>Simulation</h2><p>Eight surgical tasks in the Newton physics-based sandbox.</p></div>
+<nav class="gallery-nav" aria-label="Simulation demonstrations"><a href="#sim-tasks"><span class="nav-index">1</span> <span>Normal Execution</span></a><a href="#sim-recovery"><span class="nav-index">2</span> <span>Execution Recovery</span></a></nav>
 <section class="results-group" data-category="normal" id="sim-tasks" aria-labelledby="sim-tasks-title">
- <div class="group-heading"><h3 id="sim-tasks-title"><span class="group-index">1.1</span> <span>Normal Execution</span></h3><div class="state-legend" role="group" aria-label="Video phase legend"><span><i class="legend-dot normal" aria-hidden="true"></i>Normal Execution</span></div></div>
+ <div class="group-heading"><h3 id="sim-tasks-title"><span class="group-index">1</span> <span>Normal Execution</span></h3><div class="state-legend" role="group" aria-label="Video phase legend"><span><i class="legend-dot normal" aria-hidden="true"></i>Normal Execution</span></div></div>
  <div class="video-grid cols-2 simulation-grid"><figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_sim/s_1.jpg" aria-label="Simulation: Needle Pick and Place"><source src="static/videos_sim/s_1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Needle Pick and Place</span></figcaption>
+    <figcaption><span>Needle Pick and Place</span><ul class="task-attributes" aria-label="Task attributes"><li>Unimanual</li><li>Rigid</li></ul></figcaption>
   </figure>
 <figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_sim/s_2.jpg" aria-label="Simulation: Peg Transfer"><source src="static/videos_sim/s_2.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Peg Transfer</span></figcaption>
+    <figcaption><span>Peg Transfer</span><ul class="task-attributes" aria-label="Task attributes"><li>Unimanual</li><li>Rigid</li></ul></figcaption>
   </figure>
 <figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_sim/s_3.jpg" aria-label="Simulation: Shunt Insertion"><source src="static/videos_sim/s_3.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Shunt Insertion</span></figcaption>
+    <figcaption><span>Shunt Insertion</span><ul class="task-attributes" aria-label="Task attributes"><li>Unimanual</li><li>Deformable</li></ul></figcaption>
   </figure>
 <figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_sim/s_4.jpg" aria-label="Simulation: Gauze Lifting"><source src="static/videos_sim/s_4.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Gauze Lifting</span></figcaption>
+    <figcaption><span>Gauze Lifting</span><ul class="task-attributes" aria-label="Task attributes"><li>Unimanual</li><li>Deformable</li></ul></figcaption>
   </figure>
 <figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_sim/s_5.jpg" aria-label="Simulation: Tissue Retraction"><source src="static/videos_sim/s_5.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Tissue Retraction</span></figcaption>
+    <figcaption><span>Tissue Retraction</span><ul class="task-attributes" aria-label="Task attributes"><li>Unimanual</li><li>Deformable</li></ul></figcaption>
   </figure>
 <figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_sim/s_6.jpg" aria-label="Simulation: Threaded Needle Handover Through a Ring"><source src="static/videos_sim/s_6.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Threaded Needle Handover Through a Ring</span></figcaption>
+    <figcaption><span>Threaded Needle Handover Through a Ring</span><ul class="task-attributes" aria-label="Task attributes"><li>Bimanual</li><li>Rigid + deformable</li></ul></figcaption>
   </figure>
 <figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_sim/s_7.jpg" aria-label="Simulation: Debridement"><source src="static/videos_sim/s_7.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Debridement</span></figcaption>
+    <figcaption><span>Debridement</span><ul class="task-attributes" aria-label="Task attributes"><li>Unimanual</li><li>Rigid</li></ul></figcaption>
   </figure>
 <figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_sim/s_8.jpg" aria-label="Simulation: Suturing"><source src="static/videos_sim/s_8.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Suturing</span></figcaption>
+    <figcaption><span>Suturing</span><ul class="task-attributes" aria-label="Task attributes"><li>Bimanual</li><li>Rigid + deformable</li></ul></figcaption>
   </figure></div></section>
 <section class="results-group" data-category="recovery" id="sim-recovery" aria-labelledby="sim-recovery-title">
- <div class="group-heading"><h3 id="sim-recovery-title"><span class="group-index">1.2</span> <span>Execution Recovery</span></h3><div class="state-legend" role="group" aria-label="Video phase legend"><span><i class="legend-dot normal" aria-hidden="true"></i>Normal Execution</span><span><i class="legend-dot recovery" aria-hidden="true"></i>Execution Recovery</span></div></div>
+ <div class="group-heading"><h3 id="sim-recovery-title"><span class="group-index">2</span> <span>Execution Recovery</span></h3><div class="state-legend" role="group" aria-label="Video phase legend"><span><i class="legend-dot normal" aria-hidden="true"></i>Normal Execution</span><span><i class="legend-dot recovery" aria-hidden="true"></i>Execution Recovery</span></div></div>
  <div class="video-grid cols-2 simulation-grid"><figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_sim/i_1.jpg" aria-label="Simulation execution recovery: Needle Pick and Place"><source src="static/videos_sim/i_1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
@@ -147,42 +148,42 @@
   </figure></div></section>
 </div></section>
 <section class="section results-section real-section" id="real-world"><div class="container">
-<div class="section-heading"><h2><span class="section-index">2.</span> Real-world experiments</h2><p>Six surgical tasks on a physical da Vinci robot.</p></div>
-<nav class="gallery-nav" aria-label="Physical demonstrations"><a href="#real-tasks"><span class="nav-index">2.1</span> <span>Normal Execution</span></a><a href="#real-recovery"><span class="nav-index">2.2</span> <span>Execution Recovery</span></a><a href="#external-disturbances"><span class="nav-index">2.3</span> <span>External Disturbance</span></a></nav>
+<div class="section-heading"><h2>Real-world experiments</h2><p>Six surgical tasks on a physical da Vinci robot.</p></div>
+<nav class="gallery-nav" aria-label="Physical demonstrations"><a href="#real-tasks"><span class="nav-index">1</span> <span>Normal Execution</span></a><a href="#real-recovery"><span class="nav-index">2</span> <span>Execution Recovery</span></a><a href="#external-disturbances"><span class="nav-index">3</span> <span>External Disturbance</span></a></nav>
 <section class="results-group" data-category="normal" id="real-tasks" aria-labelledby="real-tasks-title">
- <div class="group-heading"><h3 id="real-tasks-title"><span class="group-index">2.1</span> <span>Normal Execution</span></h3><div class="state-legend" role="group" aria-label="Video phase legend"><span><i class="legend-dot normal" aria-hidden="true"></i>Normal Execution</span></div></div>
+ <div class="group-heading"><h3 id="real-tasks-title"><span class="group-index">1</span> <span>Normal Execution</span></h3><div class="state-legend" role="group" aria-label="Video phase legend"><span><i class="legend-dot normal" aria-hidden="true"></i>Normal Execution</span></div></div>
  <div class="video-grid cols-2"><figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_pickplace_X1.jpg" aria-label="Physical dVRK: Needle Pick and Place"><source src="static/videos_web/S_pickplace_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Needle Pick and Place</span><small class="playback-rate">2× speed</small></figcaption>
+    <figcaption><span>Needle Pick and Place</span><small class="playback-rate">2× speed</small><ul class="task-attributes" aria-label="Task attributes"><li>Unimanual</li><li>Rigid</li></ul></figcaption>
   </figure>
 <figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_peg_X1.jpg" aria-label="Physical dVRK: Peg Transfer"><source src="static/videos_web/S_peg_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Peg Transfer</span><small class="playback-rate">2× speed</small></figcaption>
+    <figcaption><span>Peg Transfer</span><small class="playback-rate">2× speed</small><ul class="task-attributes" aria-label="Task attributes"><li>Unimanual</li><li>Rigid</li></ul></figcaption>
   </figure>
 <figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_ring_X1.jpg" aria-label="Physical dVRK: Threaded Needle Handover Through a Ring"><source src="static/videos_web/S_ring_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Threaded Needle Handover Through a Ring</span><small class="playback-rate">2× speed</small></figcaption>
+    <figcaption><span>Threaded Needle Handover Through a Ring</span><small class="playback-rate">2× speed</small><ul class="task-attributes" aria-label="Task attributes"><li>Bimanual</li><li>Rigid + deformable</li></ul></figcaption>
   </figure>
 <figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_Shunt_X1.jpg" aria-label="Physical dVRK: Shunt Insertion"><source src="static/videos_web/S_Shunt_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Shunt Insertion</span><small class="playback-rate">2× speed</small></figcaption>
+    <figcaption><span>Shunt Insertion</span><small class="playback-rate">2× speed</small><ul class="task-attributes" aria-label="Task attributes"><li>Unimanual</li><li>Deformable</li></ul></figcaption>
   </figure>
 <figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_debridement_X1.jpg" aria-label="Physical dVRK: Debridement"><source src="static/videos_web/S_debridement_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Debridement</span><small class="playback-rate">2× speed</small></figcaption>
+    <figcaption><span>Debridement</span><small class="playback-rate">2× speed</small><ul class="task-attributes" aria-label="Task attributes"><li>Unimanual</li><li>Deformable</li></ul></figcaption>
   </figure>
 <figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_stitch_X1.jpg?v=pad-crop-3" aria-label="Physical dVRK: Suturing"><source src="static/videos_web/S_stitch_X1.mp4?v=pad-crop-3" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
-    <figcaption><span>Suturing</span><small class="playback-rate">2× speed</small></figcaption>
+    <figcaption><span>Suturing</span><small class="playback-rate">2× speed</small><ul class="task-attributes" aria-label="Task attributes"><li>Bimanual</li><li>Rigid + deformable</li></ul></figcaption>
   </figure></div></section>
 <section class="results-group" data-category="recovery" id="real-recovery" aria-labelledby="real-recovery-title">
- <div class="group-heading"><h3 id="real-recovery-title"><span class="group-index">2.2</span> <span>Execution Recovery</span></h3><div class="state-legend" role="group" aria-label="Video phase legend"><span><i class="legend-dot normal" aria-hidden="true"></i>Normal Execution</span><span><i class="legend-dot recovery" aria-hidden="true"></i>Execution Recovery</span></div></div>
+ <div class="group-heading"><h3 id="real-recovery-title"><span class="group-index">2</span> <span>Execution Recovery</span></h3><div class="state-legend" role="group" aria-label="Video phase legend"><span><i class="legend-dot normal" aria-hidden="true"></i>Normal Execution</span><span><i class="legend-dot recovery" aria-hidden="true"></i>Execution Recovery</span></div></div>
  <div class="video-grid cols-2"><figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/F_pickplace_X1.jpg" aria-label="Execution Recovery: Needle Pick and Place"><source src="static/videos_web/F_pickplace_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
@@ -214,7 +215,7 @@
     <figcaption><span>Suturing</span><small class="playback-rate">2× speed</small></figcaption>
   </figure></div></section>
 <section class="results-group" data-category="disturbance" id="external-disturbances" aria-labelledby="external-disturbances-title">
- <div class="group-heading"><h3 id="external-disturbances-title"><span class="group-index">2.3</span> <span>External Disturbance</span></h3><div class="state-legend" role="group" aria-label="Video phase legend"><span><i class="legend-dot normal" aria-hidden="true"></i>Normal Execution</span><span><i class="legend-dot recovery" aria-hidden="true"></i>Execution Recovery</span><span><i class="legend-dot disturbance" aria-hidden="true"></i>External Disturbance</span></div></div>
+ <div class="group-heading"><h3 id="external-disturbances-title"><span class="group-index">3</span> <span>External Disturbance</span></h3><div class="state-legend" role="group" aria-label="Video phase legend"><span><i class="legend-dot normal" aria-hidden="true"></i>Normal Execution</span><span><i class="legend-dot recovery" aria-hidden="true"></i>Execution Recovery</span><span><i class="legend-dot disturbance" aria-hidden="true"></i>External Disturbance</span></div></div>
  <div class="video-grid cols-2"><figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/I_pickplace_X1.jpg" aria-label="External disturbance: Needle Pick and Place"><source src="static/videos_web/I_pickplace_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
