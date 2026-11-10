@@ -40,7 +40,7 @@ inclusive, end exclusive). Playback speed does not change the annotation times.
 Unannotated intervals are green; seeking and looping update the state.
 
 Simulation recovery clips (`i_1`–`i_8`) use these intervals, respectively:
-2–9; 3–11; 8–14; 2–8; 3–9; 2–8 and 15–20; 10–16 and 22–32; 2–14 seconds.
+2–9; 3–11; 8–14; 2–8; 3–9; 2–8 and 15–20; 10–16 and 24–32; 2–14 seconds.
 Simulation task clips (`s_1`–`s_8`) remain green throughout.
 
 Debridement recovery (`F`): 11–19 seconds. Debridement external disturbance

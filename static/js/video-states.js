@@ -10,7 +10,7 @@
     i_4: [[2, 8, 'recovery']],
     i_5: [[3, 9, 'recovery']],
     i_6: [[2, 8, 'recovery'], [15, 20, 'recovery']],
-    i_7: [[10, 16, 'recovery'], [22, 32, 'recovery']],
+    i_7: [[10, 16, 'recovery'], [24, 32, 'recovery']],
     i_8: [[2, 14, 'recovery']],
     F_pickplace: [[3, 14, 'recovery']],
     I_pickplace: [[0, 2, 'disturbance'], [6, 9, 'disturbance'], [10, 14, 'recovery']],
