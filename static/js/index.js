@@ -21,72 +21,21 @@ for (const video of document.querySelectorAll('video')) {
   video.addEventListener('volumechange', enforcePlayback);
 }
 
-// Autoplay visible demonstrations only; keep explicit pauses when visitors return.
-const autoplayVideos = [...document.querySelectorAll('video[data-autoplay]')];
-const playbackStates = new Map(autoplayVideos.map(video => [video, {
-  visible: false, near: false, primed: false, wantsPlay: true, starting: false
-}]));
+// Let native muted autoplay handle buffering, without viewport-driven pause/load calls.
+const autoplayVideos = [...document.querySelectorAll('video[autoplay]')];
+const startingVideos = new WeakSet();
+const manuallyPausedVideos = new WeakSet();
 
-// Warm at most one nearby row, while visible videos have first priority.
-function updateVideoPreload() {
-  const fullscreen = document.fullscreenElement;
-  const canPrefetch = !document.hidden && !fullscreen && !navigator.connection?.saveData;
-  const nearby = canPrefetch ? autoplayVideos
-    .filter(video => {
-      const state = playbackStates.get(video);
-      return state.near && !state.visible && state.wantsPlay;
-    })
-    .map(video => {
-      const rect = video.getBoundingClientRect();
-      return { video, distance: Math.max(0, rect.top - window.innerHeight, -rect.bottom) };
-    })
-    .sort((a, b) => a.distance - b.distance)
-    .slice(0, 2).map(item => item.video) : [];
-  const warm = new Set(nearby);
-  for (const video of autoplayVideos) {
-    const state = playbackStates.get(video);
-    const active = !document.hidden && state.wantsPlay &&
-      ((state.visible && (!fullscreen || fullscreen.contains(video))) || warm.has(video));
-    const preload = active ? 'auto' : 'none';
-    if (video.preload !== preload) video.preload = preload;
-    if (active && !state.primed) {
-      state.primed = true;
-      // Initialize only untouched players; never reset a playing or resumed clip.
-      if (video.readyState === 0 && video.paused && !state.starting) video.load();
-    }
-  }
-}
-
-function shouldAutoplay(video) {
-  const state = playbackStates.get(video);
-  const fullscreen = document.fullscreenElement;
-  return state.visible && state.wantsPlay && !document.hidden &&
-    (!fullscreen || fullscreen.contains(video));
-}
-
-async function syncAutoplay(video) {
-  const state = playbackStates.get(video);
-  if (!shouldAutoplay(video)) {
-    if (!video.paused || state.starting) video.pause();
-    return;
-  }
-  if (!video.paused || state.starting) return;
-  state.starting = true;
-  let aborted = false;
+async function startAutoplay(video) {
+  if (document.hidden || manuallyPausedVideos.has(video) || !video.paused || startingVideos.has(video)) return;
+  startingVideos.add(video);
   try {
     await video.play();
     delete video.dataset.autoplayBlocked;
   } catch (error) {
     if (error.name === 'NotAllowedError') video.dataset.autoplayBlocked = 'true';
-    aborted = error.name === 'AbortError';
   } finally {
-    state.starting = false;
-    if (!shouldAutoplay(video)) {
-      if (!video.paused) video.pause();
-    } else if (aborted && video.paused) {
-      // A quick scroll can return to a clip before its cancelled play settles.
-      syncAutoplay(video);
-    }
+    startingVideos.delete(video);
   }
 }
 
@@ -95,70 +44,40 @@ for (const video of autoplayVideos) {
   video.muted = true;
   video.playsInline = true;
   video.addEventListener('sara:playback-intent', event => {
-    playbackStates.get(video).wantsPlay = event.detail.playing;
-    updateVideoPreload();
+    if (event.detail.playing) manuallyPausedVideos.delete(video);
+    else manuallyPausedVideos.add(video);
+    video.autoplay = event.detail.playing;
   });
   video.addEventListener('playing', () => {
     delete video.dataset.autoplayBlocked;
-    if (!shouldAutoplay(video)) video.pause();
   });
-  video.addEventListener('loadeddata', () => syncAutoplay(video));
-  video.addEventListener('canplay', () => syncAutoplay(video));
+  video.addEventListener('loadeddata', () => startAutoplay(video));
+  video.addEventListener('canplay', () => startAutoplay(video));
+  startAutoplay(video);
 }
 
+// Retry when a browser permits a newly visible clip; never pause clips on scroll.
 if ('IntersectionObserver' in window) {
-  const preloadObserver = new IntersectionObserver(entries => {
-    for (const entry of entries) playbackStates.get(entry.target).near = entry.isIntersecting;
-    updateVideoPreload();
-  }, { rootMargin: '500px 0px', threshold: 0 });
   const videoObserver = new IntersectionObserver(entries => {
     for (const entry of entries) {
-      playbackStates.get(entry.target).visible = entry.isIntersecting && entry.intersectionRatio >= 0.05;
+      if (entry.isIntersecting) startAutoplay(entry.target);
     }
-    updateVideoPreload();
-    for (const entry of entries) syncAutoplay(entry.target);
-  }, { threshold: [0, 0.05] });
-  autoplayVideos.forEach(video => {
-    preloadObserver.observe(video);
-    videoObserver.observe(video);
-  });
-} else {
-  let visibilityPending = false;
-  function updateVideoVisibility() {
-    visibilityPending = false;
-    for (const video of autoplayVideos) {
-      const rect = video.getBoundingClientRect();
-      const state = playbackStates.get(video);
-      state.visible = rect.bottom > 0 && rect.top < window.innerHeight &&
-        rect.right > 0 && rect.left < window.innerWidth;
-      state.near = rect.bottom > -500 && rect.top < window.innerHeight + 500 &&
-        rect.right > 0 && rect.left < window.innerWidth;
-    }
-    updateVideoPreload();
-    autoplayVideos.forEach(video => syncAutoplay(video));
-  }
-  function scheduleVideoVisibility() {
-    if (visibilityPending) return;
-    visibilityPending = true;
-    window.requestAnimationFrame(updateVideoVisibility);
-  }
-  window.addEventListener('scroll', scheduleVideoVisibility, { passive: true });
-  window.addEventListener('resize', scheduleVideoVisibility);
-  updateVideoVisibility();
+  }, { threshold: 0.1 });
+  autoplayVideos.forEach(video => videoObserver.observe(video));
 }
 
 function retryAutoplay() {
-  updateVideoPreload();
-  autoplayVideos.forEach(video => syncAutoplay(video));
+  autoplayVideos.forEach(video => startAutoplay(video));
 }
 function retryAfterGesture(event) {
-  // Let a control click express its own intent instead of starting first, then pausing.
+  // A control click handles its own play/pause intent.
   if (!event.target?.closest?.('.media-controls')) retryAutoplay();
 }
 document.addEventListener('pointerdown', retryAfterGesture, { passive: true });
 document.addEventListener('keydown', retryAfterGesture);
-document.addEventListener('visibilitychange', retryAutoplay);
-document.addEventListener('fullscreenchange', retryAutoplay);
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) retryAutoplay();
+});
 
 // Full-size figures use native dialog focus management and Escape handling.
 const dialog = document.querySelector('#figure-dialog');

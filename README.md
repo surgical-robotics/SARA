@@ -24,19 +24,16 @@ clips are named in numerical file order: Needle Pick and Place, Peg Transfer, Sh
 clips are matched by task name across all three groups, with Debridement
 preceding Suturing. The physical ring-handover task uses the shorter caption
 `Threaded Needle Handover` in all three groups. Research figures open
-in an enlarged dialog. Videos autoplay muted and loop when visible. Offscreen
-videos and videos in hidden tabs pause and resume from their current position when
-visible again; explicit manual pauses are preserved. While fullscreen is active,
-only that video's playback continues. Videos initially use `preload="none"`.
-JavaScript requests `auto` preload for visible videos and at most two nearby
-offscreen clips within 500px of the viewport, preparing the next row without
-starting every video on page load. Nearby clips buffer without playing. Hidden
-tabs, fullscreen playback, and the browser's data-saving mode suspend offscreen
-prefetching. Manual pauses are respected, and preloading never resets a resumed
-clip. Browsers retain control of buffering; this setting does not unload clips
-that have already been played. Sticky navigation uses opaque white backgrounds
-without backdrop blur to reduce compositing over moving videos. If a browser
-blocks autoplay, the Play control stays visible for a manual start.
+in an enlarged dialog. Videos use native `autoplay muted loop playsinline` and
+`preload="auto"`, restoring the original eager playback approach. Browsers control
+buffering and their own offscreen/background playback policies. The page no longer
+changes preload settings or calls `load()`/`pause()` as videos enter and leave the
+viewport. JavaScript requests playback on initialization and retries paused clips
+when media data arrives, a clip enters the viewport, the tab returns, or a user
+gesture allows playback. Explicit manual pauses are preserved, including disabling
+native autoplay until the user resumes the clip. A pending play request is never
+duplicated. Sticky navigation uses opaque white backgrounds without backdrop blur.
+If the browser blocks autoplay, the Play control stays visible for a manual start.
 A compact seek bar with
 play/pause and fullscreen controls (when supported) appears along the bottom only
 on hover or keyboard focus. Touching a video reveals the controls for three seconds;
@@ -160,8 +157,8 @@ media events, with DOM writes only when the phase changes and no animation loop.
 Seeking, looping, and resuming update the phase. Fullscreen labels remain light
 against the dark player background. The hover controls still provide a smooth
 seek bar, elapsed/total time, play/pause, and fullscreen; hidden controls skip
-progress repainting. Visible-only autoplay and the existing playback rates remain
-unchanged.
+progress repainting. Native muted autoplay and the configured playback rates are
+retained.
 Intervals live in `static/js/video-states.js`, in source-video seconds (start
 inclusive, end exclusive). Playback speed does not change the annotation times.
 Unannotated intervals are green; seeking and looping update the state.
