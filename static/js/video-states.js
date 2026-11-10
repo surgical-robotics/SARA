@@ -27,7 +27,7 @@
   };
   const labels = {
     normal: 'Normal Execution',
-    recovery: 'Recovery',
+    recovery: 'Execution Recovery',
     disturbance: 'External Disturbance'
   };
 

@@ -44,8 +44,16 @@ name and full title, followed by four rounded keyword labels: Surgical agentic
 robotics, Sim-to-real, 8 simulation tasks, and 6 real-world tasks. Overview and Method retain the supplied scientific
 figures; no additional method diagram or interactive stepper is shown.
 
-Section titles and video task names are emphasized, while duplicate platform
-labels, decorative chapter numbers, and repeated counts are omitted. Video
+The visible hero wordmark omits the colon; the complete title retains it in
+metadata and accessible text. Resilient uses a green serif accent with a subtle
+curved underline.
+
+Experiment sections are numbered 1 (Simulation) and 2 (Real-world experiments).
+The five video groups use 1.1 Normal Execution, 1.2 Execution Recovery, 2.1 Normal
+Execution, 2.2 Execution Recovery, and 2.3 External Disturbance. These numbers
+also appear in the sticky gallery navigation, which highlights the current group.
+Stronger horizontal rules and additional spacing separate groups. Duplicate
+platform labels and repeated counts remain omitted. Video
 captions retain the physical playback speed. Each gallery heading includes only
 the phase colors relevant to that gallery; the legend wraps below the heading on
 small screens. Sticky gallery links and the active chapter marker help navigate
@@ -58,7 +66,7 @@ content and videos, and reduced-motion preferences disable interface transitions
 ## Video state annotations
 
 Simulation and real-world cards use synchronized borders and text labels: green for Normal
-Execution, orange for Recovery, and red for External Disturbance.
+Execution, orange for Execution Recovery, and red for External Disturbance.
 Each phase uses a thin colored video border and a lightly tinted label. Recovery
 uses dark-orange text on pale orange, without an additional card outline. The
 short label describes the recovery phase; the underlying events and timings are
