@@ -28,8 +28,10 @@ play/pause and fullscreen controls (when supported) appears along the bottom onl
 on hover or keyboard focus. Touching a video reveals the controls for three seconds;
 dragging keeps them available until the interaction ends. The native range input
 supports pointer and keyboard seeking, using source-video seconds so phase labels
-and the configured playback rate remain aligned. Visible timestamps, volume, and
-speed selectors are omitted. Playback
+and the configured playback rate remain aligned. Elapsed and total source-video
+time appear beside the seek bar. While the controls are visible and video is playing,
+the seek bar follows the media clock on every animation frame; hidden controls do
+not run their own animation loops. Volume and speed selectors are omitted. Playback
 rates and mute are enforced by the page. Real-world clips
 ending in `X1` play at 2× speed; `X2` clips play at normal speed. Browser autoplay
 policies may require visitors to start playback manually. The page has no Code
@@ -67,19 +69,22 @@ the phase colors relevant to that gallery; the legend wraps below the heading on
 small screens. Sticky gallery links and the active chapter marker help navigate
 the long page.
 The supplied abstract uses consistent task terminology and appears as one paragraph,
-sharing the full container width with the overview figure. A prominent research
+sharing the full container width with the overview figure. An italic research
 question introduces Method: "Can emerging coding agents deliver augmented dexterity
-across surgical tasks while remaining reliable under failure?" The overview figure shows
+across surgical tasks and remain reliable when failures occur?" The question shares
+the figure's full width, with justified text and no bold emphasis. The overview figure shows
 its upper diagram inline, cropping the unfinished placeholder panel with CSS;
 the zoom dialog still opens the complete original image. The mobile layout stacks
 content and videos, and reduced-motion preferences disable interface transitions.
 
 ## Task attributes
 
-Normal Execution cards show two neutral outlined labels below the task name:
-Unimanual/Bimanual and Rigid/Deformable/Rigid + deformable. Recovery and disturbance
-cards omit these repeated attributes. Arm coordination follows the active
-manipulators in each demonstration; object properties refer to the manipulated
+All 34 simulation and real-world cards show two neutral outlined labels immediately
+after the task name, including recovery and disturbance clips: Unimanual/Bimanual
+and Rigid/Deformable/Rigid + deformable. Labels sit on the same line when space allows
+and wrap naturally on narrow screens or after long task names. Corresponding clips
+share the nominal task's attributes within each platform. Arm coordination follows
+the active manipulators in the nominal demonstration; object properties refer to the manipulated
 objects, excluding passive supports and robot instruments. Rigid + deformable
 covers the needle together with its thread and, for suturing, the tissue interaction.
 
@@ -105,6 +110,8 @@ Simulation and real-world cards use synchronized borders and text labels: green 
 Execution, orange for Execution Recovery, and red for External Disturbance.
 Each phase uses a thin colored video border and a lightly tinted label. Recovery
 uses dark-orange text on pale orange, without an additional card outline. The
+disturbance state uses a more saturated red (`#d11f35`) for borders, text, and legend
+dots, with a pale pink background (`#fff0f3`) to distinguish it from recovery. The
 short label describes the recovery phase; the underlying events and timings are
 unchanged.
 Intervals live in `static/js/video-states.js`, in source-video seconds (start

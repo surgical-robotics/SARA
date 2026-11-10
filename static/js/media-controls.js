@@ -2,6 +2,7 @@
 
 // Use consistent controls without exposing volume, download, or playback speed.
 (() => {
+  const hoverSupport = window.matchMedia('(hover: hover)');
   for (const card of document.querySelectorAll('.video-card')) {
     const video = card.querySelector('video');
     const title = video.getAttribute('aria-label') || 'Demonstration';
@@ -15,15 +16,21 @@
     seek.className = 'media-seek';
     seek.min = '0';
     seek.max = '0';
-    seek.step = '0.1';
+    seek.step = '0.01';
     seek.value = '0';
     seek.disabled = true;
     seek.setAttribute('aria-label', `Playback position: ${title}`);
     bar.append(seek);
+    const time = document.createElement('span');
+    time.className = 'media-time';
+    time.setAttribute('aria-hidden', 'true');
+    bar.append(time);
 
     let scrubbing = false;
     let touchInteraction = false;
     let controlsTimer;
+    let hovered = false;
+    let progressFrame = 0;
 
     function formatTime(seconds) {
       const total = Math.floor(Math.max(0, seconds));
@@ -38,28 +45,82 @@
       const current = Math.min(duration, Math.max(0, position || 0));
       if (!scrubbing) seek.value = String(current);
       seek.style.setProperty('--progress', `${duration ? current / duration * 100 : 0}%`);
-      seek.setAttribute('aria-valuetext', `${formatTime(current)} of ${formatTime(duration)}`);
+      const currentText = formatTime(current);
+      const durationText = duration ? formatTime(duration) : '--:--';
+      const accessibleTime = `${currentText} of ${durationText}`;
+      if (seek.getAttribute('aria-valuetext') !== accessibleTime) seek.setAttribute('aria-valuetext', accessibleTime);
+      const displayTime = `${currentText} / ${durationText}`;
+      if (time.textContent !== displayTime) time.textContent = displayTime;
     }
+
+    // Smoothly follow the media clock while controls are visible, without running
+    // an animation loop for all 34 hidden control bars.
+    function shouldAnimateProgress() {
+      return !video.paused && !video.ended && !document.hidden &&
+        (hovered || scrubbing || frame.classList.contains('controls-visible') || bar.querySelector(':focus-visible'));
+    }
+    function animateProgress() {
+      progressFrame = 0;
+      updateProgress();
+      if (shouldAnimateProgress()) progressFrame = requestAnimationFrame(animateProgress);
+    }
+    function syncProgressAnimation() {
+      updateProgress();
+      if (shouldAnimateProgress()) {
+        if (!progressFrame) progressFrame = requestAnimationFrame(animateProgress);
+      } else if (progressFrame) {
+        cancelAnimationFrame(progressFrame);
+        progressFrame = 0;
+      }
+    }
+    frame.addEventListener('pointerenter', event => {
+      hovered = hoverSupport.matches && event.pointerType !== 'touch';
+      syncProgressAnimation();
+    });
+    frame.addEventListener('pointerleave', () => {
+      hovered = false;
+      syncProgressAnimation();
+    });
+    bar.addEventListener('focusin', syncProgressAnimation);
+    bar.addEventListener('focusout', () => queueMicrotask(syncProgressAnimation));
+    document.addEventListener('visibilitychange', syncProgressAnimation);
 
     // The native range supports dragging, tapping, and keyboard seeking.
     // Use source-video seconds so playback speed and phase annotations stay aligned.
-    seek.addEventListener('input', () => {
+    function seekToValue() {
       const value = Number(seek.value);
       if (!seek.disabled && Number.isFinite(value)) {
         video.currentTime = Math.min(video.duration, Math.max(0, value));
         updateProgress();
       }
+    }
+    seek.addEventListener('input', seekToValue);
+    seek.addEventListener('keydown', event => {
+      if (seek.disabled) return;
+      const steps = { ArrowLeft: -1, ArrowDown: -1, ArrowRight: 1, ArrowUp: 1, PageDown: -5, PageUp: 5 };
+      let next = Number(seek.value) + steps[event.key];
+      if (event.key === 'Home') next = 0;
+      if (event.key === 'End') next = video.duration;
+      if (!Number.isFinite(next)) return;
+      event.preventDefault();
+      seek.value = String(Math.min(video.duration, Math.max(0, next)));
+      seekToValue();
     });
     seek.addEventListener('pointerdown', () => {
       scrubbing = !seek.disabled;
       frame.classList.toggle('is-seeking', scrubbing);
+      syncProgressAnimation();
     });
 
     function showTouchControls() {
       frame.classList.add('controls-visible');
+      syncProgressAnimation();
       clearTimeout(controlsTimer);
       controlsTimer = setTimeout(() => {
-        if (!scrubbing) frame.classList.remove('controls-visible');
+        if (!scrubbing) {
+          frame.classList.remove('controls-visible');
+          syncProgressAnimation();
+        }
       }, 3000);
     }
 
@@ -69,6 +130,7 @@
       frame.classList.remove('is-seeking');
       updateProgress();
       if (touchInteraction) showTouchControls();
+      else syncProgressAnimation();
     }
     seek.addEventListener('change', finishSeek);
     seek.addEventListener('blur', finishSeek);
@@ -91,6 +153,7 @@
       toggle.textContent = playing ? 'Ⅱ' : '▶';
       toggle.setAttribute('aria-label', `${playing ? 'Pause' : 'Play'} ${title}`);
       toggle.title = playing ? 'Pause' : 'Play';
+      syncProgressAnimation();
     }
     toggle.addEventListener('click', async () => {
       if (video.paused) {
