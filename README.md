@@ -20,7 +20,7 @@ video galleries in this order:
 Galleries use two columns above 760px and one column on smaller screens.
 Video sections share the same 1120px maximum container width as the research
 figures, aligning their left and right edges. Simulation
-clips are named in numerical file order: Needle Pick and Place, Peg Transfer, Shunt Insertion, Gauze Lifting, Tissue Retraction, Threaded Needle Handover Through a Ring, Debridement, Suturing. Real-world
+clips are named in numerical file order: Needle Pick and Place, Peg Transfer, Shunt Insertion, Gauze Lifting, Tissue Retraction, Needle Handover Through a Ring, Debridement, Suturing. Real-world
 clips are matched by task name across all three groups, with Debridement
 preceding Suturing. Research figures open
 in an enlarged dialog. All videos autoplay muted and loop. A compact seek bar with
@@ -51,8 +51,10 @@ robotics, Sim-to-real, 8 simulation tasks, and 6 real-world tasks. Overview and 
 figures; no additional method diagram or interactive stepper is shown.
 
 The visible hero wordmark omits the colon; the complete title retains it in
-metadata and accessible text. Resilient uses a green serif accent with a subtle
-curved underline.
+metadata and accessible text. The SARA wordmark is limited to 104px on desktop
+and 68–88px on mobile, giving the full research title more visual weight.
+Resilient uses a green serif italic accent without an underline; the remaining
+title stays dark, with balanced wrapping and relaxed letter spacing.
 
 Simulation and Real-world experiments use unnumbered section headings, matching
 Abstract and Method. Gallery numbering restarts within each section: Simulation
@@ -61,8 +63,8 @@ uses 1 Normal Execution and 2 Execution Recovery; Real-world experiments uses
 number badges also appear in the group headings, with matching numbers in the
 sticky gallery navigation, which highlights the current group.
 Horizontal rules, additional spacing, and very light category backgrounds separate
-groups: green (`#f5faf6`) for normal execution, yellow (`#fffbef`) for recovery, and
-red (`#fff5f6`) for external disturbance. These static backgrounds identify the
+groups: green (`#fafdfb`) for normal execution, yellow (`#fffdf7`) for recovery, and
+red (`#fffafb`) for external disturbance. These near-white backgrounds identify the
 gallery category, while video borders and labels continue to show the current
 playback phase. Backgrounds extend into the gutters without changing the video
 widths or their alignment with the research figures. Duplicate
@@ -76,7 +78,7 @@ the long page.
 The supplied abstract uses consistent task terminology and appears as one paragraph,
 sharing the full container width with the overview figure. An italic research
 question introduces Method: "Can emerging coding agents deliver augmented dexterity
-across surgical tasks and remain reliable when failures occur?" The question shares
+across diverse surgical tasks and remain reliable when failures occur?" The question shares
 the figure's full width, with justified text and no bold emphasis. The overview figure shows
 its upper diagram inline, cropping the unfinished placeholder panel with CSS;
 the zoom dialog still opens the complete original image. The mobile layout stacks
@@ -105,7 +107,7 @@ particles, whereas the physical demonstration uses soft-looking pieces on tissue
 | Shunt Insertion | Unimanual · Deformable | Unimanual · Deformable |
 | Gauze Lifting | Unimanual · Deformable | — |
 | Tissue Retraction | Unimanual · Deformable | — |
-| Threaded Needle Handover Through a Ring | Bimanual · Rigid + deformable | Bimanual · Rigid + deformable |
+| Needle Handover Through a Ring | Bimanual · Rigid + deformable | Bimanual · Rigid + deformable |
 | Debridement | Unimanual · Rigid | Unimanual · Deformable |
 | Suturing | Bimanual · Rigid + deformable | Bimanual · Rigid + deformable |
 
