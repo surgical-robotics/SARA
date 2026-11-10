@@ -68,8 +68,8 @@ uses 1 Normal Execution and 2 Failure Recovery; Real-world experiments uses
 1 Normal Execution, 2 Failure Recovery, and 3 External Disturbance. Compact
 number badges also appear in the group headings, with matching numbers in the
 sticky gallery navigation. Each link always carries its category's pale background,
-colored number, and a small cartoon gripper icon: a green check for normal execution,
-an orange return arrow for recovery, and a red incoming-force arrow for disturbance.
+colored number, and a simple circular icon: a green check for normal execution,
+an orange return arrow for recovery, and a red incoming-force symbol for disturbance.
 The icons supplement the text labels and are hidden from assistive technology.
 The current group uses a stronger matching tint, colored text, and a bottom rule;
 hovering a link also strengthens its category tint.
@@ -126,14 +126,20 @@ and real-world demonstrations.
 
 ## Video state annotations
 
-Simulation and real-world cards use synchronized borders and text labels: green for Normal
-Execution, orange for Failure Recovery, and red for External Disturbance.
-Each phase uses a thin colored video border and a lightly tinted label. Recovery
-uses dark-orange text on pale orange, without an additional card outline. The
-disturbance state uses a more saturated red (`#d11f35`) for borders, text, and legend
-dots, with a pale pink background (`#fff0f3`) to distinguish it from recovery. The
-short label describes the recovery phase; the underlying events and timings are
-unchanged.
+Every video has a segmented phase timeline above it: green for Normal Execution,
+orange for Failure Recovery, and red for External Disturbance. Segment lengths are
+proportional to their source-video durations, with unannotated intervals in green.
+A moving dot, the current phase text on the right, and the video border stay
+synchronized. The timeline background is transparent. On narrow screens, the
+current phase text moves below the timeline and remains right-aligned. The phase
+sequence is also available as an accessible text description. Fullscreen phase
+text uses a light color for readability against the dark player background.
+
+The playhead follows video frames, with an animation-frame fallback. Animation
+updates stop for offscreen, paused, or hidden videos; seeking and returning to a
+video refresh its state immediately. The separate hover controls retain seeking,
+elapsed/total time, play/pause, and fullscreen. Timelines await valid metadata and
+clip their visible segments to the actual duration without modifying annotations.
 Intervals live in `static/js/video-states.js`, in source-video seconds (start
 inclusive, end exclusive). Playback speed does not change the annotation times.
 Unannotated intervals are green; seeking and looping update the state.
