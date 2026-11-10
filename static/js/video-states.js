@@ -4,6 +4,14 @@
 // Each range includes its start and excludes its end.
 (() => {
   const timelines = {
+    i_1: [[2, 9, 'recovery']],
+    i_2: [[3, 11, 'recovery']],
+    i_3: [[8, 14, 'recovery']],
+    i_4: [[2, 8, 'recovery']],
+    i_5: [[3, 9, 'recovery']],
+    i_6: [[2, 8, 'recovery'], [15, 20, 'recovery']],
+    i_7: [[10, 16, 'recovery'], [22, 32, 'recovery']],
+    i_8: [[2, 14, 'recovery']],
     F_pickplace: [[3, 14, 'recovery']],
     I_pickplace: [[0, 2, 'disturbance'], [6, 9, 'disturbance'], [10, 14, 'recovery']],
     F_peg: [[2, 6, 'recovery']],
@@ -27,7 +35,7 @@
     const video = card.querySelector('video');
     const label = card.querySelector('.video-state-label');
     const filename = video.querySelector('source').getAttribute('src').split('/').pop();
-    const key = filename.replace(/_X[12]\.mp4$/i, '').toLowerCase();
+    const key = filename.replace(/(?:_X[12])?\.mp4$/i, '').toLowerCase();
     const intervals = Object.entries(timelines).find(([name]) => name.toLowerCase() === key)?.[1] || [];
 
     function updateState(time = video.currentTime) {

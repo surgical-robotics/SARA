@@ -31,13 +31,17 @@ and video context menus and dragging are disabled. These are interface
 restrictions, not access control: publicly served media can still be retrieved,
 and a public repository exposes its tracked media files.
 
-## Real-world video state annotations
+## Video state annotations
 
-Real-world cards use synchronized borders and text labels: green for Normal
+Simulation and real-world cards use synchronized borders and text labels: green for Normal
 Execution, orange for Failure Recovery, and red for External Disturbance.
 Intervals live in `static/js/video-states.js`, in source-video seconds (start
 inclusive, end exclusive). Playback speed does not change the annotation times.
 Unannotated intervals are green; seeking and looping update the state.
+
+Simulation recovery clips (`i_1`–`i_8`) use these intervals, respectively:
+2–9; 3–11; 8–14; 2–8; 3–9; 2–8 and 15–20; 10–16 and 22–32; 2–14 seconds.
+Simulation task clips (`s_1`–`s_8`) remain green throughout.
 
 Debridement recovery (`F`): 11–19 seconds. Debridement external disturbance
 (`I`): 27–33 and 43–46 seconds disturbance, 33–43 and 46–53 seconds recovery.
