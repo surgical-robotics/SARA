@@ -102,35 +102,6 @@ window.addEventListener('scroll', updateTopButton, { passive: true });
 updateTopButton();
 topButton.addEventListener('click', () => window.scrollTo({top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth'}));
 
-// Let readers inspect each stage without an automatically advancing animation.
-const methodExplorer = document.querySelector('.method-explorer');
-if (methodExplorer) {
-  const tabs = [...methodExplorer.querySelectorAll('[role="tab"]')];
-  function selectMethodTab(tab, moveFocus = false) {
-    for (const candidate of tabs) {
-      const selected = candidate === tab;
-      candidate.setAttribute('aria-selected', String(selected));
-      candidate.tabIndex = selected ? 0 : -1;
-      document.getElementById(candidate.getAttribute('aria-controls')).hidden = !selected;
-    }
-    methodExplorer.dataset.step = tab.dataset.step;
-    if (moveFocus) tab.focus();
-  }
-  tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => selectMethodTab(tab));
-    tab.addEventListener('keydown', event => {
-      let next;
-      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
-      if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
-      if (event.key === 'Home') next = 0;
-      if (event.key === 'End') next = tabs.length - 1;
-      if (next === undefined) return;
-      event.preventDefault();
-      selectMethodTab(tabs[next], true);
-    });
-  });
-}
-
 // A reading indicator and chapter markers keep the long experimental page legible.
 const readingProgress = document.querySelector('.reading-progress span');
 const chapterLinks = [...document.querySelectorAll('.nav-links a')];

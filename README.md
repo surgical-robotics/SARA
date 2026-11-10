@@ -4,7 +4,7 @@ Project page for SARA, intended for **https://surgical-robotics.github.io/SARA/*
 
 ## Content
 
-Title: **SARA: Toward Surgical Agentic Robotics for Resilient Manipulation Subtasks**
+Title: **SARA: Toward Surgical Agentic Robotics for Resilient Manipulation**
 
 The page includes the supplied abstract, system overview, method figure, and five
 video galleries in this order:
@@ -39,24 +39,23 @@ and a public repository exposes its tracked media files.
 ## Visual design and interactions
 
 The page uses an editorial layout with warm paper tones, dark green typography,
-and the existing green/orange/red phase colors. The hero image is a frame at
-5 seconds from the approved physical Suturing web video, exported to
-`static/images/hero-suturing.jpg`; it adds no extra video download. Counts in the
-opening strip reflect the 8 simulation subtasks, 6 physical subtasks, and 34
-existing demonstration clips.
+and green/orange/red phase colors. The text-only hero emphasizes the project
+name, full title, and evaluation scope: 8 simulation tasks, 6 physical tasks,
+and 34 demonstration clips. Overview and Method retain the supplied scientific
+figures; no additional method diagram or interactive stepper is shown.
 
-The three-stage method explorer is a conceptual illustration, not an experimental
-trace. Click a stage or use Left/Right, Home, and End while a stage tab is focused.
 Sticky gallery links and the active chapter marker help navigate the long page.
-The original abstract is preserved. The overview figure shows its upper diagram
-inline, cropping the unfinished placeholder panel with CSS; the zoom dialog still
-opens the complete original image. The mobile layout stacks content and videos,
-and reduced-motion preferences disable interface transitions.
+The supplied abstract uses consistent task terminology. The overview figure shows
+its upper diagram inline, cropping the unfinished placeholder panel with CSS;
+the zoom dialog still opens the complete original image. The mobile layout stacks
+content and videos, and reduced-motion preferences disable interface transitions.
 
 ## Video state annotations
 
 Simulation and real-world cards use synchronized borders and text labels: green for Normal
 Execution, orange for Failure Recovery, and red for External Disturbance.
+Active recovery uses a solid dark-orange label with white text and a saturated
+orange outline around the card so it stays distinct from the warm page background.
 Intervals live in `static/js/video-states.js`, in source-video seconds (start
 inclusive, end exclusive). Playback speed does not change the annotation times.
 Unannotated intervals are green; seeking and looping update the state.
