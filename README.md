@@ -38,13 +38,18 @@ and a public repository exposes its tracked media files.
 
 ## Visual design and interactions
 
-The page uses an editorial layout with warm paper tones, dark green typography,
+The page uses an editorial layout with white backgrounds, dark green typography,
 and green/orange/red phase colors. The text-only hero emphasizes the project
-name, full title, and evaluation scope: 8 simulation tasks, 6 physical tasks,
-and 34 demonstration clips. Overview and Method retain the supplied scientific
+name and full title, followed by four rounded keyword labels: Surgical agentic
+robotics, Sim-to-real, 8 simulation tasks, and 6 real-world tasks. Overview and Method retain the supplied scientific
 figures; no additional method diagram or interactive stepper is shown.
 
-Sticky gallery links and the active chapter marker help navigate the long page.
+Section titles and video task names are emphasized, while duplicate platform
+labels, decorative chapter numbers, and repeated counts are omitted. Video
+captions retain the physical playback speed. Each gallery heading includes only
+the phase colors relevant to that gallery; the legend wraps below the heading on
+small screens. Sticky gallery links and the active chapter marker help navigate
+the long page.
 The supplied abstract uses consistent task terminology. The overview figure shows
 its upper diagram inline, cropping the unfinished placeholder panel with CSS;
 the zoom dialog still opens the complete original image. The mobile layout stacks
@@ -53,9 +58,11 @@ content and videos, and reduced-motion preferences disable interface transitions
 ## Video state annotations
 
 Simulation and real-world cards use synchronized borders and text labels: green for Normal
-Execution, orange for Failure Recovery, and red for External Disturbance.
-Active recovery uses a solid dark-orange label with white text and a saturated
-orange outline around the card so it stays distinct from the warm page background.
+Execution, orange for Recovery, and red for External Disturbance.
+Each phase uses a thin colored video border and a lightly tinted label. Recovery
+uses dark-orange text on pale orange, without an additional card outline. The
+short label describes the recovery phase; the underlying events and timings are
+unchanged.
 Intervals live in `static/js/video-states.js`, in source-video seconds (start
 inclusive, end exclusive). Playback speed does not change the annotation times.
 Unannotated intervals are green; seeking and looping update the state.
