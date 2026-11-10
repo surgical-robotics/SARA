@@ -36,6 +36,23 @@ and video context menus and dragging are disabled. These are interface
 restrictions, not access control: publicly served media can still be retrieved,
 and a public repository exposes its tracked media files.
 
+## Visual design and interactions
+
+The page uses an editorial layout with warm paper tones, dark green typography,
+and the existing green/orange/red phase colors. The hero image is a frame at
+5 seconds from the approved physical Suturing web video, exported to
+`static/images/hero-suturing.jpg`; it adds no extra video download. Counts in the
+opening strip reflect the 8 simulation subtasks, 6 physical subtasks, and 34
+existing demonstration clips.
+
+The three-stage method explorer is a conceptual illustration, not an experimental
+trace. Click a stage or use Left/Right, Home, and End while a stage tab is focused.
+Sticky gallery links and the active chapter marker help navigate the long page.
+The original abstract is preserved. The overview figure shows its upper diagram
+inline, cropping the unfinished placeholder panel with CSS; the zoom dialog still
+opens the complete original image. The mobile layout stacks content and videos,
+and reduced-motion preferences disable interface transitions.
+
 ## Video state annotations
 
 Simulation and real-world cards use synchronized borders and text labels: green for Normal

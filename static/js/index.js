@@ -22,7 +22,7 @@ for (const video of document.querySelectorAll('video')) {
 }
 
 // Explicitly start muted videos and retry clips that the browser has not started.
-// A successful start is remembered so later retries respect manual pause/unmute.
+// A successful start is remembered so later retries respect manual pauses.
 const autoplayVideos = [...document.querySelectorAll('video[autoplay]')];
 const startedVideos = new WeakSet();
 const startingVideos = new WeakSet();
@@ -38,7 +38,7 @@ async function startAutoplay(video) {
     startedVideos.add(video);
     delete video.dataset.autoplayBlocked;
   } catch (error) {
-    // Native controls remain available if autoplay is disabled in the browser.
+    // The custom Play button remains available when autoplay is blocked.
     if (error.name === 'NotAllowedError') video.dataset.autoplayBlocked = 'true';
   } finally {
     startingVideos.delete(video);
@@ -101,3 +101,77 @@ function updateTopButton() { topButton.classList.toggle('visible', window.scroll
 window.addEventListener('scroll', updateTopButton, { passive: true });
 updateTopButton();
 topButton.addEventListener('click', () => window.scrollTo({top: 0, behavior: reducedMotion.matches ? 'instant' : 'smooth'}));
+
+// Let readers inspect each stage without an automatically advancing animation.
+const methodExplorer = document.querySelector('.method-explorer');
+if (methodExplorer) {
+  const tabs = [...methodExplorer.querySelectorAll('[role="tab"]')];
+  function selectMethodTab(tab, moveFocus = false) {
+    for (const candidate of tabs) {
+      const selected = candidate === tab;
+      candidate.setAttribute('aria-selected', String(selected));
+      candidate.tabIndex = selected ? 0 : -1;
+      document.getElementById(candidate.getAttribute('aria-controls')).hidden = !selected;
+    }
+    methodExplorer.dataset.step = tab.dataset.step;
+    if (moveFocus) tab.focus();
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => selectMethodTab(tab));
+    tab.addEventListener('keydown', event => {
+      let next;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+      if (event.key === 'Home') next = 0;
+      if (event.key === 'End') next = tabs.length - 1;
+      if (next === undefined) return;
+      event.preventDefault();
+      selectMethodTab(tabs[next], true);
+    });
+  });
+}
+
+// A reading indicator and chapter markers keep the long experimental page legible.
+const readingProgress = document.querySelector('.reading-progress span');
+const chapterLinks = [...document.querySelectorAll('.nav-links a')];
+const galleryNavs = [...document.querySelectorAll('.gallery-nav')];
+const linkTargets = new Map([...chapterLinks, ...document.querySelectorAll('.gallery-nav a')]
+  .map(link => [link, document.querySelector(link.getAttribute('href'))]));
+let readingFramePending = false;
+function markCurrent(links, active) {
+  links.forEach(link => {
+    if (link === active) {
+      if (!link.hasAttribute('aria-current')) link.setAttribute('aria-current', 'location');
+    } else if (link.hasAttribute('aria-current')) link.removeAttribute('aria-current');
+  });
+}
+function updateReadingPosition() {
+  readingFramePending = false;
+  const available = document.documentElement.scrollHeight - window.innerHeight;
+  if (readingProgress) readingProgress.style.transform = `scaleX(${available > 0 ? Math.min(1, Math.max(0, window.scrollY / available)) : 0})`;
+  let currentChapter;
+  for (const link of chapterLinks) {
+    if (linkTargets.get(link)?.getBoundingClientRect().top <= 170) currentChapter = link;
+  }
+  markCurrent(chapterLinks, currentChapter);
+  for (const nav of galleryNavs) {
+    const links = [...nav.querySelectorAll('a')];
+    const section = nav.closest('.results-section').getBoundingClientRect();
+    let currentGroup;
+    if (section.top <= 170 && section.bottom > 170) {
+      for (const link of links) {
+        if (linkTargets.get(link)?.getBoundingClientRect().top <= 180) currentGroup = link;
+      }
+    }
+    markCurrent(links, currentGroup);
+  }
+}
+function scheduleReadingUpdate() {
+  if (readingFramePending) return;
+  readingFramePending = true;
+  window.requestAnimationFrame(updateReadingPosition);
+}
+window.addEventListener('scroll', scheduleReadingUpdate, { passive: true });
+window.addEventListener('resize', scheduleReadingUpdate, { passive: true });
+window.addEventListener('load', scheduleReadingUpdate);
+updateReadingPosition();

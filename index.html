@@ -6,7 +6,8 @@
 <title>SARA: Toward Surgical Agentic Robotics for Resilient Manipulation Subtasks</title>
 <meta name="description" content="SARA anticipates failure modes, synthesizes observable verifiers, and plans recovery chains for resilient surgical manipulation in simulation and on the physical dVRK platform.">
 <meta name="keywords" content="SARA, surgical robotics, agentic robotics, resilient manipulation, dVRK, Newton">
-<meta name="theme-color" content="#174e69">
+<meta name="theme-color" content="#f6f5f0">
+<link rel="icon" type="image/svg+xml" href="static/images/favicon.svg">
 <link rel="canonical" href="https://surgical-robotics.github.io/SARA/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="SARA">
@@ -20,46 +21,88 @@
 <meta name="twitter:image" content="https://surgical-robotics.github.io/SARA/static/images/abstract.png">
 <meta name="citation_title" content="SARA: Toward Surgical Agentic Robotics for Resilient Manipulation Subtasks">
 <!-- Add confirmed authors, venue, paper URL, and final BibTeX when available. -->
-<link rel="stylesheet" href="static/css/index.css?v=overlay-controls-1">
-<script defer src="static/js/index.js?v=video-controls-4"></script>
+<link rel="stylesheet" href="static/css/index.css?v=research-1">
+<script defer src="static/js/index.js?v=research-1"></script>
 <script defer src="static/js/video-states.js?v=5"></script>
 <script defer src="static/js/media-controls.js?v=2"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ScholarlyArticle", "headline": "SARA: Toward Surgical Agentic Robotics for Resilient Manipulation Subtasks", "description": "SARA anticipates failure modes, synthesizes observable verifiers, and plans recovery chains for resilient surgical manipulation in simulation and on the physical dVRK platform.", "url": "https://surgical-robotics.github.io/SARA/", "image": "https://surgical-robotics.github.io/SARA/static/images/abstract.png"}</script>
 </head>
 <body>
+<div class="reading-progress" aria-hidden="true"><span></span></div>
 <a class="skip-link" href="#main-content">Skip to content</a>
 <header class="site-header"><nav class="nav-shell" aria-label="Main navigation">
-<a class="wordmark" href="#top" aria-label="SARA home">SARA<span class="brand-dot"></span></a>
+<a class="wordmark" href="#top" aria-label="SARA home">SARA<span class="brand-dot"></span></a><span class="nav-note">Surgical Agent for Resilient Autonomy</span>
 <div class="nav-links"><a href="#abstract">Overview</a><a href="#method">Method</a><a href="#simulation">Simulation</a><a href="#real-world">Real world</a></div>
 </nav></header>
 <main id="main-content">
-<section class="hero" id="top"><div class="hero-orbit" aria-hidden="true"></div><div class="container hero-content">
-<p class="eyebrow">Surgical agentic robotics · Simulation to reality</p>
-<h1><span class="hero-name">SARA<span class="title-colon">:</span></span><span class="hero-title">Toward Surgical Agentic Robotics for <em>Resilient</em> Manipulation Subtasks</span></h1>
-<p class="hero-summary">Anticipate failures. Verify outcomes. Plan recovery.<br>A path from reusable surgical skills to resilient task execution.</p>
-<div class="hero-actions"><a class="button primary" href="#simulation">Explore demonstrations <span aria-hidden="true">↓</span></a><a class="button secondary" href="#method">Inside the method <span aria-hidden="true">↗</span></a></div>
-<div class="graph-story" aria-label="SARA turns nominal skills into verified recovery behavior">
-<div class="graph-stage"><span class="stage-tag">01 / START</span><strong>Reusable skills</strong><div class="mini-graph nominal" aria-hidden="true"><i>S₁</i><b>→</b><i>S₂</i><b>→</b><i>S₃</i></div><span>Nominal task graph <math aria-label="G N"><msub><mi mathvariant="script">G</mi><mi>N</mi></msub></math></span></div>
-<span class="flow-arrow" aria-hidden="true">→</span>
-<div class="graph-stage agent-stage"><span class="stage-tag">02 / AUGMENT & REFINE</span><strong>Anticipate · Verify · Recover</strong><div class="agent-loop" aria-hidden="true"><span>Failure modes</span><b>↻</b><span>Recovery chains</span></div><span>Iterative rehearsal in Newton</span></div>
-<span class="flow-arrow" aria-hidden="true">→</span>
-<div class="graph-stage recovery-stage"><span class="stage-tag">03 / DEPLOY</span><strong>Resilient execution</strong><div class="mini-graph recovered" aria-hidden="true"><i>S₂</i><b>↗</b><i>R</i><b>↘</b><i>S₃</i></div><span>Augmented graph <math aria-label="G A"><msub><mi mathvariant="script">G</mi><mi>A</mi></msub></math> on dVRK</span></div>
+<section class="hero" id="top"><div class="container">
+<div class="hero-layout">
+  <div class="hero-copy">
+    <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> Surgical autonomy, with a recovery plan</p>
+    <h1><span class="hero-name">SARA<span class="title-colon">:</span></span> <span class="hero-title">Toward Surgical Agentic Robotics for <em>Resilient</em> Manipulation Subtasks</span></h1>
+    <p class="hero-summary">Beyond the nominal plan.<br>Anticipate failure. Rehearse recovery. Act with resilience.</p>
+    <div class="hero-actions"><a class="button primary" href="#simulation">Watch the experiments <span aria-hidden="true">↗</span></a><a class="text-link" href="#method">Discover the method <span aria-hidden="true">↓</span></a></div>
+  </div>
+  <figure class="hero-visual">
+    <div class="visual-header"><span><i aria-hidden="true"></i> PHYSICAL dVRK</span><span>EXPERIMENT / SUTURING</span></div>
+    <a class="hero-image-link" href="#real-tasks" aria-label="Watch the physical dVRK experiments"><img class="hero-image" src="static/images/hero-suturing.jpg" alt="Two physical dVRK instruments manipulating a threaded needle on the suturing pad." width="1280" height="720" fetchpriority="high"><span class="hero-image-caption">From rehearsal<br>to the real world.<span class="round-arrow" aria-hidden="true">↗</span></span></a>
+    <div class="hero-path" aria-label="SARA anticipates failures, validates recoveries in simulation, and deploys the augmented graph">
+      <span class="path-label">THE SARA APPROACH</span>
+      <div class="path-stages"><span><i aria-hidden="true">01</i>Anticipate</span><b aria-hidden="true">→</b><span><i aria-hidden="true">02</i>Validate</span><b aria-hidden="true">→</b><span><i aria-hidden="true">03</i>Deploy</span></div>
+    </div>
+    <figcaption><span class="figure-index">FIELD NOTES / 01</span> Real experimental footage · Suturing on the physical dVRK</figcaption>
+  </figure>
+</div>
+<div class="evidence-strip" aria-label="Evaluation scope">
+  <p>One framework.<br><strong>Two environments.</strong></p>
+  <div><strong>08<span> / SIM</span></strong><span>Simulation subtasks</span></div>
+  <div><strong>06<span> / REAL</span></strong><span>Physical subtasks</span></div>
+  <div><strong>34<span> / FILMS</span></strong><span>Demonstration clips</span></div>
 </div>
 </div></section>
 <section class="section overview" id="abstract"><div class="container">
-<div class="section-heading"><p class="eyebrow">The system at a glance</p><h2>From nominal plans to resilient behavior.</h2></div>
-<figure class="research-figure"><button class="figure-zoom" type="button" data-image="static/images/abstract.png" aria-label="Enlarge SARA system overview"><img src="static/images/abstract.png" alt="SARA overview: Newton simulation and the physical dVRK platform, a nominal skill graph, failure anticipation and self-improvement, and an augmented graph with observable verifiers and recovery transitions." width="1864" height="762" fetchpriority="high"><span class="zoom-hint">View full figure ↗</span></button><figcaption>SARA augments reusable surgical skills with observable verifiers and recovery transitions, bridging simulation rehearsal and physical execution.</figcaption></figure>
-<div class="abstract-layout"><h3>Abstract</h3><p>Augmented dexterity promises to relieve surgeon workload and improve surgical performance, yet it still requires expert algorithmic engineering for each manipulation subtask. Can emerging coding agents deliver augmented dexterity across subtasks, while remaining reliable under failure? In this work, we introduce SARA (Surgical Agent for Resilient Autonomy), an agentic surgical robotics framework that executes diverse manipulation subtasks autonomously and resiliently. Given a nominal task graph composed of reusable surgical skills, SARA proactively anticipates how the skills may fail and induces those failures in a physics-based sandbox. From the induced and naturally occurring failures, it writes observable verifiers for the skills and proposes failure-specific recovery strategies, either by re-executing upstream skills of the nominal graph or by escalating to the broader skill library. SARA then rehearses the candidate augmented graph in the sandbox, refining the ineffective strategies in a self-improvement loop, and retains only the validated verifiers and recoveries in the final augmented graph. We evaluate SARA on 8 surgical subtasks in Newton-based simulation and 6 subtasks on a physical da Vinci robot.</p></div>
+<div class="section-heading"><p class="eyebrow"><span class="chapter-index">01</span> The research</p><h2>From nominal plans<br>to <em>resilient behavior.</em></h2></div>
+<div class="abstract-layout"><aside class="abstract-aside"><h3>Abstract</h3><p class="research-question">Can emerging coding agents deliver augmented dexterity across subtasks, while remaining reliable under failure?</p><span class="margin-note">The question behind SARA</span></aside><div class="abstract-copy"><p>Augmented dexterity promises to relieve surgeon workload and improve surgical performance, yet it still requires expert algorithmic engineering for each manipulation subtask. Can emerging coding agents deliver augmented dexterity across subtasks, while remaining reliable under failure? In this work, we introduce SARA (Surgical Agent for Resilient Autonomy), an agentic surgical robotics framework that executes diverse manipulation subtasks autonomously and resiliently.</p><p>Given a nominal task graph composed of reusable surgical skills, SARA proactively anticipates how the skills may fail and induces those failures in a physics-based sandbox. From the induced and naturally occurring failures, it writes observable verifiers for the skills and proposes failure-specific recovery strategies, either by re-executing upstream skills of the nominal graph or by escalating to the broader skill library.</p><p>SARA then rehearses the candidate augmented graph in the sandbox, refining the ineffective strategies in a self-improvement loop, and retains only the validated verifiers and recoveries in the final augmented graph. We evaluate SARA on 8 surgical subtasks in Newton-based simulation and 6 subtasks on a physical da Vinci robot.</p></div></div>
+<figure class="research-figure"><button class="figure-zoom overview-figure" type="button" data-image="static/images/abstract.png" aria-label="Enlarge SARA system overview"><img src="static/images/abstract.png" alt="SARA overview: Newton simulation and the physical dVRK platform, a nominal skill graph, failure anticipation and self-improvement, and an augmented graph with observable verifiers and recovery transitions." width="1864" height="762" loading="lazy"><span class="zoom-hint">View full figure ↗</span></button><figcaption>SARA augments reusable surgical skills with observable verifiers and recovery transitions, bridging simulation rehearsal and physical execution.</figcaption></figure>
 </div></section>
 <section class="section method-section" id="method"><div class="container">
-<div class="section-heading"><p class="eyebrow">The method</p><h2>Anticipation before execution.<br>Recovery by construction.</h2><p>Task instructions and reusable skills define the nominal graph. SARA augments and refines that graph through rehearsal before physical deployment.</p></div>
+<div class="section-heading"><p class="eyebrow"><span class="chapter-index">02</span> The method</p><h2>Plan for the task.<br>Prepare for <em>the unexpected.</em></h2><p>A nominal graph says what to do. SARA adds ways to observe failure, recover, and continue—then rehearses them before deployment.</p></div>
+<div class="method-explorer" data-step="anticipate">
+  <div class="explorer-topline"><span>FROM A NOMINAL GRAPH TO AN AUGMENTED GRAPH</span><span class="explorer-hint">Select a stage to explore <span aria-hidden="true">↓</span></span></div>
+  <div class="method-tabs" role="tablist" aria-label="SARA method stages">
+    <button type="button" id="tab-anticipate" role="tab" aria-selected="true" aria-controls="panel-anticipate" data-step="anticipate"><span>01</span> Anticipate <b aria-hidden="true">↗</b></button>
+    <button type="button" id="tab-recover" role="tab" aria-selected="false" aria-controls="panel-recover" tabindex="-1" data-step="recover"><span>02</span> Verify & recover <b aria-hidden="true">↗</b></button>
+    <button type="button" id="tab-refine" role="tab" aria-selected="false" aria-controls="panel-refine" tabindex="-1" data-step="refine"><span>03</span> Refine & deploy <b aria-hidden="true">↗</b></button>
+  </div>
+  <div class="explorer-body">
+    <div class="graph-canvas" aria-hidden="true">
+      <svg viewBox="0 0 600 330" fill="none" focusable="false">
+        <defs><marker id="graph-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#94a8a1"/></marker><marker id="recovery-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#e6a36e"/></marker><pattern id="graph-grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#ffffff" opacity=".10"/></pattern></defs>
+        <rect width="600" height="330" fill="url(#graph-grid)"/>
+        <text x="26" y="30" class="svg-kicker">REUSABLE SURGICAL SKILLS</text>
+        <path class="nominal-edge" d="M120 135H234 M314 135H438" marker-end="url(#graph-arrow)"/>
+        <circle class="skill-node" cx="80" cy="135" r="39"/><circle class="skill-node focus-node" cx="274" cy="135" r="39"/><circle class="skill-node" cx="478" cy="135" r="39"/>
+        <text class="node-label" x="80" y="143">S₁</text><text class="node-label" x="274" y="143">S₂</text><text class="node-label" x="478" y="143">S₃</text>
+        <text class="node-caption" x="80" y="197">SKILL 01</text><text class="node-caption" x="274" y="197">SKILL 02</text><text class="node-caption" x="478" y="197">SKILL 03</text>
+        <g class="failure-layer"><circle class="failure-ring" cx="274" cy="135" r="50"/><path d="M298 90L327 61H405" stroke="#e6a36e" stroke-width="1.5"/><text x="332" y="50" class="failure-label">WHAT COULD FAIL?</text></g>
+        <g class="recovery-layer"><path class="recovery-edge" d="M373 151V255H314 M234 255H80V178" marker-end="url(#recovery-arrow)"/><path class="verifier-node" d="M373 118L390 135L373 152L356 135Z"/><rect class="recovery-node" x="234" y="229" width="80" height="52" rx="26"/><text x="274" y="262" class="recovery-label">R</text><text x="398" y="258" class="svg-kicker">RECOVERY CHAIN</text></g>
+        <g class="validated-layer"><circle cx="503" cy="105" r="15" fill="#9cdeb8"/><path d="M496 105L501 110L510 100" stroke="#172f29" stroke-width="2.5"/><text x="26" y="312" class="validation-label">VALIDATED VERIFIERS + RECOVERIES</text></g>
+      </svg>
+      <div class="graph-key"><span><i class="key-skill"></i> Skill</span><span><i class="key-verifier"></i> Verifier</span><span><i class="key-recovery"></i> Recovery</span><small>Conceptual illustration</small></div>
+    </div>
+    <div class="method-panel" id="panel-anticipate" role="tabpanel" aria-labelledby="tab-anticipate" tabindex="0"><span class="panel-kicker">BEFORE FAILURE HAPPENS</span><h3>Ask what<br> could go wrong.</h3><p>SARA anticipates how each reusable skill may fail and induces those failures in the Newton physics-based sandbox.</p><span class="panel-output">Nominal skills → Candidate failure modes</span></div>
+    <div class="method-panel" id="panel-recover" role="tabpanel" aria-labelledby="tab-recover" tabindex="0" hidden><span class="panel-kicker">MAKE FAILURE OBSERVABLE</span><h3>Detect. Recover.<br> Continue.</h3><p>Observable verifiers identify failures. Recovery chains re-execute upstream skills or draw on the broader skill library.</p><span class="panel-output">Observed failures → Recovery strategies</span></div>
+    <div class="method-panel" id="panel-refine" role="tabpanel" aria-labelledby="tab-refine" tabindex="0" hidden><span class="panel-kicker">REHEARSE BEFORE DEPLOYMENT</span><h3>Keep what<br> survives rehearsal.</h3><p>SARA tests the candidate graph, refines ineffective strategies, and retains validated verifiers and recoveries for physical execution.</p><span class="panel-output">Sandbox validation → Augmented graph</span></div>
+  </div>
+</div>
+<div class="figure-heading"><span class="figure-index">THE COMPLETE PIPELINE</span><span>From reusable skills to a validated augmented graph</span></div>
 <figure class="research-figure"><button class="figure-zoom" type="button" data-image="static/images/sara_pipeline.png" aria-label="Enlarge the SARA method pipeline"><img src="static/images/sara_pipeline.png" alt="SARA pipeline: task instruction, surgical skill library, nominal graph and Newton sandbox feed augmentation agents; proposed failures, observable verifiers and recovery chains are tested and iteratively refined into the final augmented graph." width="2907" height="1441" loading="lazy"><span class="zoom-hint">View full figure ↗</span></button><figcaption>Augmentation proposes and tests failure modes, verifiers, and recovery chains. Refinement validates verifier and recovery behavior through natural and induction rollouts.</figcaption></figure>
-<div class="method-steps"><article><span>01</span><h3>Anticipate</h3><p>Propose skill-level failure modes and test their induction in the Newton rehearsal sandbox.</p></article><article><span>02</span><h3>Verify & recover</h3><p>Synthesize observable verifiers and corresponding recovery chains, then refine them through testing.</p></article><article><span>03</span><h3>Refine & deploy</h3><p>Iterate on verifier and recovery behavior, then deploy the augmented graph to the physical dVRK platform.</p></article></div>
 </div></section>
 <section class="section results-section" id="simulation"><div class="container">
-<div class="section-heading"><p class="eyebrow">Results / Simulation</p><h2>Rehearse skills.<br>Build resilience.</h2><p>Task execution and recovery demonstrations in the Newton physics-based dVRK sandbox.</p></div>
+<div class="section-heading results-heading"><div><p class="eyebrow"><span class="chapter-index">03</span> Experiments / Simulation</p><h2>Resilience starts<br><em>in rehearsal.</em></h2></div><div class="results-intro"><span class="platform-tag">NEWTON PHYSICS</span><p>Eight surgical manipulation subtasks. A physics-based dVRK sandbox for execution, induced failures, and recovery.</p><span class="results-count">08 SUBTASKS <span> / </span> 16 DEMONSTRATIONS</span></div></div>
+<nav class="gallery-nav" aria-label="Simulation demonstrations"><a href="#sim-tasks"><i class="legend-dot normal" aria-hidden="true"></i>Task execution <span>08</span></a><a href="#sim-recovery"><i class="legend-dot recovery" aria-hidden="true"></i>Failure recovery <span>08</span></a><span class="gallery-nav-note">Explore the evidence <span aria-hidden="true">↓</span></span></nav>
 <div class="state-legend" aria-label="Simulation video state color legend"><span><i class="legend-dot normal" aria-hidden="true"></i>Normal Execution</span><span><i class="legend-dot recovery" aria-hidden="true"></i>Failure Recovery</span><p>Borders and labels follow the current phase of each video.</p></div>
-<section class="results-group" id="sim-tasks" aria-labelledby="sim-tasks-title">
+<section class="results-group" data-category="normal" id="sim-tasks" aria-labelledby="sim-tasks-title">
  <div class="group-heading"><span class="section-number">01</span><div><p class="eyebrow">Newton sandbox</p><h3 id="sim-tasks-title">Surgical manipulation in simulation</h3><p>Eight task demonstrations built from reusable surgical skills.</p></div></div>
  <div class="video-grid cols-2 simulation-grid"><figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
@@ -101,8 +144,8 @@
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_sim/s_8.jpg" aria-label="Simulation: Suturing"><source src="static/videos_sim/s_8.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Suturing</span><small>Simulation</small></figcaption>
   </figure></div></section>
-<section class="results-group" id="sim-recovery" aria-labelledby="sim-recovery-title">
- <div class="group-heading"><span class="section-number">02</span><div><p class="eyebrow">Newton sandbox · Recovery</p><h3 id="sim-recovery-title">Resilient execution in simulation</h3><p>Recovery demonstrations complement the task rollouts above.</p></div></div>
+<section class="results-group" data-category="recovery" id="sim-recovery" aria-labelledby="sim-recovery-title">
+ <div class="group-heading"><span class="section-number">02</span><div><p class="eyebrow">Newton sandbox · Recovery</p><h3 id="sim-recovery-title">Resilient execution in simulation</h3><p>When a skill fails, the augmented graph provides a route back to task execution.</p></div></div>
  <div class="video-grid cols-2 simulation-grid"><figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_sim/i_1.jpg" aria-label="Simulation recovery: Needle Pick and Place"><source src="static/videos_sim/i_1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
@@ -145,10 +188,11 @@
   </figure></div></section>
 </div></section>
 <section class="section results-section real-section" id="real-world"><div class="container">
-<div class="section-heading"><p class="eyebrow">Results / Physical dVRK</p><h2>From rehearsal<br>to the real world.</h2><p>Explore physical task execution, failure recovery, and responses to external disturbances across six manipulation subtasks.</p></div>
+<div class="section-heading results-heading"><div><p class="eyebrow"><span class="chapter-index">04</span> Experiments / Real world</p><h2>Beyond simulation.<br><em>Into the physical world.</em></h2></div><div class="results-intro"><span class="platform-tag">PHYSICAL dVRK</span><p>Six subtasks on a physical da Vinci robot: nominal execution, failure recovery, and resilience under external disturbances.</p><span class="results-count">06 SUBTASKS <span> / </span> 18 DEMONSTRATIONS</span></div></div>
+<nav class="gallery-nav" aria-label="Physical demonstrations"><a href="#real-tasks"><i class="legend-dot normal" aria-hidden="true"></i>Task execution <span>06</span></a><a href="#real-recovery"><i class="legend-dot recovery" aria-hidden="true"></i>Failure recovery <span>06</span></a><a href="#external-disturbances"><i class="legend-dot disturbance" aria-hidden="true"></i>External disturbance <span>06</span></a></nav>
 <div class="state-legend" aria-label="Video state color legend"><span><i class="legend-dot normal" aria-hidden="true"></i>Normal Execution</span><span><i class="legend-dot recovery" aria-hidden="true"></i>Failure Recovery</span><span><i class="legend-dot disturbance" aria-hidden="true"></i>External Disturbance</span><p>Borders and labels follow the current phase of each video.</p></div>
-<section class="results-group" id="real-tasks" aria-labelledby="real-tasks-title">
- <div class="group-heading"><span class="section-number">03</span><div><p class="eyebrow">Physical dVRK · Task execution</p><h3 id="real-tasks-title">Surgical manipulation in the real world</h3><p>Six physical manipulation subtasks, presented in three rows.</p></div></div>
+<section class="results-group" data-category="normal" id="real-tasks" aria-labelledby="real-tasks-title">
+ <div class="group-heading"><span class="section-number">03</span><div><p class="eyebrow">Physical dVRK · Task execution</p><h3 id="real-tasks-title">Surgical manipulation in the real world</h3><p>Six manipulation subtasks executed on the physical dVRK platform.</p></div></div>
  <div class="video-grid cols-2"><figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_pickplace_X1.jpg" aria-label="Physical dVRK: Needle Pick and Place"><source src="static/videos_web/S_pickplace_X1.mp4" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
@@ -179,7 +223,7 @@
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/S_stitch_X1.jpg?v=pad-crop-3" aria-label="Physical dVRK: Suturing"><source src="static/videos_web/S_stitch_X1.mp4?v=pad-crop-3" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Suturing</span><small>Physical dVRK · 2× speed</small></figcaption>
   </figure></div></section>
-<section class="results-group" id="real-recovery" aria-labelledby="real-recovery-title">
+<section class="results-group" data-category="recovery" id="real-recovery" aria-labelledby="real-recovery-title">
  <div class="group-heading"><span class="section-number">04</span><div><p class="eyebrow">Physical dVRK · Failure recovery</p><h3 id="real-recovery-title">Recovering during physical execution</h3><p>Failure-recovery demonstrations on the physical platform.</p></div></div>
  <div class="video-grid cols-2"><figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
@@ -211,7 +255,7 @@
     <div class="video-frame"><video controlslist="nodownload noplaybackrate" draggable="false" data-playback-rate="2" controls autoplay playsinline muted loop preload="auto" poster="static/images/posters/videos_real/F_stitch_X1.jpg?v=pad-crop-3" aria-label="Failure recovery: Suturing"><source src="static/videos_web/F_stitch_X1.mp4?v=pad-crop-3" type="video/mp4"><p>Your browser does not support embedded video.</p></video></div>
     <figcaption><span>Suturing</span><small>Failure recovery · 2× speed</small></figcaption>
   </figure></div></section>
-<section class="results-group" id="external-disturbances" aria-labelledby="external-disturbances-title">
+<section class="results-group" data-category="disturbance" id="external-disturbances" aria-labelledby="external-disturbances-title">
  <div class="group-heading"><span class="section-number">05</span><div><p class="eyebrow">Physical dVRK · External disturbances</p><h3 id="external-disturbances-title">Resilience under external disturbances</h3><p>Demonstrations of SARA responding to external disturbances during physical task execution.</p></div></div>
  <div class="video-grid cols-2"><figure class="video-card" data-state="normal">
     <div class="video-state-bar"><span class="state-dot" aria-hidden="true"></span><span class="video-state-label">Normal Execution</span></div>
