@@ -64,8 +64,8 @@ relaxed letter spacing.
 
 Simulation and Real-world experiments use unnumbered section headings, matching
 Abstract and Method. Gallery numbering restarts within each section: Simulation
-uses 1 Normal Execution and 2 Execution Recovery; Real-world experiments uses
-1 Normal Execution, 2 Execution Recovery, and 3 External Disturbance. Compact
+uses 1 Normal Execution and 2 Failure Recovery; Real-world experiments uses
+1 Normal Execution, 2 Failure Recovery, and 3 External Disturbance. Compact
 number badges also appear in the group headings, with matching numbers in the
 sticky gallery navigation, which highlights the current group.
 Horizontal rules, additional spacing, and very light category backgrounds separate
@@ -123,7 +123,7 @@ particles, whereas the physical demonstration uses soft-looking pieces on tissue
 ## Video state annotations
 
 Simulation and real-world cards use synchronized borders and text labels: green for Normal
-Execution, orange for Execution Recovery, and red for External Disturbance.
+Execution, orange for Failure Recovery, and red for External Disturbance.
 Each phase uses a thin colored video border and a lightly tinted label. Recovery
 uses dark-orange text on pale orange, without an additional card outline. The
 disturbance state uses a more saturated red (`#d11f35`) for borders, text, and legend
