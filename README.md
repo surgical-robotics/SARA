@@ -60,7 +60,12 @@ uses 1 Normal Execution and 2 Execution Recovery; Real-world experiments uses
 1 Normal Execution, 2 Execution Recovery, and 3 External Disturbance. Compact
 number badges also appear in the group headings, with matching numbers in the
 sticky gallery navigation, which highlights the current group.
-Stronger horizontal rules and additional spacing separate groups. Duplicate
+Horizontal rules, additional spacing, and very light category backgrounds separate
+groups: green (`#f5faf6`) for normal execution, yellow (`#fffbef`) for recovery, and
+red (`#fff5f6`) for external disturbance. These static backgrounds identify the
+gallery category, while video borders and labels continue to show the current
+playback phase. Backgrounds extend into the gutters without changing the video
+widths or their alignment with the research figures. Duplicate
 platform labels and repeated counts remain omitted. Video
 captions retain the physical playback speed. Each video's state label and task name
 share the same 16px type size on desktop and mobile, with slightly heavier task names.
