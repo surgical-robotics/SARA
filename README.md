@@ -104,10 +104,9 @@ the active manipulators in the nominal demonstration; object properties refer to
 objects, excluding passive supports and robot instruments. Rigid + deformable
 covers the needle together with its thread and, for suturing, the tissue interaction.
 
-These are initial visual classifications from sampled video frames, pending the
-author's review; they do not establish simulator material properties. Debridement
-particularly needs confirmation: the simulated debris appears as shape-preserving
-particles, whereas the physical demonstration uses soft-looking pieces on tissue.
+Attributes were initially drafted from sampled video frames and updated with the
+author's corrections. Debridement is confirmed as Deformable in both simulation
+and real-world demonstrations.
 
 | Task | Simulation | Real world |
 | --- | --- | --- |
@@ -117,7 +116,7 @@ particles, whereas the physical demonstration uses soft-looking pieces on tissue
 | Gauze Lifting | Unimanual · Deformable | — |
 | Tissue Retraction | Unimanual · Deformable | — |
 | Needle Handover Through a Ring | Bimanual · Rigid + deformable | Bimanual · Rigid + deformable |
-| Debridement | Unimanual · Rigid | Unimanual · Deformable |
+| Debridement | Unimanual · Deformable | Unimanual · Deformable |
 | Suturing | Bimanual · Rigid + deformable | Bimanual · Rigid + deformable |
 
 ## Video state annotations
