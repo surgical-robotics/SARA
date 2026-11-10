@@ -11,13 +11,15 @@ video galleries in this order:
 
 | Gallery | Source files | Desktop layout |
 | --- | --- | --- |
-| Simulation tasks | `static/videos_sim/s_*.mp4` | 4 columns × 2 rows |
-| Simulation recovery | `static/videos_sim/i_*.mp4` | 4 columns × 2 rows |
-| Physical tasks | `static/videos_real/S_*.mp4` | 3 columns × 2 rows |
-| Physical recovery | `static/videos_real/F_*.mp4` | 3 columns × 2 rows |
-| External disturbances | `static/videos_real/I_*.mp4` | 3 columns × 2 rows |
+| Simulation tasks | `static/videos_sim/s_*.mp4` | 2 columns × 4 rows |
+| Simulation recovery | `static/videos_sim/i_*.mp4` | 2 columns × 4 rows |
+| Physical tasks | `static/videos_real/S_*.mp4` | 2 columns × 3 rows |
+| Physical recovery | `static/videos_real/F_*.mp4` | 2 columns × 3 rows |
+| External disturbances | `static/videos_real/I_*.mp4` | 2 columns × 3 rows |
 
-Galleries adapt to two columns on tablets and one on narrow phones. Simulation
+Galleries use two columns above 760px and one column on smaller screens.
+Video sections share the same 1120px maximum container width as the research
+figures, aligning their left and right edges. Simulation
 clips are named in numerical file order: Needle Pick and Place, Peg Transfer, Shunt Insertion, Gauze Lifting, Tissue Retraction, Threaded Needle Handover Through a Ring, Debridement, Suturing. Real-world
 clips are matched by task name across all three groups, with Debridement
 preceding Suturing. Research figures open
