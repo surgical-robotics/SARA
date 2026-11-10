@@ -39,7 +39,7 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
 .skip-link:focus { top: 12px; }
 .reading-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 100; pointer-events: none; }
 .reading-progress span { display: block; height: 100%; background: var(--green); transform: scaleX(0); transform-origin: left; }
-.site-header { position: sticky; top: 0; z-index: 30; background: rgb(255 255 255 / .95); border-bottom: 1px solid var(--line); backdrop-filter: blur(16px); }
+.site-header { position: sticky; top: 0; z-index: 30; background: var(--paper); border-bottom: 1px solid var(--line); }
 .nav-shell { width: min(1120px, calc(100% - 64px)); margin-inline: auto; height: 72px; display: flex; align-items: center; gap: 24px; }
 .wordmark { display: inline-flex; align-items: baseline; gap: 4px; font-size: 25px; font-weight: 800; line-height: 1; letter-spacing: -.07em; }
 .brand-dot { width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
@@ -62,15 +62,14 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
 .research-figure { margin: 0; }
 .figure-zoom { position: relative; display: block; width: 100%; padding: 20px; border: 1px solid var(--line); border-radius: 7px; background: white; cursor: zoom-in; overflow: hidden; }
 .figure-zoom img { width: 100%; }
-.figure-zoom.overview-figure { aspect-ratio: 1864 / 545; padding: 10px; }
-.overview-figure img { position: absolute; top: 10px; left: 10px; width: calc(100% - 20px); height: auto; }
 .zoom-hint { position: absolute; bottom: 12px; right: 12px; background: rgb(28 48 43 / .9); color: white; border-radius: 4px; padding: 7px 12px; font-size: 14px; opacity: 0; transform: translateY(5px); transition: opacity .2s, transform .2s; }
 .figure-zoom:hover .zoom-hint, .figure-zoom:focus-visible .zoom-hint { opacity: 1; transform: none; }
-.research-figure > figcaption { max-width: 940px; color: var(--muted); font-size: 15px; line-height: 1.65; margin-top: 16px; padding-left: 13px; border-left: 2px solid #b5c8b7; }
+.research-figure > figcaption { width: 100%; color: #40534a; font-size: 16px; line-height: 1.8; margin-top: 20px; text-align: justify; text-align-last: left; }
+.research-figure > figcaption strong { color: var(--ink); font-weight: 600; }
 .method-section { border-block: 1px solid var(--line); }
 .method-question { width: 100%; margin-bottom: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--line); font-size: clamp(24px, 3vw, 34px); font-style: italic; font-weight: 400; line-height: 1.45; text-align: justify; text-align-last: left; }
 /* Each gallery has a local phase legend; the videos retain synchronized labels. */
-.gallery-nav { position: sticky; top: 72px; z-index: 20; display: flex; align-items: stretch; gap: 10px; padding: 7px 0; background: rgb(255 255 255 / .97); backdrop-filter: blur(16px); border-block: 1px solid var(--line); min-height: 70px; }
+.gallery-nav { position: sticky; top: 72px; z-index: 20; display: flex; align-items: stretch; gap: 10px; padding: 7px 0; background: var(--paper); border-block: 1px solid var(--line); min-height: 70px; }
 .gallery-nav a { display: flex; flex: 1; min-width: 0; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 10px 14px; border: 1px solid var(--nav-outline); border-radius: 6px; background: var(--group-bg); font-size: 15px; font-weight: 550; line-height: 1.4; text-align: center; transition: background .2s, color .2s, box-shadow .2s; }
 .gallery-nav a:hover { background: var(--nav-active-bg); }
 .gallery-nav a[aria-current] { color: var(--group-ink, var(--group-accent)); background: var(--nav-active-bg); box-shadow: inset 0 -3px var(--group-accent); }
@@ -160,10 +159,8 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
   .abstract-copy { font-size: 17px; line-height: 1.8; margin-bottom: 32px; }
   .method-question { margin-bottom: 36px; padding-bottom: 28px; }
   .figure-zoom { padding: 8px; }
-  .figure-zoom.overview-figure { padding: 3px; }
-  .overview-figure img { top: 3px; left: 3px; width: calc(100% - 6px); }
   .zoom-hint { bottom: 5px; right: 5px; font-size: 13px; padding: 5px 9px; }
-  .research-figure > figcaption { font-size: 14px; }
+  .research-figure > figcaption { text-align: left; line-height: 1.7; }
   .gallery-nav { top: 62px; gap: 6px; padding: 6px 0; min-height: 86px; }
   .gallery-nav a { flex-direction: column; gap: 4px; padding: 8px 4px; font-size: 14px; min-height: 72px; }
   .nav-mark { gap: 6px; }

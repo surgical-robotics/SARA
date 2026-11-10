@@ -27,8 +27,12 @@ preceding Suturing. The physical ring-handover task uses the shorter caption
 in an enlarged dialog. Videos autoplay muted and loop when visible. Offscreen
 videos and videos in hidden tabs pause and resume from their current position when
 visible again; explicit manual pauses are preserved. While fullscreen is active,
-only that video's playback continues. Videos request metadata preload, with
-autoplay managed by JavaScript instead of starting all 34 native players at once.
+only that video's playback continues. Videos use `preload="none"` so the browser
+is asked to defer video data until playback is requested. JavaScript starts playback
+when a video becomes visible, avoiding metadata requests for all 34 clips on page
+load. Browsers retain control of buffering; this setting does not unload clips
+that have already been played. Sticky navigation uses opaque white backgrounds
+without backdrop blur to reduce compositing over moving videos.
 A compact seek bar with
 play/pause and fullscreen controls (when supported) appears along the bottom only
 on hover or keyboard focus. Touching a video reveals the controls for three seconds;
@@ -98,10 +102,15 @@ The supplied abstract uses consistent task terminology and appears as one paragr
 sharing the full container width with the overview figure. An italic research
 question introduces Method: "Can emerging coding agents deliver augmented dexterity
 across diverse surgical tasks and remain reliable when failures occur?" The question shares
-the figure's full width, with justified text and no bold emphasis. The overview figure shows
-its upper diagram inline, cropping the unfinished placeholder panel with CSS;
-the zoom dialog still opens the complete original image. The mobile layout stacks
-content and videos, and reduced-motion preferences disable interface transitions.
+the figure's full width, with justified text and no bold emphasis. The updated overview
+figure appears in full, including the debridement and suturing failure-recovery
+sequences; clicking it opens the full-resolution image. Both research figures have
+full-width, 16px explanatory captions with an emphasized opening title. The captions
+use native inline MathML for the nominal, candidate augmented, and final augmented
+graphs, without a separate math-rendering script. Agent names and method phases are
+italicized. Captions are justified on desktop and left-aligned on mobile. The mobile
+layout stacks content and videos, and reduced-motion preferences disable interface
+transitions.
 
 ## Task attributes
 
@@ -160,7 +169,7 @@ All other intervals show normal execution.
 
 ## Media preparation
 
-- Overview: `static/images/abstract.png` (the supplied image still includes a placeholder panel).
+- Overview: `static/images/abstract.png` (5542×3322, shown in full; page, zoom, and social metadata use a content-version query to refresh cached copies).
 - Method: `static/images/sara_pipeline.png`.
 - Video posters: `static/images/posters/`.
 - Published physical videos: `static/videos_web/` (H.264, original resolution, fast-start MP4).
@@ -188,7 +197,6 @@ corresponding static gallery in `index.html`; the page has no build dependency.
 
 - Confirm author list, affiliations, venue, and paper URL before adding them.
 - Add the final BibTeX once citation details are available.
-- Replace the overview image's placeholder panel with final keyframes.
 
 ## Local preview
 
