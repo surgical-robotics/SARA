@@ -54,7 +54,7 @@ and a public repository exposes its tracked media files.
 ## Visual design and interactions
 
 The page uses an editorial layout with white backgrounds, dark green typography,
-and green/orange/red phase colors. The text-only hero emphasizes the project
+and green/amber/red phase colors. The text-only hero emphasizes the project
 name and full title, followed by four rounded keyword labels: Surgical agentic
 robotics, Sim-to-real, 8 simulation tasks, and 6 real-world tasks. Overview and Method retain the supplied scientific
 figures; no additional method diagram or interactive stepper is shown.
@@ -74,13 +74,13 @@ uses 1 Normal Execution and 2 Failure Recovery; Real-world experiments uses
 number badges also appear in the group headings, with matching numbers in the
 sticky gallery navigation. Each link always carries its category's pale background,
 colored number, and a simple circular icon: a green check for normal execution,
-an orange return arrow for recovery, and a red incoming-force symbol for disturbance.
+an amber return arrow for recovery, and a red incoming-force symbol for disturbance.
 The icons supplement the text labels and are hidden from assistive technology.
 The current group uses a stronger matching tint, colored text, and a bottom rule;
 hovering a link also strengthens its category tint.
 Horizontal rules, additional spacing, and very light category backgrounds separate
 groups: green (`#fafdfb`) for normal execution, yellow (`#fffdf7`) for recovery, and
-red (`#fffafb`) for external disturbance. These near-white backgrounds identify the
+red (`#fffafa`) for external disturbance. These near-white backgrounds identify the
 gallery category, while video borders and labels continue to show the current
 playback phase. Backgrounds extend into the gutters without changing the video
 widths or their alignment with the research figures. Duplicate
@@ -131,23 +131,21 @@ and real-world demonstrations.
 
 ## Video state annotations
 
-Every video has a segmented phase timeline above it: green for Normal Execution,
-orange for Failure Recovery, and red for External Disturbance. Segment lengths are
-proportional to their source-video durations, with unannotated intervals in green.
-A moving dot, the current phase text on the right, and the video border stay
-synchronized. The timeline background is transparent. On narrow screens, the
-current phase text moves below the timeline and remains right-aligned. The phase
-sequence is also available as an accessible text description. Fullscreen phase
-text uses a light color for readability against the dark player background.
+Each video retains a thin, dynamic 2px border and a compact dot with the current
+phase label above it. Normal Execution uses green (`#28764f`), Failure Recovery
+uses amber yellow (`#b8860b`), and External Disturbance uses red (`#d52222`).
+Legends and navigation icons use the same palette. Recovery text uses a darker
+amber (`#805d00`) for readability on the light backgrounds. Borders indicate the
+current playback phase, while the very pale section backgrounds identify the
+category of the complete demonstration.
 
-The playhead follows video frames using a transform rather than per-frame layout
-position changes, with an animation-frame fallback. Animation
-updates stop for offscreen, paused, or hidden videos; seeking and returning to a
-video refresh its state immediately. Hidden control bars skip progress repainting,
-and their overlay uses a translucent fill without a blur over the moving video.
-The separate hover controls retain seeking,
-elapsed/total time, play/pause, and fullscreen. Timelines await valid metadata and
-clip their visible segments to the actual duration without modifying annotations.
+The extra segmented timeline has been removed. Phase labels and borders follow
+media events, with DOM writes only when the phase changes and no animation loop.
+Seeking, looping, and resuming update the phase. Fullscreen labels remain light
+against the dark player background. The hover controls still provide a smooth
+seek bar, elapsed/total time, play/pause, and fullscreen; hidden controls skip
+progress repainting. Visible-only autoplay and the existing playback rates remain
+unchanged.
 Intervals live in `static/js/video-states.js`, in source-video seconds (start
 inclusive, end exclusive). Playback speed does not change the annotation times.
 Unannotated intervals are green; seeking and looping update the state.

@@ -31,129 +31,27 @@
     disturbance: 'External Disturbance'
   };
 
-  const visibilityHandlers = new WeakMap();
-  const visibilityObserver = typeof IntersectionObserver === 'function'
-    ? new IntersectionObserver(entries => {
-      for (const entry of entries) visibilityHandlers.get(entry.target)?.(entry.isIntersecting);
-    }, { rootMargin: '100px 0px' })
-    : null;
-
   for (const card of document.querySelectorAll('.video-card[data-state]')) {
     const video = card.querySelector('video');
     const label = card.querySelector('.video-state-label');
-    const timeline = card.querySelector('.phase-timeline');
-    const track = card.querySelector('.phase-segments');
-    const playhead = card.querySelector('.phase-playhead');
     const filename = video.querySelector('source').getAttribute('src').split(/[?#]/)[0].split('/').pop();
     const key = filename.replace(/(?:_X[12])?\.mp4$/i, '').toLowerCase();
     const intervals = Object.entries(timelines).find(([name]) => name.toLowerCase() === key)?.[1] || [];
 
-    let duration = 0;
-    let visible = !visibilityObserver;
-    let frameHandle = null;
-    let lastProgress = '';
-    const useVideoFrames = typeof video.requestVideoFrameCallback === 'function' &&
-      typeof video.cancelVideoFrameCallback === 'function';
-
-    function stateAt(time) {
-      return intervals.find(([start, end]) => time >= start && time < end)?.[2] || 'normal';
+    function updateState() {
+      const time = Number.isFinite(video.currentTime) ? video.currentTime : 0;
+      const state = intervals.find(([start, end]) => time >= start && time < end)?.[2] || 'normal';
+      if (card.dataset.state !== state) card.dataset.state = state;
+      if (label.textContent !== labels[state]) label.textContent = labels[state];
     }
 
-    function renderTimeline() {
-      duration = Number.isFinite(video.duration) && video.duration > 0 ? video.duration : 0;
-      playhead.hidden = duration === 0;
-      if (!duration) {
-        track.replaceChildren();
-        timeline.setAttribute('aria-label', 'Video phase timeline loading');
-        return;
-      }
-      const boundaries = new Set([0, duration]);
-      for (const [start, end] of intervals) {
-        boundaries.add(Math.min(duration, Math.max(0, start)));
-        boundaries.add(Math.min(duration, Math.max(0, end)));
-      }
-      const points = [...boundaries].sort((a, b) => a - b);
-      const phases = [];
-      for (let i = 1; i < points.length; i++) {
-        const start = points[i - 1], end = points[i];
-        const state = stateAt((start + end) / 2);
-        const previous = phases[phases.length - 1];
-        if (previous?.state === state) previous.end = end;
-        else phases.push({ start, end, state });
-      }
-      const segments = phases.map(({ start, end, state }) => {
-        const segment = document.createElement('span');
-        segment.className = 'phase-segment';
-        segment.dataset.state = state;
-        segment.style.width = `${(end - start) / duration * 100}%`;
-        return segment;
-      });
-      track.replaceChildren(...segments);
-      timeline.setAttribute('aria-label', 'Video phases: ' + phases.map(({ start, end, state }) =>
-        `${labels[state]} from ${Number(start.toFixed(1))} to ${Number(end.toFixed(1))} seconds`
-      ).join('; '));
+    // Borders and labels change only at phase transitions; no animation loop needed.
+    for (const event of ['loadedmetadata', 'timeupdate', 'seeking', 'seeked', 'play', 'pause', 'ended', 'emptied']) {
+      video.addEventListener(event, updateState);
     }
-
-    function updateState(time = video.currentTime) {
-      const position = Number.isFinite(time) ? time : 0;
-      const state = stateAt(position);
-      if (card.dataset.state !== state || label.textContent !== labels[state]) {
-        card.dataset.state = state;
-        label.textContent = labels[state];
-      }
-      const progress = `${duration ? Math.min(100, Math.max(0, position / duration * 100)) : 0}%`;
-      if (progress !== lastProgress) {
-        playhead.style.transform = `translateX(${progress})`;
-        lastProgress = progress;
-      }
-    }
-
-    function stopAnimation() {
-      if (frameHandle === null) return;
-      if (useVideoFrames) video.cancelVideoFrameCallback(frameHandle);
-      else cancelAnimationFrame(frameHandle);
-      frameHandle = null;
-    }
-    function scheduleAnimation() {
-      if (!visible || document.hidden || video.paused || video.ended || !duration) {
-        stopAnimation();
-        return;
-      }
-      if (frameHandle === null) frameHandle = useVideoFrames
-        ? video.requestVideoFrameCallback(onFrame)
-        : requestAnimationFrame(onFrame);
-    }
-    function onFrame(now, metadata) {
-      frameHandle = null;
-      updateState(useVideoFrames ? metadata.mediaTime : video.currentTime);
-      scheduleAnimation();
-    }
-    function refresh() {
-      updateState();
-      scheduleAnimation();
-    }
-    for (const event of ['loadedmetadata', 'durationchange', 'emptied']) {
-      video.addEventListener(event, () => {
-        renderTimeline();
-        refresh();
-      });
-    }
-    for (const event of ['seeking', 'seeked', 'play', 'pause', 'ended']) {
-      video.addEventListener(event, refresh);
-    }
-    video.addEventListener('timeupdate', () => {
-      if (visible && !document.hidden) refresh();
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) updateState();
     });
-    document.addEventListener('visibilitychange', refresh);
-    if (visibilityObserver) {
-      visibilityHandlers.set(card, isVisible => {
-        visible = isVisible;
-        refresh();
-      });
-      visibilityObserver.observe(card);
-    }
-    renderTimeline();
     updateState();
-    scheduleAnimation();
   }
 })();
