@@ -165,11 +165,13 @@
     }
     toggle.addEventListener('click', async () => {
       const wantsPlay = video.paused;
-      video.dispatchEvent(new CustomEvent('sara:playback-intent', { detail: { playing: wantsPlay } }));
-      if (wantsPlay) {
-        try { await video.play(); } catch { /* Keep the Play control available for retry. */ }
-      } else {
-        video.pause();
+      const intent = new CustomEvent('sara:playback-intent', { cancelable: true, detail: { playing: wantsPlay } });
+      if (video.dispatchEvent(intent)) {
+        if (wantsPlay) {
+          try { await video.play(); } catch { /* Keep the Play control available for retry. */ }
+        } else {
+          video.pause();
+        }
       }
       update();
     });

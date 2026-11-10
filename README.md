@@ -24,16 +24,22 @@ clips are named in numerical file order: Needle Pick and Place, Peg Transfer, Sh
 clips are matched by task name across all three groups, with Debridement
 preceding Suturing. The physical ring-handover task uses the shorter caption
 `Threaded Needle Handover` in all three groups. Research figures open
-in an enlarged dialog. Videos use native `autoplay muted loop playsinline` and
-`preload="auto"`, restoring the original eager playback approach. Browsers control
-buffering and their own offscreen/background playback policies. The page no longer
-changes preload settings or calls `load()`/`pause()` as videos enter and leave the
-viewport. JavaScript requests playback on initialization and retries paused clips
-when media data arrives, a clip enters the viewport, the tab returns, or a user
-gesture allows playback. Explicit manual pauses are preserved, including disabling
-native autoplay until the user resumes the clip. A pending play request is never
-duplicated. Sticky navigation uses opaque white backgrounds without backdrop blur.
-If the browser blocks autoplay, the Play control stays visible for a manual start.
+in an enlarged dialog. Videos automatically load and play within the current
+experiment group: Simulation Normal Execution / Failure Recovery, or Real-world
+Normal Execution / Failure Recovery / External Disturbance. At most one group
+is attached at a time (eight simulation or six physical clips). Other groups keep
+posters and deferred `data-src` URLs; they do not eagerly create 34 media loads.
+Switching groups pauses and detaches the old sources before attaching the new
+ones, releasing old media resources instead of merely pausing them. Playback
+positions and manual pauses are remembered and restored after metadata loads.
+The group with the most visible video area is selected, with a small boundary
+margin and 120ms stabilization delay to avoid rapid switches. The upcoming group
+may begin loading within 300px of the viewport. Fullscreen attaches only the
+selected video; hidden tabs release media resources. Native muted inline autoplay
+and `preload="auto"` are enabled for attached players. Failed autoplay can be
+retried when data arrives or a user gesture permits playback. Sticky navigation
+uses opaque white backgrounds without backdrop blur. If the browser blocks
+autoplay, the Play control stays visible for a manual start.
 A compact seek bar with
 play/pause and fullscreen controls (when supported) appears along the bottom only
 on hover or keyboard focus. Touching a video reveals the controls for three seconds;
