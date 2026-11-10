@@ -27,12 +27,16 @@ preceding Suturing. The physical ring-handover task uses the shorter caption
 in an enlarged dialog. Videos autoplay muted and loop when visible. Offscreen
 videos and videos in hidden tabs pause and resume from their current position when
 visible again; explicit manual pauses are preserved. While fullscreen is active,
-only that video's playback continues. Videos use `preload="none"` so the browser
-is asked to defer video data until playback is requested. JavaScript starts playback
-when a video becomes visible, avoiding metadata requests for all 34 clips on page
-load. Browsers retain control of buffering; this setting does not unload clips
+only that video's playback continues. Videos initially use `preload="none"`.
+JavaScript requests `auto` preload for visible videos and at most two nearby
+offscreen clips within 500px of the viewport, preparing the next row without
+starting every video on page load. Nearby clips buffer without playing. Hidden
+tabs, fullscreen playback, and the browser's data-saving mode suspend offscreen
+prefetching. Manual pauses are respected, and preloading never resets a resumed
+clip. Browsers retain control of buffering; this setting does not unload clips
 that have already been played. Sticky navigation uses opaque white backgrounds
-without backdrop blur to reduce compositing over moving videos.
+without backdrop blur to reduce compositing over moving videos. If a browser
+blocks autoplay, the Play control stays visible for a manual start.
 A compact seek bar with
 play/pause and fullscreen controls (when supported) appears along the bottom only
 on hover or keyboard focus. Touching a video reveals the controls for three seconds;
@@ -104,7 +108,10 @@ question introduces Method: "Can emerging coding agents deliver augmented dexter
 across diverse surgical tasks and remain reliable when failures occur?" The question shares
 the figure's full width, with justified text and no bold emphasis. The updated overview
 figure appears in full, including the debridement and suturing failure-recovery
-sequences; clicking it opens the full-resolution image. Both research figures have
+sequences. Responsive 1120px/2240px WebP previews (approximately 143/335 KB) load
+eagerly with high priority instead of the 9.7 MB PNG. The previews preserve the
+source color profile. Clicking first shows the cached preview, then replaces it
+with the original full-resolution image once loaded. Both research figures have
 full-width, 16px explanatory captions with an emphasized opening title. The captions
 use native inline MathML for the nominal, candidate augmented, and final augmented
 graphs, without a separate math-rendering script. Agent names and method phases are
@@ -169,12 +176,13 @@ All other intervals show normal execution.
 
 ## Media preparation
 
-- Overview: `static/images/abstract.png` (5542×3322, shown in full; page, zoom, and social metadata use a content-version query to refresh cached copies).
+- Overview original: `static/images/abstract.png` (5542×3322, unchanged; loaded on zoom and used by social metadata).
+- Overview previews: `static/images/abstract-1120.webp` and `static/images/abstract-2240.webp` (responsive, content-versioned URLs).
 - Method: `static/images/sara_pipeline.png`.
 - Video posters: `static/images/posters/`.
 - Published physical videos: `static/videos_web/` (H.264, original resolution, fast-start MP4).
 - Original physical videos: `static/videos_real/` (preserved locally and ignored by Git).
-- Simulation videos: `static/videos_sim/` (published directly).
+- Simulation videos: `static/videos_sim/` (published directly, with MP4 metadata before media data for fast start).
 
 To regenerate posters and web copies after changing source footage, install
 FFmpeg and run from this directory:
@@ -182,6 +190,20 @@ FFmpeg and run from this directory:
 ```bash
 python3 scripts/prepare_media.py
 ```
+
+After replacing the overview image or simulation clips, run the loading optimizer
+(requires Pillow and FFmpeg):
+
+```bash
+python3 scripts/optimize_loading.py
+```
+
+It regenerates the WebP previews and losslessly remuxes simulation files that lack
+fast start. Compressed packets and their timestamps are verified before replacing
+the MP4 container; resolution, frame rate, and annotation timing remain unchanged.
+The PNG original is preserved. The script refreshes content-version queries for
+updated assets in `index.html`. Commit the generated previews and changed MP4s
+alongside the page.
 
 The three physical Suturing clips and posters use the approved 1536×864 source
 crop at (384, 214): remove 384 pixels from the left, 214 from the top, and 2 from

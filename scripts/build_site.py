@@ -25,8 +25,11 @@ class References(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
-        for name in ('src', 'href', 'poster', 'data-image'):
-            value = attrs.get(name, '')
+        values = [attrs.get(name, '') for name in ('src', 'href', 'poster', 'data-image')]
+        # Responsive research figures use ordinary local URLs with width descriptors.
+        values.extend(candidate.strip().split()[0] for candidate in
+                      attrs.get('srcset', '').split(',') if candidate.strip())
+        for value in values:
             parsed = urlsplit(value)
             if value and not parsed.scheme and not parsed.netloc and parsed.path:
                 self.paths.add(unquote(parsed.path))
