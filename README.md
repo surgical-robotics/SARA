@@ -53,8 +53,10 @@ figures; no additional method diagram or interactive stepper is shown.
 The visible hero wordmark omits the colon; the complete title retains it in
 metadata and accessible text. The SARA wordmark is limited to 104px on desktop
 and 68–88px on mobile, giving the full research title more visual weight.
-Resilient uses a green serif italic accent without an underline; the remaining
-title stays dark, with balanced wrapping and relaxed letter spacing.
+The SARA wordmark uses green lettering and a small pale-green dot that echoes the
+navigation logo. The full research title, including Resilient, uses a consistent
+dark color, sans-serif font, upright style, and weight, with balanced wrapping and
+relaxed letter spacing.
 
 Simulation and Real-world experiments use unnumbered section headings, matching
 Abstract and Method. Gallery numbering restarts within each section: Simulation

@@ -12,7 +12,6 @@
   --normal-bg: #edf5ee;
   --recovery-bg: #fff7ed;
   --disturbance-bg: #fff0f3;
-  --serif: Georgia, 'Times New Roman', serif;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 100px; }
@@ -51,10 +50,9 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
 /* Title and a compact, readable set of research highlights. */
 .hero { padding: 68px 0 60px; border-bottom: 1px solid var(--line); }
 .hero-copy { max-width: 920px; margin-inline: auto; text-align: center; }
-.hero-name { display: block; font-size: clamp(88px, 8.4vw, 104px); font-weight: 700; line-height: 1; letter-spacing: -.065em; margin-left: -.045em; }
+.hero-name { display: block; color: var(--green); font-size: clamp(88px, 8.4vw, 104px); font-weight: 700; line-height: 1; letter-spacing: -.055em; margin-left: -.045em; }
+.hero-name::after { content: ''; display: inline-block; width: .085em; height: .085em; margin-left: .1em; border-radius: 50%; background: #8ab99e; vertical-align: .04em; }
 .hero-title { display: block; font-size: clamp(32px, 3.8vw, 46px); line-height: 1.22; letter-spacing: -.025em; margin: 24px auto 0; max-width: 860px; text-wrap: balance; }
-.hero-title em { font-family: var(--serif); font-weight: 400; color: var(--green); }
-.resilient-word { white-space: nowrap; }
 .hero-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; list-style: none; padding: 0; margin: 30px 0 0; }
 .hero-tags li { padding: 10px 15px; border: 1px solid var(--line); border-radius: 10px; background: #f8faf8; color: #3f574a; font-size: 15px; line-height: 1.4; }
 .hero-tags strong { font-weight: 650; }
