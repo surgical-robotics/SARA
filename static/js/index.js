@@ -6,14 +6,19 @@ for (const video of document.querySelectorAll('video')) {
   video.addEventListener('dragstart', event => event.preventDefault());
 }
 
-// Real-world clips: X1 plays at 2× speed; X2 retains normal speed.
-for (const video of document.querySelectorAll('video[data-playback-rate]')) {
-  const rate = Number(video.dataset.playbackRate);
-  video.defaultPlaybackRate = rate;
-  video.playbackRate = rate;
-  video.addEventListener('loadedmetadata', () => {
-    video.playbackRate = rate;
-  });
+// Lock each clip to its configured speed and keep all demonstrations silent.
+for (const video of document.querySelectorAll('video')) {
+  const rate = Number(video.dataset.playbackRate || 1);
+  function enforcePlayback() {
+    if (video.defaultPlaybackRate !== rate) video.defaultPlaybackRate = rate;
+    if (video.playbackRate !== rate) video.playbackRate = rate;
+    video.defaultMuted = true;
+    if (!video.muted) video.muted = true;
+  }
+  enforcePlayback();
+  video.addEventListener('loadedmetadata', enforcePlayback);
+  video.addEventListener('ratechange', enforcePlayback);
+  video.addEventListener('volumechange', enforcePlayback);
 }
 
 // Explicitly start muted videos and retry clips that the browser has not started.

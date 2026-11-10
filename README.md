@@ -21,7 +21,9 @@ Galleries adapt to two columns on tablets and one on narrow phones. Simulation
 clips are named in numerical file order: Needle Pick and Place, Peg Transfer, Shunt Insertion, Gauze Lifting, Tissue Retraction, Threaded Needle Handover Through a Ring, Debridement, Suturing. Real-world
 clips are matched by task name across all three groups, with Debridement
 preceding Suturing. Research figures open
-in an enlarged dialog. All videos autoplay muted, loop, and retain playback controls. Real-world clips
+in an enlarged dialog. All videos autoplay muted and loop. Custom controls provide play/pause, seeking,
+and fullscreen (when supported), with no volume or speed selector. Playback
+rates and mute are enforced by the page. Real-world clips
 ending in `X1` play at 2× speed; `X2` clips play at normal speed. Browser autoplay
 policies may require visitors to start playback manually. The page has no Code
 link or Explore SARA section.
@@ -62,6 +64,13 @@ FFmpeg and run from this directory:
 ```bash
 python3 scripts/prepare_media.py
 ```
+
+The three physical Suturing clips and posters apply the approved cumulative
+crop sequence: crop 1600×900 at (320, 180); resize to 1920×1080; crop 1564×880 at
+(356, 100); resize to 1920×1080; crop 1742×980 at (178, 0); resize to 1920×1080.
+The suture pad is enlarged while preserving the output size and approximately
+16:9 crop geometry (rounded to even pixels for H.264). Source footage, timing,
+and configured playback speeds are preserved.
 
 The script preserves source files, processes two clips at a time, and skips
 up-to-date outputs. Commit generated `static/videos_web/` and

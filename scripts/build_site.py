@@ -11,6 +11,7 @@ ASSETS = (
     'static/css/index.css',
     'static/js/index.js',
     'static/js/video-states.js',
+    'static/js/media-controls.js',
     'static/images',
     'static/videos_sim',
     'static/videos_web',

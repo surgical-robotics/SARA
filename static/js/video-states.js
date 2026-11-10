@@ -34,7 +34,7 @@
   for (const card of document.querySelectorAll('.video-card[data-state]')) {
     const video = card.querySelector('video');
     const label = card.querySelector('.video-state-label');
-    const filename = video.querySelector('source').getAttribute('src').split('/').pop();
+    const filename = video.querySelector('source').getAttribute('src').split(/[?#]/)[0].split('/').pop();
     const key = filename.replace(/(?:_X[12])?\.mp4$/i, '').toLowerCase();
     const intervals = Object.entries(timelines).find(([name]) => name.toLowerCase() === key)?.[1] || [];
 
