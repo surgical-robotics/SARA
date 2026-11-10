@@ -51,6 +51,7 @@
     let duration = 0;
     let visible = !visibilityObserver;
     let frameHandle = null;
+    let lastProgress = '';
     const useVideoFrames = typeof video.requestVideoFrameCallback === 'function' &&
       typeof video.cancelVideoFrameCallback === 'function';
 
@@ -100,7 +101,11 @@
         card.dataset.state = state;
         label.textContent = labels[state];
       }
-      playhead.style.left = `${duration ? Math.min(100, Math.max(0, position / duration * 100)) : 0}%`;
+      const progress = `${duration ? Math.min(100, Math.max(0, position / duration * 100)) : 0}%`;
+      if (progress !== lastProgress) {
+        playhead.style.transform = `translateX(${progress})`;
+        lastProgress = progress;
+      }
     }
 
     function stopAnimation() {
@@ -133,9 +138,12 @@
         refresh();
       });
     }
-    for (const event of ['timeupdate', 'seeking', 'seeked', 'play', 'pause', 'ended']) {
+    for (const event of ['seeking', 'seeked', 'play', 'pause', 'ended']) {
       video.addEventListener(event, refresh);
     }
+    video.addEventListener('timeupdate', () => {
+      if (visible && !document.hidden) refresh();
+    });
     document.addEventListener('visibilitychange', refresh);
     if (visibilityObserver) {
       visibilityHandlers.set(card, isVisible => {

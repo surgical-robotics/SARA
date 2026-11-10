@@ -21,27 +21,42 @@ for (const video of document.querySelectorAll('video')) {
   video.addEventListener('volumechange', enforcePlayback);
 }
 
-// Explicitly start muted videos and retry clips that the browser has not started.
-// A successful start is remembered so later retries respect manual pauses.
-const autoplayVideos = [...document.querySelectorAll('video[autoplay]')];
-const startedVideos = new WeakSet();
-const startingVideos = new WeakSet();
+// Autoplay visible demonstrations only; keep explicit pauses when visitors return.
+const autoplayVideos = [...document.querySelectorAll('video[data-autoplay]')];
+const playbackStates = new Map(autoplayVideos.map(video => [video, {
+  visible: false, wantsPlay: true, starting: false
+}]));
 
-async function startAutoplay(video) {
-  if (document.hidden || startedVideos.has(video) || startingVideos.has(video)) return;
-  startingVideos.add(video);
-  video.defaultMuted = true;
-  video.muted = true;
-  video.playsInline = true;
+function shouldAutoplay(video) {
+  const state = playbackStates.get(video);
+  const fullscreen = document.fullscreenElement;
+  return state.visible && state.wantsPlay && !document.hidden &&
+    (!fullscreen || fullscreen.contains(video));
+}
+
+async function syncAutoplay(video) {
+  const state = playbackStates.get(video);
+  if (!shouldAutoplay(video)) {
+    if (!video.paused || state.starting) video.pause();
+    return;
+  }
+  if (!video.paused || state.starting) return;
+  state.starting = true;
+  let aborted = false;
   try {
     await video.play();
-    startedVideos.add(video);
     delete video.dataset.autoplayBlocked;
   } catch (error) {
-    // The custom Play button remains available when autoplay is blocked.
     if (error.name === 'NotAllowedError') video.dataset.autoplayBlocked = 'true';
+    aborted = error.name === 'AbortError';
   } finally {
-    startingVideos.delete(video);
+    state.starting = false;
+    if (!shouldAutoplay(video)) {
+      if (!video.paused) video.pause();
+    } else if (aborted && video.paused) {
+      // A quick scroll can return to a clip before its cancelled play settles.
+      syncAutoplay(video);
+    }
   }
 }
 
@@ -49,34 +64,57 @@ for (const video of autoplayVideos) {
   video.defaultMuted = true;
   video.muted = true;
   video.playsInline = true;
-  video.addEventListener('playing', () => {
-    startedVideos.add(video);
-    delete video.dataset.autoplayBlocked;
+  video.addEventListener('sara:playback-intent', event => {
+    playbackStates.get(video).wantsPlay = event.detail.playing;
   });
-  video.addEventListener('loadeddata', () => startAutoplay(video));
-  video.addEventListener('canplay', () => startAutoplay(video));
-  startAutoplay(video);
+  video.addEventListener('playing', () => {
+    delete video.dataset.autoplayBlocked;
+    if (!shouldAutoplay(video)) video.pause();
+  });
+  video.addEventListener('loadeddata', () => syncAutoplay(video));
+  video.addEventListener('canplay', () => syncAutoplay(video));
 }
 
-// Safari and mobile browsers can defer playback until a video becomes visible.
 if ('IntersectionObserver' in window) {
   const videoObserver = new IntersectionObserver(entries => {
     for (const entry of entries) {
-      if (entry.isIntersecting) startAutoplay(entry.target);
+      playbackStates.get(entry.target).visible = entry.isIntersecting && entry.intersectionRatio >= 0.05;
+      syncAutoplay(entry.target);
     }
-  }, { threshold: 0.1 });
+  }, { threshold: [0, 0.05] });
   autoplayVideos.forEach(video => videoObserver.observe(video));
+} else {
+  let visibilityPending = false;
+  function updateVideoVisibility() {
+    visibilityPending = false;
+    for (const video of autoplayVideos) {
+      const rect = video.getBoundingClientRect();
+      playbackStates.get(video).visible = rect.bottom > 0 && rect.top < window.innerHeight &&
+        rect.right > 0 && rect.left < window.innerWidth;
+      syncAutoplay(video);
+    }
+  }
+  function scheduleVideoVisibility() {
+    if (visibilityPending) return;
+    visibilityPending = true;
+    window.requestAnimationFrame(updateVideoVisibility);
+  }
+  window.addEventListener('scroll', scheduleVideoVisibility, { passive: true });
+  window.addEventListener('resize', scheduleVideoVisibility);
+  updateVideoVisibility();
 }
 
 function retryAutoplay() {
-  autoplayVideos.forEach(video => startAutoplay(video));
+  autoplayVideos.forEach(video => syncAutoplay(video));
 }
-// Calls run directly inside a trusted gesture for stricter browser policies.
-document.addEventListener('pointerdown', retryAutoplay, { passive: true });
-document.addEventListener('keydown', retryAutoplay);
-document.addEventListener('visibilitychange', () => {
-  if (!document.hidden) retryAutoplay();
-});
+function retryAfterGesture(event) {
+  // Let a control click express its own intent instead of starting first, then pausing.
+  if (!event.target?.closest?.('.media-controls')) retryAutoplay();
+}
+document.addEventListener('pointerdown', retryAfterGesture, { passive: true });
+document.addEventListener('keydown', retryAfterGesture);
+document.addEventListener('visibilitychange', retryAutoplay);
+document.addEventListener('fullscreenchange', retryAutoplay);
 
 // Full-size figures use native dialog focus management and Escape handling.
 const dialog = document.querySelector('#figure-dialog');

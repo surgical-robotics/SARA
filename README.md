@@ -24,7 +24,12 @@ clips are named in numerical file order: Needle Pick and Place, Peg Transfer, Sh
 clips are matched by task name across all three groups, with Debridement
 preceding Suturing. The physical ring-handover task uses the shorter caption
 `Threaded Needle Handover` in all three groups. Research figures open
-in an enlarged dialog. All videos autoplay muted and loop. A compact seek bar with
+in an enlarged dialog. Videos autoplay muted and loop when visible. Offscreen
+videos and videos in hidden tabs pause and resume from their current position when
+visible again; explicit manual pauses are preserved. While fullscreen is active,
+only that video's playback continues. Videos request metadata preload, with
+autoplay managed by JavaScript instead of starting all 34 native players at once.
+A compact seek bar with
 play/pause and fullscreen controls (when supported) appears along the bottom only
 on hover or keyboard focus. Touching a video reveals the controls for three seconds;
 dragging keeps them available until the interaction ends. The native range input
@@ -135,9 +140,12 @@ current phase text moves below the timeline and remains right-aligned. The phase
 sequence is also available as an accessible text description. Fullscreen phase
 text uses a light color for readability against the dark player background.
 
-The playhead follows video frames, with an animation-frame fallback. Animation
+The playhead follows video frames using a transform rather than per-frame layout
+position changes, with an animation-frame fallback. Animation
 updates stop for offscreen, paused, or hidden videos; seeking and returning to a
-video refresh its state immediately. The separate hover controls retain seeking,
+video refresh its state immediately. Hidden control bars skip progress repainting,
+and their overlay uses a translucent fill without a blur over the moving video.
+The separate hover controls retain seeking,
 elapsed/total time, play/pause, and fullscreen. Timelines await valid metadata and
 clip their visible segments to the actual duration without modifying annotations.
 Intervals live in `static/js/video-states.js`, in source-video seconds (start

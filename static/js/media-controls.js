@@ -30,6 +30,7 @@
     let touchInteraction = false;
     let controlsTimer;
     let hovered = false;
+    let keyboardFocused = false;
     let progressFrame = 0;
 
     function formatTime(seconds) {
@@ -39,11 +40,12 @@
 
     function updateProgress() {
       const duration = Number.isFinite(video.duration) && video.duration > 0 ? video.duration : 0;
-      seek.disabled = duration === 0;
-      seek.max = String(duration);
+      if (seek.disabled !== (duration === 0)) seek.disabled = duration === 0;
+      if (seek.max !== String(duration)) seek.max = String(duration);
       const position = scrubbing ? Number(seek.value) : video.currentTime;
       const current = Math.min(duration, Math.max(0, position || 0));
-      if (!scrubbing) seek.value = String(current);
+      const displayedValue = Math.round(current * 100) / 100;
+      if (!scrubbing && Number(seek.value) !== displayedValue) seek.value = String(displayedValue);
       seek.style.setProperty('--progress', `${duration ? current / duration * 100 : 0}%`);
       const currentText = formatTime(current);
       const durationText = duration ? formatTime(duration) : '--:--';
@@ -55,17 +57,19 @@
 
     // Smoothly follow the media clock while controls are visible, without running
     // an animation loop for all 34 hidden control bars.
+    function controlsVisible() {
+      return hovered || scrubbing || frame.classList.contains('controls-visible') || keyboardFocused;
+    }
     function shouldAnimateProgress() {
-      return !video.paused && !video.ended && !document.hidden &&
-        (hovered || scrubbing || frame.classList.contains('controls-visible') || bar.querySelector(':focus-visible'));
+      return !video.paused && !video.ended && !document.hidden && controlsVisible();
     }
     function animateProgress() {
       progressFrame = 0;
-      updateProgress();
+      if (controlsVisible()) updateProgress();
       if (shouldAnimateProgress()) progressFrame = requestAnimationFrame(animateProgress);
     }
     function syncProgressAnimation() {
-      updateProgress();
+      if (controlsVisible()) updateProgress();
       if (shouldAnimateProgress()) {
         if (!progressFrame) progressFrame = requestAnimationFrame(animateProgress);
       } else if (progressFrame) {
@@ -81,8 +85,12 @@
       hovered = false;
       syncProgressAnimation();
     });
-    bar.addEventListener('focusin', syncProgressAnimation);
-    bar.addEventListener('focusout', () => queueMicrotask(syncProgressAnimation));
+    function updateKeyboardFocus() {
+      keyboardFocused = Boolean(bar.querySelector(':focus-visible'));
+      syncProgressAnimation();
+    }
+    bar.addEventListener('focusin', updateKeyboardFocus);
+    bar.addEventListener('focusout', () => queueMicrotask(updateKeyboardFocus));
     document.addEventListener('visibilitychange', syncProgressAnimation);
 
     // The native range supports dragging, tapping, and keyboard seeking.
@@ -156,7 +164,9 @@
       syncProgressAnimation();
     }
     toggle.addEventListener('click', async () => {
-      if (video.paused) {
+      const wantsPlay = video.paused;
+      video.dispatchEvent(new CustomEvent('sara:playback-intent', { detail: { playing: wantsPlay } }));
+      if (wantsPlay) {
         try { await video.play(); } catch { /* Keep the Play control available for retry. */ }
       } else {
         video.pause();
@@ -184,8 +194,13 @@
     for (const event of ['play', 'pause', 'ended']) {
       video.addEventListener(event, update);
     }
-    for (const event of ['loadedmetadata', 'durationchange', 'timeupdate', 'seeking', 'seeked', 'emptied', 'ended']) {
+    for (const event of ['loadedmetadata', 'durationchange', 'emptied']) {
       video.addEventListener(event, updateProgress);
+    }
+    for (const event of ['timeupdate', 'seeking', 'seeked', 'ended']) {
+      video.addEventListener(event, () => {
+        if (controlsVisible()) updateProgress();
+      });
     }
     frame.append(bar);
     video.controls = false;
