@@ -22,7 +22,8 @@ Video sections share the same 1120px maximum container width as the research
 figures, aligning their left and right edges. Simulation
 clips are named in numerical file order: Needle Pick and Place, Peg Transfer, Shunt Insertion, Gauze Lifting, Tissue Retraction, Needle Handover Through a Ring, Debridement, Suturing. Real-world
 clips are matched by task name across all three groups, with Debridement
-preceding Suturing. Research figures open
+preceding Suturing. The physical ring-handover task uses the shorter caption
+`Needle Handover` in all three groups. Research figures open
 in an enlarged dialog. All videos autoplay muted and loop. A compact seek bar with
 play/pause and fullscreen controls (when supported) appears along the bottom only
 on hover or keyboard focus. Touching a video reveals the controls for three seconds;
@@ -33,7 +34,10 @@ time appear beside the seek bar. While the controls are visible and video is pla
 the seek bar follows the media clock on every animation frame; hidden controls do
 not run their own animation loops. Volume and speed selectors are omitted. Playback
 rates and mute are enforced by the page. Real-world clips
-ending in `X1` play at 2× speed; `X2` clips play at normal speed. Browser autoplay
+ending in `X1` use browser playback rate 2; `X2` clips already contain footage
+accelerated to 2× and use browser playback rate 1. All physical video captions
+therefore display `2× speed`, describing the effective speed of the demonstration.
+Browser autoplay
 policies may require visitors to start playback manually. The page has no Code
 link or Explore SARA section.
 
@@ -71,8 +75,11 @@ gallery category, while video borders and labels continue to show the current
 playback phase. Backgrounds extend into the gutters without changing the video
 widths or their alignment with the research figures. Duplicate
 platform labels and repeated counts remain omitted. Video
-captions retain the physical playback speed. Each video's state label and task name
+captions show the effective physical demonstration speed. Each video's state label and task name
 share the same 16px type size on desktop and mobile, with slightly heavier task names.
+Video captions and attribute labels have transparent backgrounds, allowing the
+group tint to show through; attributes retain thin outlines. Fullscreen captions
+use light text against the dark player background.
 Each gallery heading includes only
 the phase colors relevant to that gallery; the legend wraps below the heading on
 small screens. Sticky gallery links and the active chapter marker help navigate
