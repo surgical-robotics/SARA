@@ -65,12 +65,10 @@ FFmpeg and run from this directory:
 python3 scripts/prepare_media.py
 ```
 
-The three physical Suturing clips and posters apply the approved cumulative
-crop sequence: crop 1600×900 at (320, 180); resize to 1920×1080; crop 1564×880 at
-(356, 100); resize to 1920×1080; crop 1742×980 at (178, 0); resize to 1920×1080.
-The suture pad is enlarged while preserving the output size and approximately
-16:9 crop geometry (rounded to even pixels for H.264). Source footage, timing,
-and configured playback speeds are preserved.
+The three physical Suturing clips and posters use the approved 1536×864 source
+crop at (384, 214): remove 384 pixels from the left, 214 from the top, and 2 from
+the bottom, then resize to 1920×1080. This preserves 16:9 and enlarges the pad by
+1.25×. Original footage, timing, and configured playback speeds are preserved.
 
 The script preserves source files, processes two clips at a time, and skips
 up-to-date outputs. Commit generated `static/videos_web/` and

@@ -9,12 +9,8 @@ ROOT = Path(__file__).resolve().parents[1]
 STATIC = ROOT / 'static'
 POSTERS = STATIC / 'images' / 'posters'
 WEB = STATIC / 'videos_web'
-# Reproduce the three approved preview crops, each measured at 1920x1080.
-SUTURING_FILTER = (
-    'crop=1600:900:320:180,scale=1920:1080:flags=lanczos,'
-    'crop=1564:880:356:100,scale=1920:1080:flags=lanczos,'
-    'crop=1742:980:178:0,scale=1920:1080:flags=lanczos,setsar=1'
-)
+# Approved source crop: left 384px, top 214px, bottom 2px; preserve 16:9.
+SUTURING_FILTER = 'crop=1536:864:384:214,scale=1920:1080:flags=lanczos,setsar=1'
 
 
 def run(args):
