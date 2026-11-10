@@ -110,8 +110,11 @@ Do not also use branch-based publishing with this workflow.
 The build runs `python3 scripts/build_site.py`, validates all local page assets,
 and uploads only the publishable `_site/` directory. Original physical footage,
 Git metadata, scripts, and unused template dependencies are excluded. The deploy
-step allows up to 30 minutes for GitHub Pages to finish; this accommodates slow
-deployments but cannot fix a GitHub service outage. Ubuntu is pinned to 24.04.
+step uses GitHub Pages' maximum wait of 10 minutes. Larger timeout values are
+clamped by the deploy action and cannot extend this service limit. Ubuntu is
+pinned to 24.04. If upload succeeds but deployment times out, inspect the full
+Deploy to GitHub Pages log for the deployment ID and repeated status values;
+the warning annotations alone do not identify why publication is stalled.
 
 To validate the artifact locally:
 

@@ -34,7 +34,7 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
+    timeout-minutes: 15
     permissions:
       pages: write
       id-token: write
@@ -46,5 +46,5 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         with:
-          # The default is 600000 ms (10 minutes).
-          timeout: '1800000'
+          # GitHub Pages enforces a maximum of 600000 ms (10 minutes).
+          timeout: '600000'
