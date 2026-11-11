@@ -115,7 +115,7 @@ question introduces Method: "Can emerging coding agents deliver augmented dexter
 across diverse surgical tasks and remain reliable when failures occur?" The question shares
 the figure's full width, with justified text and no bold emphasis. The updated overview
 figure appears in full, including the debridement and suturing failure-recovery
-sequences. Responsive 1120px/2240px WebP previews (approximately 142/336 KB) load
+sequences. Responsive 1120px/2240px WebP previews (approximately 140/337 KB) load
 eagerly with high priority instead of the 9.7 MB PNG. The previews preserve the
 source color profile. Clicking first shows the cached preview, then replaces it
 with the original full-resolution image once loaded. Both research figures have
@@ -188,7 +188,7 @@ All other intervals show normal execution.
 
 ## Media preparation
 
-- Overview original: `static/images/abstract.png` (5533×3312, unchanged; loaded on zoom and used by social metadata).
+- Overview original: `static/images/abstract.png` (5536×3328, unchanged; loaded on zoom and used by social metadata).
 - Overview previews: `static/images/abstract-1120.webp` and `static/images/abstract-2240.webp` (responsive, content-versioned URLs).
 - Method: `static/images/sara_pipeline.png`.
 - Video posters: `static/images/posters/`.
