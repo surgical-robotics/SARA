@@ -94,10 +94,10 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
 .legend-dot.recovery { background: var(--amber); }
 .legend-dot.disturbance { background: var(--red); }
 .video-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 24px; }
-.video-card { --state-color: var(--green); --state-ink: var(--state-color); min-width: 0; border-radius: 6px; background: transparent; overflow: hidden; }
-.video-card[data-state="recovery"] { --state-color: var(--amber); --state-ink: var(--recovery-ink); }
-.video-card[data-state="disturbance"] { --state-color: var(--red); }
-.video-state-bar { display: flex; align-items: center; gap: 8px; padding: 10px 12px; min-height: 44px; color: var(--state-ink); font-size: 16px; font-weight: 500; line-height: 1.5; }
+.video-card { --state-color: var(--green); --state-ink: var(--state-color); --state-bg: var(--normal-bg); min-width: 0; border-radius: 6px; background: transparent; overflow: hidden; }
+.video-card[data-state="recovery"] { --state-color: var(--amber); --state-ink: var(--recovery-ink); --state-bg: var(--recovery-bg); }
+.video-card[data-state="disturbance"] { --state-color: var(--red); --state-bg: var(--disturbance-bg); }
+.video-state-bar { display: flex; align-items: center; gap: 8px; padding: 10px 12px; min-height: 44px; border: 2px solid var(--state-color); border-bottom: 0; border-radius: 6px 6px 0 0; background: var(--state-bg); color: var(--state-ink); font-size: 16px; font-weight: 550; line-height: 1.5; }
 .video-state-dot { flex-shrink: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--state-color); }
 .video-frame { position: relative; aspect-ratio: 16 / 9; background: #101d19; border: 2px solid var(--state-color); transition: border-color .15s; }
 .simulation-grid .video-frame { aspect-ratio: 4 / 3; }
@@ -125,7 +125,7 @@ h3 { line-height: 1.25; letter-spacing: -.025em; }
 .media-time { flex-shrink: 0; color: white; font-size: 13px; line-height: 1.4; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .video-card:fullscreen { display: flex; flex-direction: column; width: 100%; height: 100%; padding: 0; border-radius: 0; background: #101d19; }
 .video-card:fullscreen .video-frame { flex: 1; min-height: 0; aspect-ratio: auto; }
-.video-card:fullscreen .video-state-label { color: #f1f5f2; }
+.video-card:fullscreen .video-state-bar { flex-shrink: 0; border-radius: 0; }
 .video-card:fullscreen > figcaption { flex-shrink: 0; color: #f1f5f2; }
 .video-card:fullscreen .task-attributes li { border-color: #ffffff40; color: #dce7e0; }
 .video-card:fullscreen > figcaption small { color: #c4d1c9; }

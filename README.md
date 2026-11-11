@@ -151,8 +151,12 @@ and real-world demonstrations.
 
 ## Video state annotations
 
-Each video retains a thin, dynamic 2px border and a compact dot with the current
-phase label above it. Normal Execution uses green (`#28764f`), Failure Recovery
+Each video retains a thin, dynamic 2px border and a full-width colored status
+panel directly above it. The panel has a matching outline, a dot, and a 16px current
+phase label. Its background changes with the video: pale green (`#edf5ee`) for
+normal execution, pale amber (`#fff4dc`) for recovery, and pale red (`#fff0f0`) for
+external disturbance. These are more distinct than the near-white group backgrounds.
+Normal Execution uses green (`#28764f`), Failure Recovery
 uses amber yellow (`#b8860b`), and External Disturbance uses red (`#d52222`).
 Legends and navigation icons use the same palette. Recovery text uses a darker
 amber (`#805d00`) for readability on the light backgrounds. Borders indicate the
@@ -161,7 +165,8 @@ category of the complete demonstration.
 
 The extra segmented timeline has been removed. Phase labels and borders follow
 media events, with DOM writes only when the phase changes and no animation loop.
-Seeking, looping, and resuming update the phase. Fullscreen labels remain light
+Seeking, looping, and resuming update the phase. Fullscreen keeps the same light
+status panel and readable dark phase text; the caption below the video stays light
 against the dark player background. The hover controls still provide a smooth
 seek bar, elapsed/total time, play/pause, and fullscreen; hidden controls skip
 progress repainting. Native muted autoplay and the configured playback rates are
