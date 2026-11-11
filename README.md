@@ -68,7 +68,7 @@ and a public repository exposes its tracked media files.
 The page uses an editorial layout with white backgrounds, dark green typography,
 and green/amber/red phase colors. The text-only hero emphasizes the project
 name and full title, followed by four rounded keyword labels: Surgical agentic
-robotics, Sim-to-real, 8 simulation tasks, and 6 real-world tasks. Overview and Method retain the supplied scientific
+robotics, Real-to-sim-to-real, 8 simulation tasks, and 6 real-world tasks. Overview and Method retain the supplied scientific
 figures; no additional method diagram or interactive stepper is shown.
 
 The visible hero wordmark omits the colon; the complete title retains it in
@@ -84,12 +84,15 @@ Abstract and Method. Gallery numbering restarts within each section: Simulation
 uses 1 Normal Execution and 2 Failure Recovery; Real-world experiments uses
 1 Normal Execution, 2 Failure Recovery, and 3 External Disturbance. Compact
 number badges also appear in the group headings, with matching numbers in the
-sticky gallery navigation. Each link always carries its category's pale background,
-colored number, and a simple circular icon: a green check for normal execution,
-an amber return arrow for recovery, and a red incoming-force symbol for disturbance.
-The icons supplement the text labels and are hidden from assistive technology.
-The current group uses a stronger matching tint, colored text, and a bottom rule;
-hovering a link also strengthens its category tint.
+sticky gallery navigation. Inactive links use a white background, neutral border,
+gray text and numbers, and grayscale icons. Only the current group (identified by
+`aria-current` as the reader scrolls) receives its category color: green for normal
+execution, amber for recovery, or red for external disturbance. Its background,
+number, text, icon, border, and bottom rule highlight together. Hovering an inactive
+link gives neutral feedback without activating its category color. The simple
+circular icons are a check for normal execution, a return arrow for recovery, and
+an incoming-force symbol for disturbance. They supplement the text labels and are
+hidden from assistive technology.
 Horizontal rules, additional spacing, and very light category backgrounds separate
 groups: green (`#fafdfb`) for normal execution, yellow (`#fffdf7`) for recovery, and
 red (`#fffafa`) for external disturbance. These near-white backgrounds identify the
@@ -112,7 +115,7 @@ question introduces Method: "Can emerging coding agents deliver augmented dexter
 across diverse surgical tasks and remain reliable when failures occur?" The question shares
 the figure's full width, with justified text and no bold emphasis. The updated overview
 figure appears in full, including the debridement and suturing failure-recovery
-sequences. Responsive 1120px/2240px WebP previews (approximately 143/335 KB) load
+sequences. Responsive 1120px/2240px WebP previews (approximately 142/336 KB) load
 eagerly with high priority instead of the 9.7 MB PNG. The previews preserve the
 source color profile. Clicking first shows the cached preview, then replaces it
 with the original full-resolution image once loaded. Both research figures have
@@ -185,7 +188,7 @@ All other intervals show normal execution.
 
 ## Media preparation
 
-- Overview original: `static/images/abstract.png` (5542×3322, unchanged; loaded on zoom and used by social metadata).
+- Overview original: `static/images/abstract.png` (5533×3312, unchanged; loaded on zoom and used by social metadata).
 - Overview previews: `static/images/abstract-1120.webp` and `static/images/abstract-2240.webp` (responsive, content-versioned URLs).
 - Method: `static/images/sara_pipeline.png`.
 - Video posters: `static/images/posters/`.
