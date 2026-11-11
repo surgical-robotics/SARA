@@ -119,8 +119,8 @@ sequences. Responsive 1120px/2240px WebP previews (approximately 141/335 KB) loa
 eagerly with high priority instead of the 9.7 MB PNG. The previews preserve the
 source color profile. Clicking first shows the cached preview, then replaces it
 with the original full-resolution image once loaded. Method also uses responsive
-1120px/2240px WebP previews (approximately 132/307 KB), loaded lazily with
-asynchronous decoding; its 8725×4315 PNG is fetched when enlarged. Both research figures have
+1120px/2240px WebP previews (approximately 132/308 KB), loaded lazily with
+asynchronous decoding; its 8729×4318 PNG is fetched when enlarged. Both research figures have
 full-width, 16px explanatory captions with an emphasized opening title. The captions
 use native inline MathML for the nominal, candidate augmented, and final augmented
 graphs, without a separate math-rendering script. Agent names and method phases are
@@ -192,7 +192,7 @@ All other intervals show normal execution.
 
 - Overview original: `static/images/abstract.png` (5545×3313, unchanged; loaded on zoom and used by social metadata).
 - Overview previews: `static/images/abstract-1120.webp` and `static/images/abstract-2240.webp` (responsive, content-versioned URLs).
-- Method original: `static/images/sara_pipeline.png` (8725×4315, preserved for zoom).
+- Method original: `static/images/sara_pipeline.png` (8729×4318, preserved for zoom).
 - Method previews: `static/images/sara_pipeline-1120.webp` and `static/images/sara_pipeline-2240.webp` (responsive, content-versioned URLs).
 - Video posters: `static/images/posters/`.
 - Published physical videos: `static/videos_web/` (H.264, original resolution, fast-start MP4).
