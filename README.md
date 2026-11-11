@@ -118,7 +118,9 @@ figure appears in full, including the debridement and suturing failure-recovery
 sequences. Responsive 1120px/2240px WebP previews (approximately 141/335 KB) load
 eagerly with high priority instead of the 9.7 MB PNG. The previews preserve the
 source color profile. Clicking first shows the cached preview, then replaces it
-with the original full-resolution image once loaded. Both research figures have
+with the original full-resolution image once loaded. Method also uses responsive
+1120px/2240px WebP previews (approximately 130/303 KB), loaded lazily with
+asynchronous decoding; its 8737×4322 PNG is fetched when enlarged. Both research figures have
 full-width, 16px explanatory captions with an emphasized opening title. The captions
 use native inline MathML for the nominal, candidate augmented, and final augmented
 graphs, without a separate math-rendering script. Agent names and method phases are
@@ -190,7 +192,8 @@ All other intervals show normal execution.
 
 - Overview original: `static/images/abstract.png` (5545×3313, unchanged; loaded on zoom and used by social metadata).
 - Overview previews: `static/images/abstract-1120.webp` and `static/images/abstract-2240.webp` (responsive, content-versioned URLs).
-- Method: `static/images/sara_pipeline.png`.
+- Method original: `static/images/sara_pipeline.png` (8737×4322, preserved for zoom).
+- Method previews: `static/images/sara_pipeline-1120.webp` and `static/images/sara_pipeline-2240.webp` (responsive, content-versioned URLs).
 - Video posters: `static/images/posters/`.
 - Published physical videos: `static/videos_web/` (H.264, original resolution, fast-start MP4).
 - Original physical videos: `static/videos_real/` (preserved locally and ignored by Git).
@@ -203,7 +206,7 @@ FFmpeg and run from this directory:
 python3 scripts/prepare_media.py
 ```
 
-After replacing the overview image or simulation clips, run the loading optimizer
+After replacing either research figure or simulation clips, run the loading optimizer
 (requires Pillow and FFmpeg):
 
 ```bash
@@ -213,7 +216,7 @@ python3 scripts/optimize_loading.py
 It regenerates the WebP previews and losslessly remuxes simulation files that lack
 fast start. Compressed packets and their timestamps are verified before replacing
 the MP4 container; resolution, frame rate, and annotation timing remain unchanged.
-The PNG original is preserved. The script refreshes content-version queries for
+The PNG originals are preserved. The script refreshes content-version queries for
 updated assets in `index.html`. Commit the generated previews and changed MP4s
 alongside the page.
 

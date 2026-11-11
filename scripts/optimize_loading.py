@@ -1,7 +1,7 @@
 """Prepare small figure previews and losslessly enable MP4 fast start.
 
-Run after replacing abstract.png or a simulation video. Requires Pillow and FFmpeg.
-The full-resolution figure stays untouched. Video packets and timestamps must
+Run after replacing either research figure or a simulation video. Requires Pillow and FFmpeg.
+The full-resolution figures stay untouched. Video packets and timestamps must
 match before a remuxed container replaces its source.
 """
 from hashlib import sha256
@@ -20,13 +20,13 @@ def version(path):
     return sha256(path.read_bytes()).hexdigest()[:12]
 
 
-def prepare_figure():
-    source = IMAGES / 'abstract.png'
+def prepare_figure(name='abstract'):
+    source = IMAGES / f'{name}.png'
     paths = [source]
     with Image.open(source) as image:
         for width in (1120, 2240):
             height = round(image.height * width / image.width)
-            target = IMAGES / f'abstract-{width}.webp'
+            target = IMAGES / f'{name}-{width}.webp'
             preview = image.resize((width, height), Image.Resampling.LANCZOS)
             preview.save(target, 'WEBP', quality=90, method=6,
                          icc_profile=image.info.get('icc_profile', b''))
@@ -83,7 +83,7 @@ def prepare_video(path):
 
 
 if __name__ == '__main__':
-    assets = prepare_figure()
+    assets = [asset for name in ('abstract', 'sara_pipeline') for asset in prepare_figure(name)]
     for source in sorted((ROOT / 'static/videos_sim').glob('*.mp4')):
         if prepare_video(source):
             assets.append(source)
